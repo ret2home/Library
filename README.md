@@ -18,6 +18,7 @@ defineの競プロライブラリです。
 - Segment Tree Beats(Update : chmin,chmax,add Query : sum)
 - Wavelet Matrix (Rank, Quantile)
 - Heavy Light Decomposition (+Segtree)
+- SparseTable
 
 ## Graph
 
