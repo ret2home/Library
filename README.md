@@ -6,7 +6,7 @@ defineの競プロライブラリです。
 
 一応全部[Library Checker](https://judge.yosupo.jp/)でVerifyしています。
 
-Verifyした問題のコードそのまま貼っているので、使い方はなんとなく分かるはず...?
+大体はVerifyした問題のコードそのまま貼っているので、使い方はなんとなく分かるはず...?
 
 ## Data Structure
 
@@ -19,3 +19,8 @@ Verifyした問題のコードそのまま貼っているので、使い方は�
 ## Graph
 
 - Tree(LCA)
+
+## Math
+
+- $nCk$(nが小さい場合)
+- $nCk$(kが小さい場合)
