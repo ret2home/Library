@@ -6,16 +6,18 @@ defineの競プロライブラリです。
 
 ほとんどは[Library Checker](https://judge.yosupo.jp/)でVerifyしています。
 
-他はいつも使ってて大丈夫なのとか...
+使用例と一緒にそのまま貼っているので、使い方はなんとなく分かるはず。
 
-使用例と一緒にそのまま貼っているので、使い方はなんとなく分かるはず...?
+環境はC++17想定なので、C++14だとコンパイル通らないかもしれません。
+
+とは言ってもC++14でエラーが出るのはstd::gcdくらいなので大して問題はないかな...
 
 ## Data Structure
 
 - UnionFind
 - Binary Indexed Tree (1-indexed)
 - Segment Tree
-- Segment Tree Beats(Update : chmin,chmax,add Query : sum)
+- Segment Tree Beats (Update : chmin,chmax,add Query : sum)
 - Wavelet Matrix (Rank, Quantile)
 - Heavy Light Decomposition (+Segtree)
 - SparseTable
@@ -28,6 +30,7 @@ defineの競プロライブラリです。
 
 - nCk (nが小さい場合)
 - nCk (kが小さい場合)
+- Prime Factor (rho + miller rabin)
 
 ## String
 
