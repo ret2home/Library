@@ -21,7 +21,7 @@ defineの競プロライブラリです。
 - Wavelet Matrix (Rank, Quantile)
 - Heavy Light Decomposition (+Segtree)
 - SparseTable
-- Splay Tree
+- Splay Tree (find,lower_bound,upper_bound,insert,erase)
 
 ## Graph
 

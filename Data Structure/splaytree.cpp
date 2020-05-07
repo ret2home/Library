@@ -76,10 +76,10 @@ struct SplayTree{
 			return (x->rch==NULL||x->val==v)?x:leftRotate(x);
 		}
 	}
-	bool find(T x){
+	node *find(T x){
 		root=splay(root,x);
-		if(root==NULL)return false;
-		return root->val==x;
+		if(root==NULL||root->val!=x)return NULL;
+		return root;
 	}
 	node *insert(node *x,T v){
 		if(x==NULL){
@@ -122,6 +122,22 @@ struct SplayTree{
 		}
 		return x;
 	}
+	node* lower_bound(T x){
+		root=splay(root,x);
+		if(root==NULL||root->val>=x)return root;
+		if(root->rch==NULL)return NULL;
+		node *q;
+		for(q=root->rch;q->lch!=NULL;q=q->lch);
+		return q;
+	}
+	node *upper_bound(T x){
+		root=splay(root,x);
+		if(root==NULL||root->val>x)return root;
+		if(root->rch==NULL)return NULL;
+		node *q;
+		for(q=root->rch;q->lch!=NULL;q=q->lch);
+		return q;
+	}
 	void erase(T x){
 		if(find(x)){
 			root=erase(root,x);
@@ -132,16 +148,16 @@ struct SplayTree{
 
 signed main(){
 	SplayTree<int>st;
-	int q;cin>>q;
-	while(q--){
+	rep(i,1000000){
 		int type,x;cin>>type>>x;
-		if(!type){
-			st.insert(x);
-			cout<<st.size<<endl;
+		if(type==0){
+			auto p=st.lower_bound(x);
+			if(p!=NULL)cout<<p->val<<endl;
 		}else if(type==1){
-			cout<<st.find(x)<<endl;
-		}else st.erase(x);
+			st.insert(x);
+		}else {
+			st.erase(x);
+		}
 	}
 }
-
 
