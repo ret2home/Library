@@ -36,3 +36,4 @@ defineの競プロライブラリです。
 
 - ZAlgorithm
 - RollingHash (mod 2^61-1)
+- Suffix Array
