@@ -14,7 +14,7 @@ defineの競プロライブラリです。
 
 ## Data Structure
 
-- UnionFind
+- Union Find
 - Binary Indexed Tree (1-indexed)
 - Segment Tree
 - Segment Tree Beats (Update : chmin,chmax,add Query : sum)
@@ -35,5 +35,5 @@ defineの競プロライブラリです。
 ## String
 
 - ZAlgorithm
-- RollingHash (mod 2^61-1)
+- Rolling Hash (mod 2^61-1)
 - Suffix Array
