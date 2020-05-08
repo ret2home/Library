@@ -31,13 +31,13 @@ constexpr int mod = 998244353;
 constexpr int inf = LLONG_MAX;
 
 template<class T>
-struct SplayTree{
+class SplayTree{
 	struct node{
 		T val;
 		node *lch,*rch;
 	};
 	node *root=NULL;
-	int size=0;
+	int sz=0;
 	node *rightRotate(node *x){
 		node *y=x->lch;
 		x->lch=y->rch;
@@ -62,24 +62,19 @@ struct SplayTree{
 				if(x->lch->rch!=NULL)
 					x->lch=leftRotate(x->lch);
 			}
-			return (x->lch==NULL||x->val==v)?x:rightRotate(x);
+			return (x->lch==NULL)?x:rightRotate(x);
 		}else {
 			if(x->rch==NULL)return x;
 			if(v<x->rch->val){
 				x->rch->lch=splay(x->rch->lch,v);
 				if(x->rch->lch!=NULL)
 					x->rch=rightRotate(x->rch);
-			}else {
+			}else if(x->rch->val<v){
 				x->rch->rch=splay(x->rch->rch,v);
 				x=leftRotate(x);
 			}
-			return (x->rch==NULL||x->val==v)?x:leftRotate(x);
+			return (x->rch==NULL)?x:leftRotate(x);
 		}
-	}
-	node *find(T x){
-		root=splay(root,x);
-		if(root==NULL||root->val!=x)return NULL;
-		return root;
 	}
 	node *insert(node *x,T v){
 		if(x==NULL){
@@ -91,11 +86,6 @@ struct SplayTree{
 		if(v<x->val)x->lch=insert(x->lch,v);
 		else x->rch=insert(x->rch,v);
 		return x;
-	}
-	void insert(T x){
-		if(!find(x)){
-			root=insert(root,x);size++;
-		}
 	}
 	node *erase(node *x,T v){
 		if(x==NULL)return NULL;
@@ -122,6 +112,26 @@ struct SplayTree{
 		}
 		return x;
 	}
+public:
+	int size(){
+		return sz;
+	}
+	node *find(T x){
+		root=splay(root,x);
+		if(root==NULL||root->val!=x)return NULL;
+		return root;
+	}
+	void insert(T x){
+		if(!find(x)){
+			root=insert(root,x);sz++;
+		}
+	}
+	void erase(T x){
+		if(find(x)){
+			root=erase(root,x);
+			sz--;
+		}
+	}
 	node* lower_bound(T x){
 		root=splay(root,x);
 		if(root==NULL||root->val>=x)return root;
@@ -137,12 +147,6 @@ struct SplayTree{
 		node *q;
 		for(q=root->rch;q->lch!=NULL;q=q->lch);
 		return q;
-	}
-	void erase(T x){
-		if(find(x)){
-			root=erase(root,x);
-			size--;
-		}
 	}
 };
 
