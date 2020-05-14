@@ -7,28 +7,18 @@ using namespace std;
 #define P pair<int,int>
 #define len(s) (int)s.size()
 #define pb push_back
-#define fi first
-#define se second
 
-template<class T> inline bool chmin(T &a, T b) {
-	if (a > b) {
-		a = b;
-		return true;
-	}
+template<class T> inline bool chmin(T &a, T b){
+	if(a>b){a=b;return true;}
 	return false;
 }
-template<class T> inline bool chmax(T &a, T b) {
-	if (a < b) {
-		a = b;
-		return true;
-	}
+template<class T> inline bool chmax(T &a, T b){
+	if(a<b){a=b;return true;}
 	return false;
-}
-void cmps(vector<int>&v,int &i){
-	i=lower_bound(all(v),i)-v.begin();
 }
 constexpr int mod = 998244353;
-constexpr int inf = LLONG_MAX;
+constexpr int inf = 3e18;
+
 
 template<typename Monoid,typename OperatorMonoid>
 struct Segtree{
@@ -95,9 +85,9 @@ struct HLD{
 	using V=vector<pair<int,P>>;
 	struct heavy_set{
 		vector<int>ele;
-		int depth,par,cost;
-		heavy_set(int v,int d,int par,int co)
-		:ele(1,v),depth(d),par(par),cost(co){}
+		int depth,par,cost1=1,cost2=1;
+		heavy_set(int v,int d,int par)
+		:ele(1,v),depth(d),par(par){}
 	};
 	vector<vector<int>>G;
 	vector<heavy_set>S;
@@ -123,103 +113,103 @@ struct HLD{
 				S[id].ele.pb(i);
 				make_path(i,v,id);
 			}else {
-				S.emplace_back(i,S[id].depth+1,v,0);
+				S.emplace_back(i,S[id].depth+1,v);
 				make_path(i,v,S.size()-1);
 			}
 		}
 	}
 	int st(int v){return stidx[v];}
 	int el(int v){return eleidx[v];}
-	pair<V,V>path(int u,int v){
-		V res1,res2;
-
-		while(S[stidx[u]].depth>S[stidx[v]].depth){
-			res1.pb({stidx[u],{0,eleidx[u]+1}});
-			u=S[stidx[u]].par;
-		}
-		while(S[stidx[u]].depth<S[stidx[v]].depth){
-			res2.pb({stidx[v],{0,eleidx[v]+1}});
-			v=S[stidx[v]].par;
-		}
-		while(stidx[u]!=stidx[v]){
-			res1.pb({stidx[u],{0,eleidx[u]+1}});
-			res2.pb({stidx[v],{0,eleidx[v]+1}});
-			u=S[stidx[u]].par;v=S[stidx[v]].par;
-		}
-		int du=eleidx[u],dv=eleidx[v];
-		if(du>dv){
-			res1.pb({stidx[u],{dv,du+1}});
-		}else {
-			res2.pb({stidx[u],{du,dv+1}});
-		}
-		reverse(all(res2));
-		return {res1,res2};
-	}
 	HLD(vector<vector<int>>&G):G(G){
 		int N=G.size();
 		subsize.resize(N);
 		eleidx.resize(N);
 		stidx.resize(N);
-		S.emplace_back(0,0,0,0);
+		S.emplace_back(0,0,0);
 		make_path(0,0,0);
 	}
 };
-
 signed main(){
-	auto f=[](P a,P b){
-		P res={a.first*b.first%mod,(a.second*b.first+b.second)%mod};
-		return res;
-	};
-	auto g=[](P a,P b,int sz){
-		return b;
-	};
-	auto f2=[](P a,P b){
-		P res={a.first*b.first%mod,(b.second*a.first+a.second)%mod};
-		return res;
-	};
-
-	int N,Q;
-	cin>>N>>Q;
-	vector<P>A(N);
+	int N,Q;cin>>N>>Q;
 	vector<vector<int>>G(N);
-	for(P &i:A)cin>>i.first>>i.second;
+	vector<P>v(N-1);
 	rep(i,N-1){
-		int a,b;cin>>a>>b;
-		G[a].pb(b);G[b].pb(a);
+		cin>>v[i].first>>v[i].second;
+		v[i].first--;v[i].second--;
+		G[v[i].first].pb(v[i].second);G[v[i].second].pb(v[i].first);
 	}
+	auto f=[](int a,int b){return a+b;};
+	auto g=[](int a,int b,int sz){return b;};
+	auto h=[](int a,int b){return b;};
+
 	HLD hld(G);
-	vector<Segtree<P,P>>segtree1,segtree2;
-	rep(i,(int)hld.S.size()){
-		segtree1.emplace_back(hld.S[i].ele.size(),f,g,f,P(1,0),P(1,0),P(1,0));
-		segtree2.emplace_back(hld.S[i].ele.size(),f2,g,f2,P(1,0),P(1,0),P(1,0));
-	}
-	rep(i,N){
-		segtree1[hld.st(i)].set(hld.el(i),A[i]);
-		segtree2[hld.st(i)].set(hld.el(i),A[i]);
-	}
-	rep(i,(int)hld.S.size()){
+	vector<Segtree<int,int>>segtree1,segtree2;
+	rep(i,len(hld.S)){
+		segtree1.emplace_back(len(hld.S[i].ele)-1,f,g,h,0,0,0);
+		segtree2.emplace_back(len(hld.S[i].ele)-1,f,g,h,0,0,0);
+		rep(j,len(hld.S[i].ele)-1){
+			segtree1[i].set(j,1);
+			segtree2[i].set(j,1);
+		}
 		segtree1[i].init();
 		segtree2[i].init();
 	}
 
 	while(Q--){
-		int type;cin>>type;
-		if(type==0){
-			int p,c,d;cin>>p>>c>>d;
-			segtree1[hld.st(p)].update(hld.el(p),hld.el(p)+1,{c,d});
-			segtree2[hld.st(p)].update(hld.el(p),hld.el(p)+1,{c,d});
+		char c;cin>>c;
+		if(c=='I'){
+			int r,s,t;cin>>r>>s>>t;r--;
+			int i=v[r].first,j=v[r].second;
+
+			if(hld.st(i)!=hld.st(j)){
+				if(hld.S[hld.st(i)].depth>hld.S[hld.st(j)].depth){
+					hld.S[hld.st(i)].cost1=s;
+					hld.S[hld.st(i)].cost2=t;
+				}else {
+					hld.S[hld.st(j)].cost1=t;
+					hld.S[hld.st(j)].cost2=s;
+				}
+			}else {
+				if(hld.el(i)>hld.el(j)){
+					segtree1[hld.st(i)].update(hld.el(j),hld.el(j)+1,s);
+					segtree2[hld.st(i)].update(hld.el(j),hld.el(j)+1,t);
+				}else {
+					segtree1[hld.st(i)].update(hld.el(i),hld.el(i)+1,t);
+					segtree2[hld.st(i)].update(hld.el(i),hld.el(i)+1,s);
+				}
+			}
 		}else {
-			int u,v,x;cin>>u>>v>>x;
-			auto vv=hld.path(u,v);
-			P a={1,0};
-			for(auto p:vv.first){
-				a=f(a,segtree2[p.first].query(p.second.first,p.second.second));
+			int x,y;cin>>x>>y;x--;y--;
+			int ans=0;
+			while(hld.S[hld.st(x)].depth>hld.S[hld.st(y)].depth){
+				int i=hld.st(x),j=hld.el(x);
+				ans+=segtree1[i].query(0,j);
+				ans+=hld.S[i].cost1;
+				x=hld.S[i].par;
 			}
-			for(auto p:vv.second){
-				a=f(a,segtree1[p.first].query(p.second.first,p.second.second));
+			while(hld.S[hld.st(x)].depth<hld.S[hld.st(y)].depth){
+				int i=hld.st(y),j=hld.el(y);
+				ans+=segtree2[i].query(0,j);
+				ans+=hld.S[i].cost2;
+				y=hld.S[i].par;
 			}
-			cout<<(a.first*x+a.second)%mod<<endl;
+			while(hld.st(x)!=hld.st(y)){
+				int i=hld.st(x),j=hld.el(x);
+				ans+=segtree1[i].query(0,j);
+				ans+=hld.S[i].cost1;
+				x=hld.S[i].par;
+				i=hld.st(y);j=hld.el(y);
+				ans+=segtree2[i].query(0,j);
+				ans+=hld.S[i].cost2;
+				y=hld.S[i].par;
+			}
+			int u=hld.el(x),v=hld.el(y);
+			if(u<v){
+				ans+=segtree2[hld.st(x)].query(u,v);
+			}else {
+				ans+=segtree1[hld.st(x)].query(v,u);
+			}
+			cout<<ans<<endl;
 		}
 	}
 }
-
