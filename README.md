@@ -33,7 +33,7 @@ defineの競プロライブラリです。
 - nCk (nが小さい場合)
 - nCk (kが小さい場合)
 - Prime Factor (rho + miller rabin)
-- Fast Fourier Transform
+- Fast Fourier Transform (Special Thanks : @ageprocpp)
 
 ## String
 
