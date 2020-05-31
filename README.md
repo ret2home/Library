@@ -24,6 +24,7 @@ defineの競プロライブラリです。
 - Splay Tree (find,lower_bound,upper_bound,insert,erase)
 - Convex Hull Trick (Li Chao Tree)
 - Persistent Array (Persistent Queue)
+- Persistent Union Find
 
 ## Graph
 
