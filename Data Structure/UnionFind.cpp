@@ -41,7 +41,7 @@ struct UnionFind{
 			size[y]+=size[x];
 		}else {
 			par[y]=x;
-			size[y]+=size[x];
+			size[x]+=size[y];
 		}
 	}
 	bool same(int x,int y){
