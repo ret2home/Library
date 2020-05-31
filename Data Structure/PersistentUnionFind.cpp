@@ -25,6 +25,11 @@ struct PersistentArray{
 		T val;
 		Node* ch[20];
 	};
+	void destructive_set(int idx,T val,Node *&t){
+		if(!t)t=new Node();
+		if(idx==0)t->val=val;
+		else destructive_set(idx/20,val,t->ch[idx%20]);
+	}
 	Node *set(int idx,T val,Node *t){
 		Node *res=(t?new Node(*t):new Node());
 		if(idx==0)res->val=val;
@@ -51,20 +56,20 @@ struct PersistentUnionFind{
 		return find(x,t)==find(y,t);
 	}
 	int size(int x,node *t){
-		return data.get(x,t).second;
+		return data.get(find(x,t).first,t).second;
 	}
 	node* merge(int x,int y,node *t){
 		P u=find(x,t),v=find(y,t);
 		if(u.first==v.first)return new node(*t);
 		if(u.second>v.second)swap(u,v);
 		node *res=data.set(u.first,{v.first,u.second},t);
-		res=data.set(v.first,{v.first,u.second+v.second},res);
+		data.destructive_set(v.first,{v.first,u.second+v.second},res);
 		return res;
 	}
 	node* init(int x){
 		node* root=new node();
 		rep(i,x){
-			root=data.set(i,{i,1},root);
+			data.destructive_set(i,{i,1},root);
 		}
 		return root;
 	}
