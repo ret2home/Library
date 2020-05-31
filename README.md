@@ -23,6 +23,7 @@ defineの競プロライブラリです。
 - SparseTable
 - Splay Tree (find,lower_bound,upper_bound,insert,erase)
 - Convex Hull Trick (Li Chao Tree)
+- Persistent Array (Persistent Queue)
 
 ## Graph
 
