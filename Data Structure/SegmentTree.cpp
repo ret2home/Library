@@ -25,21 +25,17 @@ template<class T> inline bool chmax(T &a, T b) {
 void cmps(vector<int>&v,int &i){
 	i=lower_bound(all(v),i)-v.begin();
 }
-constexpr int mod = 998244353;
+constexpr int mod = 1e9+7;
 constexpr int inf = 3e18;
-
-template<typename Monoid,typename OperatorMonoid>
+template<typename Monoid,typename OperatorMonoid,typename F,typename G,typename H>
 struct Segtree{
-	using F=function<Monoid(Monoid,Monoid)>;
-	using G=function<Monoid(Monoid,OperatorMonoid,int)>;
-	using H=function<OperatorMonoid(OperatorMonoid,OperatorMonoid)>;
 	int size=1;
 	vector<Monoid>dat;
 	vector<OperatorMonoid>lazy;
 	const F f;
 	const G g;
 	const H h;
-	Monoid M,M1;
+	Monoid M;
 	OperatorMonoid OM;
 	void set(int a,Monoid x){
 		dat[a+size-1]=x;
@@ -75,114 +71,16 @@ struct Segtree{
 	Monoid query(int a,int b,int k=0,int l=0,int r=-1){
 		if(r==-1)r=size;
 		eval(k,l,r);
-		if(r<=a||b<=l)return M1;
+		if(r<=a||b<=l)return M;
 		if(a<=l&&r<=b)return dat[k];
 		Monoid lv=query(a,b,k*2+1,l,(l+r)/2);
 		Monoid rv=query(a,b,k*2+2,(l+r)/2,r);
 		return f(lv,rv);
 	}
-	Segtree(int x,F f,G g,H h,Monoid M,OperatorMonoid OM,Monoid M1)
-	:f(f),g(g),h(h),M(M),OM(OM),M1(M1){
+	Segtree(int x,F f,G g,H h,Monoid M,OperatorMonoid OM)
+	:f(f),g(g),h(h),M(M),OM(OM){
 		while(size<x)size*=2;
 		dat.resize(size*2-1,M);
 		lazy.resize(size*2-1,OM);
 	}
 };
-
-void RUQ_RMQ(){
-	auto f=[](int a,int b){
-		return min(a,b);
-	};
-	auto g=[](int a,int b,int sz){
-		return b;
-	};
-	auto h=[](int a,int b){
-		return b;
-	};
-	int N,Q;cin>>N>>Q;
-	Segtree<int,int>segtree(N,f,g,h,(1ll<<31)-1,(1ll<<31)-1,(1ll<<31)-1);
-	while(Q--){
-		int type;
-		cin>>type;
-		if(type==0){
-			int s,t,x;cin>>s>>t>>x;
-			segtree.update(s,t+1,x);
-		}else {
-			int l,r;cin>>l>>r;
-			cout<<segtree.query(l,r+1)<<endl;
-		}
-	}
-}
-void RAQ_RSQ(){
-	auto f=[](int a,int b){
-		return a+b;
-	};
-	auto g=[](int a,int b,int sz){
-		return a+b*sz;
-	};
-	auto h=[](int a,int b){
-		return a+b;
-	};
-	int N,Q;cin>>N>>Q;
-	Segtree<int,int>segtree(N,f,g,h,0,0,0);
-	while(Q--){
-		int type;cin>>type;
-		if(type==0){
-			int s,t,x;cin>>s>>t>>x;s--;t--;
-			segtree.update(s,t+1,x);
-		}else {
-			int s,t;cin>>s>>t;s--;t--;
-			cout<<segtree.query(s,t+1)<<endl;
-		}
-	}
-}
-void RAQ_RMQ(){
-	auto f=[](int a,int b){
-		return min(a,b);
-	};
-	auto g=[](int a,int b,int sz){
-		return a+b;
-	};
-	auto h=[](int a,int b){
-		return a+b;
-	};
-	int N,Q;cin>>N>>Q;
-	Segtree<int,int>segtree(N,f,g,h,0,0,inf);
-	while(Q--){
-		int type;
-		cin>>type;
-		if(type==0){
-			int s,t,x;cin>>s>>t>>x;
-			segtree.update(s,t+1,x);
-		}else {
-			int s,t;cin>>s>>t;
-			cout<<segtree.query(s,t+1)<<endl;
-		}
-	}
-}
-void RUQ_RSQ(){
-	auto f=[](int a,int b){
-		return a+b;
-	};
-	auto g=[](int a,int b,int sz){
-		return b*sz;
-	};
-	auto h=[](int a,int b){
-		return b;
-	};
-	int N,Q;cin>>N>>Q;
-	Segtree<int,int> segtree(N,f,g,h,0,inf,0);
-	while(Q--){
-		int type;cin>>type;
-		if(type==0){
-			int s,t,x;cin>>s>>t>>x;
-			segtree.update(s,t+1,x);
-		}else {
-			int s,t;cin>>s>>t;
-			cout<<segtree.query(s,t+1)<<endl;
-		}
-	}
-}
-signed main(){
-
-}

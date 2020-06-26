@@ -63,8 +63,9 @@ struct PersistentUnionFind{
 		if(u.first==v.first)return new node(*t);
 		if(u.second>v.second)swap(u,v);
 		node *res=data.set(u.first,{v.first,u.second},t);
-		data.destructive_set(v.first,{v.first,u.second+v.second},res);
-		return res;
+		node *res2=data.set(v.first,{v.first,u.second+v.second},res);
+		delete(res);
+		return res2;
 	}
 	node* init(int x){
 		node* root=new node();
