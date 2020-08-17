@@ -19,11 +19,12 @@ defineの競プロライブラリです。
 - Segment Tree
 - Segment Tree Beats (Update : chmin,chmax,add Query : sum)
 - Wavelet Matrix (Rank, Quantile)
-- Heavy Light Decomposition (+Segtree)
+- Heavy Light Decomposition
 - SparseTable
 - Splay Tree (find,lower_bound,upper_bound,insert,erase)
 - Convex Hull Trick (Li Chao Tree)
 - Persistent Union Find
+- Partial Persistent UnionFind
 
 ## Graph
 
@@ -38,6 +39,6 @@ defineの競プロライブラリです。
 
 ## String
 
-- ZAlgorithm
+- Z Algorithm
 - Rolling Hash (mod 2^61-1)
 - Suffix Array

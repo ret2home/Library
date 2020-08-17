@@ -1,35 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define rep(i,n) for(int i=0;i<n;i++)
-#define REP(i,n) for(int i=1;i<n;i++)
-#define all(v) v.begin(),v.end()
-#define P pair<int,int>
-#define len(s) (int)s.size()
-#define pb push_back
-#define fi first
-#define se second
-
-template<class T> inline bool chmin(T &a, T b) {
-	if (a > b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-template<class T> inline bool chmax(T &a, T b) {
-	if (a < b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-void cmps(vector<int>&v,int &i){
-	i=lower_bound(all(v),i)-v.begin();
-}
-constexpr int mod = 998244353;
-constexpr int inf = LLONG_MAX;
-
 template<class T>
 struct SparseTable{
 	using F=function<T(T,T)>;
@@ -53,15 +21,3 @@ struct SparseTable{
 		return f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);
 	}
 };
-signed main(){
-	int N,Q;
-	cin>>N>>Q;
-	vector<int>v(N);
-	for(int &i:v)cin>>i;
-	SparseTable<int>ST(v,[](int a,int b){return min(a,b);});
-	while(Q--){
-		int l,r;cin>>l>>r;cout<<ST.query(l,r)<<endl;
-	}
-}
-
-

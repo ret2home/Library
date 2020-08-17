@@ -1,33 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define rep(i,n) for(int i=0;i<n;i++)
-#define REP(i,n) for(int i=1;i<n;i++)
-#define all(v) v.begin(),v.end()
-#define P pair<int,int>
-#define len(s) (int)s.size()
-#define pb push_back
-
-template<class T> inline bool chmin(T &a, T b) {
-	if (a > b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-template<class T> inline bool chmax(T &a, T b) {
-	if (a < b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-void cmps(vector<int>&v,int &i){
-	i=lower_bound(all(v),i)-v.begin();
-}
-constexpr int mod = 998244353;
-constexpr int inf = LLONG_MAX;
-
 struct SegtreeBeats{
 	vector<int>mx,smx,mxc;
 	vector<int>mn,smn,mnc;
@@ -161,30 +131,3 @@ struct SegtreeBeats{
 		sum.resize(size*2-1);lazy.resize(size*2-1);
 	}
 };
-
-signed main(){
-	int N,Q;
-	cin>>N>>Q;
-	SegtreeBeats segtree(N);
-	rep(i,N){
-		int a;cin>>a;segtree.set(i,a);
-	}
-	segtree.init();
-	while(Q--){
-		int type;cin>>type;
-		if(type==0){
-			int l,r,b;cin>>l>>r>>b;
-			segtree.update_min(l,r,b);
-		}else if(type==1){
-			int l,r,b;cin>>l>>r>>b;
-			segtree.update_max(l,r,b);
-		}else if(type==2){
-			int l,r,b;cin>>l>>r>>b;
-			segtree.update_add(l,r,b);
-		}else {
-			int l,r;cin>>l>>r;
-			cout<<segtree.query_sum(l,r)<<endl;
-		}
-	}
-}
-
