@@ -31,6 +31,7 @@ constexpr int mod = 998244353;
 constexpr int inf = LLONG_MAX;
 
 int mod_pow(int x,int y,int m=mod){
+	x%=m;
 	int res=1;
 	while(y>0){
 		if(y&1)(res*=x)%=m;
@@ -53,8 +54,3 @@ int nCk(int x,int y){
 	if(x<y)return 0;
 	return perm[x]*inv[x-y]%mod*inv[y]%mod;
 }
-signed main(){
-	init_perm();
-	cout<<nCk(8,4)<<endl;
-}
-

@@ -32,10 +32,11 @@ constexpr int inf = LLONG_MAX;
 
 int perm(int x,int y){
 	int res=1;
-	for(int i=x-y+1;i<=x;i++)(res*=i)%=mod;
+	for(int i=x-y+1;i<=x;i++)(res*=i%mod)%=mod;
 	return res;
 }
 int mod_pow(int x,int y,int m=mod){
+	x%=m;
 	int res=1;
 	while(y>0){
 		if(y&1)(res*=x)%=m;
