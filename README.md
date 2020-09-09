@@ -2,18 +2,19 @@
 
 [define](https://atcoder.jp/users/define) の競プロライブラリです。
 
-勝手に使って大丈夫ですが、バグっている可能性もあります。
+勝手に使って大丈夫ですが、バグっている可能性もあります。まぁ一応Verifyはしてるので大丈夫なはず！
 
-環境はC++17想定なので、C++14だとコンパイル通らないかもしれません。
+C++17想定なので、C++14だとコンパイル通らないかもしれません。とは言ってもC++14でエラーが出るのはstd::gcdくらいなので大して問題はないかな
 
-とは言ってもC++14でエラーが出るのはstd::gcdくらいなので大して問題はないかな...
+基本的に0-indexedですが、BITだけ1-indexedです。頭壊れる...
 
 ## Data Structure
 
 - Union Find
-- Binary Indexed Tree (1-indexed)
+- Binary Indexed Tree (**1-indexed**)
 - Segment Tree
 - Segment Tree Beats (Update : chmin,chmax,add Query : sum)
+- Bit Vector
 - Wavelet Matrix (Rank, Quantile)
 - Heavy Light Decomposition
 - SparseTable
@@ -38,4 +39,6 @@
 
 - Z Algorithm
 - Rolling Hash (mod 2^61-1)
-- Suffix Array
+- Suffix Array (SA-IS)
+- BWT
+- FM-index
