@@ -1,3 +1,6 @@
+#pragma once
+#include "../template/template.cpp"
+
 template<typename Monoid,typename OperatorMonoid,typename F,typename G,typename H>
 struct Segtree{
 	int size=1;

@@ -1,34 +1,5 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define rep(i,n) for(int i=0;i<n;i++)
-#define REP(i,n) for(int i=1;i<n;i++)
-#define all(v) v.begin(),v.end()
-#define P pair<int,int>
-#define len(s) (int)s.size()
-#define pb push_back
-#define fi first
-#define se second
-
-template<class T> inline bool chmin(T &a, T b) {
-	if (a > b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-template<class T> inline bool chmax(T &a, T b) {
-	if (a < b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-void cmps(vector<int>&v,int &i){
-	i=lower_bound(all(v),i)-v.begin();
-}
-constexpr int mod = 998244353;
-constexpr int inf = LLONG_MAX;
+#pragma once
+#include "../template/template.cpp"
 
 template<class T>
 class SplayTree{
@@ -149,19 +120,3 @@ public:
 		return q;
 	}
 };
-
-signed main(){
-	SplayTree<int>st;
-	rep(i,1000000){
-		int type,x;cin>>type>>x;
-		if(type==0){
-			auto p=st.lower_bound(x);
-			if(p!=NULL)cout<<p->val<<endl;
-		}else if(type==1){
-			st.insert(x);
-		}else {
-			st.erase(x);
-		}
-	}
-}
-

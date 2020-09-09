@@ -1,3 +1,6 @@
+#pragma once
+#include "../template/template.cpp"
+
 struct HLD{
 	using V=vector<pair<int,P>>;
 	struct heavy_set{
@@ -27,7 +30,7 @@ struct HLD{
 		}
 		for(int i:G[v])if(i!=p){
 			if(mxidx==i){
-				S[id].ele.pb(i);
+				S[id].ele.push_back(i);
 				make_path(i,v,id);
 			}else {
 				S.emplace_back(i,S[id].depth+1,v);

@@ -1,3 +1,6 @@
+#pragma once
+#include "../template/template.cpp"
+
 struct SegtreeBeats{
 	vector<int>mx,smx,mxc;
 	vector<int>mn,smn,mnc;

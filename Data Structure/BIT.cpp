@@ -1,3 +1,6 @@
+#pragma once
+#include "../template/template.cpp"
+
 struct BIT{
 	int N;
 	vector<int>bit;

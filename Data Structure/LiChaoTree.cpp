@@ -1,3 +1,6 @@
+#pragma once
+#include "../template/template.cpp"
+
 template<class T>
 struct LiChaoTree{
 	struct L{

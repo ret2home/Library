@@ -1,3 +1,6 @@
+#pragma once
+#include "../template/template.cpp"
+
 struct PartialPersistentUnionFind{
 	int version=0;
 	vector<int>tim,par;

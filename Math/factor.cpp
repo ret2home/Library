@@ -1,34 +1,5 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define rep(i,n) for(int i=0;i<n;i++)
-#define REP(i,n) for(int i=1;i<n;i++)
-#define all(v) v.begin(),v.end()
-#define P pair<int,int>
-#define len(s) (int)s.size()
-#define pb push_back
-#define fi first
-#define se second
-
-template<class T> inline bool chmin(T &a, T b) {
-	if (a > b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-template<class T> inline bool chmax(T &a, T b) {
-	if (a < b) {
-		a = b;
-		return true;
-	}
-	return false;
-}
-void cmps(vector<int>&v,int &i){
-	i=lower_bound(all(v),i)-v.begin();
-}
-constexpr int mod = 998244353;
-constexpr int inf = LLONG_MAX;
+#pragma once
+#include "../template/template.cpp"
 
 int mod_pow(int x,int y,int m=mod){
 	int res=1;
@@ -72,19 +43,6 @@ vector<int>factor(int n){
 	if(prime(n))return {n};
 	int d=rho(n);
 	vector<int>res=factor(d);
-	for(int i:factor(n/d))res.pb(i);
+	for(int i:factor(n/d))res.push_back(i);
 	return res;
 }
-signed main(){
-	int Q;cin>>Q;
-	while(Q--){
-		int n;cin>>n;
-		vector<int>v=factor(n);
-		sort(all(v));
-		cout<<v.size()<<" ";
-		for(int i:v)cout<<i<<" ";
-		cout<<endl;
-	}
-}
-
-

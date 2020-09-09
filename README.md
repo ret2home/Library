@@ -1,12 +1,8 @@
 # Library
 
-defineの競プロライブラリです。
+[define](https://atcoder.jp/users/define) の競プロライブラリです。
 
 勝手に使って大丈夫ですが、バグっている可能性もあります。
-
-ほとんどは[Library Checker](https://judge.yosupo.jp/)でVerifyしています。
-
-使用例と一緒にそのまま貼っているので、使い方はなんとなく分かるはず。
 
 環境はC++17想定なので、C++14だとコンパイル通らないかもしれません。
 
@@ -29,6 +25,7 @@ defineの競プロライブラリです。
 ## Graph
 
 - Tree (LCA)
+- Min Cost Flow (Primal Dual)
 
 ## Math
 

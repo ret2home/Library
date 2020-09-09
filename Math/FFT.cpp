@@ -1,31 +1,13 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define rep(i,n) for(int i=0;i<n;i++)
-#define REP(i,n) for(int i=1;i<n;i++)
-#define all(v) v.begin(),v.end()
-#define P pair<int,int>
-#define len(s) (int)s.size()
-#define pb push_back
-
-template<class T> inline bool chmin(T &a, T b){
-	if(a>b){a=b;return true;}
-	return false;
-}
-template<class T> inline bool chmax(T &a, T b){
-	if(a<b){a=b;return true;}
-	return false;
-}
-constexpr int mod = 998244353;
-constexpr int inf = 3e18;
+#pragma once
+#include "../template/template.cpp"
 
 void dft(vector<complex<double>>&func,int inv){
 	int sz=func.size();
 	if(sz==1)return;
 	vector<complex<double>>va,vb;
 	rep(i,sz/2){
-		va.pb(func[2*i]);
-		vb.pb(func[2*i+1]);
+		va.push_back(func[2*i]);
+		vb.push_back(func[2*i+1]);
 	}
 	dft(va,inv);dft(vb,inv);
 	complex<double>now=1,zeta=polar(1.0,inv*2.0*acos(-1)/sz);
@@ -50,14 +32,3 @@ vector<double>fft(vector<T>f,vector<T>g){
 	rep(i,sz)res.pb(nf[i].real()/sz);
 	return res;
 }
-signed main(){
-	cin.tie(0);ios::sync_with_stdio(false);
-	int N;
-	cin>>N;
-	vector<int>a(N),b(N);
-	rep(i,N)cin>>a[i]>>b[i];
-	auto res=fft(a,b);
-	cout<<0<<endl;
-	rep(i,2*N-1)cout<<(int)(res[i]+0.1)<<endl;
-}
-
