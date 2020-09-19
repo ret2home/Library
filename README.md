@@ -28,6 +28,7 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 - Tree (LCA)
 - Min Cost Flow (Primal Dual)
 - Max Flow (Dinic)
+- SCC
 
 ## Math
 
