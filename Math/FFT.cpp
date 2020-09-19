@@ -23,12 +23,15 @@ vector<double>fft(vector<T>f,vector<T>g){
 	while(sz<len(f)+len(g))sz*=2;
 	nf.resize(sz);ng.resize(sz);
 	rep(i,len(f)){
-		nf[i]=f[i];ng[i]=g[i];
+		nf[i]=f[i];
+	}
+	rep(i,len(g)){
+		ng[i]=g[i];
 	}
 	dft(nf,1);dft(ng,1);
 	rep(i,sz)nf[i]*=ng[i];
 	dft(nf,-1);
 	vector<double>res;
-	rep(i,sz)res.pb(nf[i].real()/sz);
+	rep(i,sz)res.push_back(nf[i].real()/sz);
 	return res;
 }

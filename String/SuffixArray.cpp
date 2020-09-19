@@ -126,6 +126,25 @@ public:
 		return res;
 	}
 	int operator[](int k){return SA[k];}
+
+public:
+	vector<int>LCP;
+private:
+	void constructLCP(){
+		vector<int>rank(len(ST)+1);
+		LCP.resize(len(ST)+1);
+		rep(i,len(ST)+1)rank[SA[i]]=i;
+		int h=0;
+		rep(i,len(ST)){
+			int j=SA[rank[i]-1];
+			if(h>0)h--;
+			for(j;j+h<len(ST)&&i+h<len(ST);h++){
+				if(ST[j+h]!=ST[i+h])break;
+			}
+			LCP[rank[i]-1]=h;
+		}
+	}
+public:
 	SuffixArray(T S):ST(S){
 		int mn=inf,mx=-inf;
 		for(auto i:S){
@@ -135,5 +154,6 @@ public:
 		for(auto i:S)newS.emplace_back(i-mn+1);
 		newS.emplace_back(0);
 		SA=InducedSorting(newS,mx-mn+2);
+		constructLCP();
 	}
 };
