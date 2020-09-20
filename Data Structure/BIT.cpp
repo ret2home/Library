@@ -1,23 +1,24 @@
 #pragma once
 #include "../template/template.cpp"
 
-struct BIT{
+class BIT{
 	int N;
 	vector<int>bit;
-	void add(int x,int y){
+	void add_(int x,int y){
 		while(x<=N){
 			bit[x]+=y;x+=x&-x;
 		}
 	}
-	int sum(int x){
+	int sum_(int x){
 		int res=0;
 		while(x>0){
 			res+=bit[x];x-=x&-x;
 		}
 		return res;
 	}
+public:
 	int lower_bound(int w){
-		if(w<=0)return 0;
+		if(w<=0)return -1;
 		int x=0;
 		int k=1;while(k*2<=N)k*=2;
 		for(;k>0;k/=2){
@@ -26,7 +27,9 @@ struct BIT{
 				x+=k;
 			}
 		}
-		return x+1;
+		return x;
 	}
+	void add(int x,int y){add_(x+1,y);}
+	int sum(int l,int r){return sum_(r)-sum_(l);}
 	BIT(int x):N(x),bit(x+1){}
 };
