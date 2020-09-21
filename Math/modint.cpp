@@ -3,7 +3,7 @@
 
 template<int MOD>
 struct mint{
-	int n;
+	int32_t n;
 	mint():n(0){}
 	mint(int x):n(x>=0?x%MOD:(MOD-(-x)%MOD)%MOD){}
 
@@ -16,7 +16,7 @@ struct mint{
 		return *this;
 	}
 	mint &operator*=(const mint &p){
-		n=n*p.n%MOD;
+		n=1ll*n*p.n%MOD;
 		return *this;
 	}
 	mint &operator/=(const mint &p){
@@ -28,8 +28,8 @@ struct mint{
 	mint operator-(const mint &p)const{return mint(*this)-=p;}
 	mint operator*(const mint &p)const{return mint(*this)*=p;}
 	mint operator/(const mint &p)const{return mint(*this)/=p;}
-	mint operator==(const mint &p)const{return n==p.n;}
-	mint operator!=(const mint &p)const{return n!=p.n;}
+	bool operator==(const mint &p)const{return n==p.n;}
+	bool operator!=(const mint &p)const{return n!=p.n;}
 
 	friend ostream &operator<<(ostream &os,const mint &p){
 		return os<<p.n;
@@ -39,7 +39,7 @@ struct mint{
 		p=mint(x);
 		return is;
 	}
-	mint pow(int x)const{
+	mint pow(int64_t x)const{
 		mint res(1),mul(n);
 		while(x>0){
 			if(x&1)res*=mul;
@@ -53,4 +53,3 @@ struct mint{
 	}
 };
 using modint=mint<mod>;
-
