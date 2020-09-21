@@ -32,6 +32,7 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 
 ## Math
 
+- modint
 - nCk (nが小さい場合)
 - nCk (kが小さい場合)
 - Prime Factor (rho + miller rabin)
