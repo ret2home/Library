@@ -37,6 +37,8 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 - nCk (kが小さい場合)
 - Prime Factor (rho + miller rabin)
 - Fast Fourier Transform (Special Thanks : @ageprocpp)
+- extended Euclid
+- CRT
 
 ## String
 
