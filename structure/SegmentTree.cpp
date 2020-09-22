@@ -2,8 +2,9 @@
 #include "../template/template.cpp"
 
 template<typename Monoid,typename OperatorMonoid,typename F,typename G,typename H>
-struct Segtree{
-	int size=1;
+class Segtree{
+	using size_type=int32_t;
+	size_type size=1;
 	vector<Monoid>dat;
 	vector<OperatorMonoid>lazy;
 	const F f;
@@ -11,15 +12,16 @@ struct Segtree{
 	const H h;
 	Monoid M;
 	OperatorMonoid OM;
-	void set(int a,Monoid x){
+public:
+	void set(size_type a,Monoid x){
 		dat[a+size-1]=x;
 	}
 	void init(){
-		for(int i=size-2;i>=0;i--){
+		for(size_type i=size-2;i>=0;i--){
 			dat[i]=f(dat[i*2+1],dat[i*2+2]);
 		}
 	}
-	void eval(int k,int l,int r){
+	void eval(size_type k,size_type l,size_type r){
 		if(lazy[k]!=OM){
 			dat[k]=g(dat[k],lazy[k],(r-l));
 			if(r-l>1){
@@ -29,7 +31,7 @@ struct Segtree{
 			lazy[k]=OM;
 		}
 	}
-	void update(int a,int b,OperatorMonoid M,int k=0,int l=0,int r=-1){
+	void update(size_type a,size_type b,OperatorMonoid M,size_type k=0,size_type l=0,size_type r=-1){
 		if(r==-1)r=size;
 		eval(k,l,r);
 		if(r<=a||b<=l)return;
@@ -42,7 +44,7 @@ struct Segtree{
 		update(a,b,M,k*2+2,(l+r)/2,r);
 		dat[k]=f(dat[k*2+1],dat[k*2+2]);
 	}
-	Monoid query(int a,int b,int k=0,int l=0,int r=-1){
+	Monoid query(size_type a,size_type b,size_type k=0,size_type l=0,size_type r=-1){
 		if(r==-1)r=size;
 		eval(k,l,r);
 		if(r<=a||b<=l)return M;
@@ -52,26 +54,26 @@ struct Segtree{
 		return f(lv,rv);
 	}
 	template<class C>
-	int minLeft(int a,int b,C &check,Monoid x,int k=0,int l=0,int r=-1){
+	size_type minLeft(size_type a,size_type b,C &check,Monoid x,size_type k=0,size_type l=0,size_type r=-1){
 		if(r==-1)r=size;
 		eval(k,l,r);
 		if(r<=a||b<=l||!check(dat[k],x))return -1;
 		if(r-l==1)return l;
-		int lv=minLeft(a,b,check,x,k*2+1,l,(l+r)/2);
+		size_type lv=minLeft(a,b,check,x,k*2+1,l,(l+r)/2);
 		if(lv!=-1)return lv;
 		return minLeft(a,b,check,x,k*2+2,(l+r)/2,r);
 	}
 	template<class C>
-	int maxRight(int a,int b,C &check,Monoid x,int k=0,int l=0,int r=-1){
+	size_type maxRight(size_type a,size_type b,C &check,Monoid x,size_type k=0,size_type l=0,size_type r=-1){
 		if(r==-1)r=size;
 		eval(k,l,r);
 		if(r<=a||b<=l||!check(dat[k],x))return -1;
 		if(r-l==1)return l;
-		int rv=maxRight(a,b,check,x,k*2+2,(l+r)/2,r);
+		size_type rv=maxRight(a,b,check,x,k*2+2,(l+r)/2,r);
 		if(rv!=-1)return rv;
 		return maxRight(a,b,check,x,k*2+1,l,(l+r)/2);
 	}
-	Segtree(int x,F f,G g,H h,Monoid M,OperatorMonoid OM)
+	Segtree(size_type x,F f,G g,H h,Monoid M,OperatorMonoid OM)
 	:f(f),g(g),h(h),M(M),OM(OM){
 		while(size<x)size*=2;
 		dat.resize(size*2-1,M);
