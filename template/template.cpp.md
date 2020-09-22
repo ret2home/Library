@@ -3,98 +3,101 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Math/combination.cpp
-    title: Math/combination.cpp
+    path: structure/SegmentTreeBeats.cpp
+    title: structure/SegmentTreeBeats.cpp
+  - icon: ':heavy_check_mark:'
+    path: structure/UnionFind.cpp
+    title: Union Find
   - icon: ':warning:'
-    path: Math/CRT.cpp
-    title: Math/CRT.cpp
+    path: structure/SplayTree.cpp
+    title: structure/SplayTree.cpp
   - icon: ':warning:'
-    path: Math/extgcd.cpp
-    title: Math/extgcd.cpp
+    path: structure/SparseTable.cpp
+    title: structure/SparseTable.cpp
   - icon: ':warning:'
-    path: Math/FFT.cpp
-    title: Math/FFT.cpp
+    path: structure/PartialPersistentUnionFind.cpp
+    title: structure/PartialPersistentUnionFind.cpp
   - icon: ':warning:'
-    path: Math/factor.cpp
-    title: Math/factor.cpp
+    path: structure/WaveletMatrix.cpp
+    title: structure/WaveletMatrix.cpp
   - icon: ':warning:'
-    path: Math/modint.cpp
-    title: Math/modint.cpp
+    path: structure/LiChaoTree.cpp
+    title: structure/LiChaoTree.cpp
   - icon: ':warning:'
-    path: Math/combination_big.cpp
-    title: Math/combination_big.cpp
+    path: structure/BIT.cpp
+    title: structure/BIT.cpp
   - icon: ':warning:'
-    path: Math/mod_pow.cpp
-    title: Math/mod_pow.cpp
+    path: structure/PersistentArray.cpp
+    title: structure/PersistentArray.cpp
   - icon: ':warning:'
-    path: String/FM_index.cpp
-    title: String/FM_index.cpp
+    path: structure/SegmentTree.cpp
+    title: structure/SegmentTree.cpp
   - icon: ':warning:'
-    path: String/Zalgo.cpp
-    title: String/Zalgo.cpp
+    path: structure/PersistentUnionFind.cpp
+    title: structure/PersistentUnionFind.cpp
   - icon: ':warning:'
-    path: String/RollingHash.cpp
-    title: String/RollingHash.cpp
+    path: structure/HeavyLightDecomposition.cpp
+    title: structure/HeavyLightDecomposition.cpp
   - icon: ':warning:'
-    path: String/BWT.cpp
-    title: String/BWT.cpp
+    path: structure/BitVector.cpp
+    title: structure/BitVector.cpp
   - icon: ':warning:'
-    path: String/SuffixArray.cpp
-    title: String/SuffixArray.cpp
+    path: math/combination.cpp
+    title: math/combination.cpp
   - icon: ':warning:'
-    path: Data Structure/SegmentTreeBeats.cpp
-    title: Data Structure/SegmentTreeBeats.cpp
+    path: math/CRT.cpp
+    title: math/CRT.cpp
   - icon: ':warning:'
-    path: Data Structure/UnionFind.cpp
-    title: Data Structure/UnionFind.cpp
+    path: math/extgcd.cpp
+    title: math/extgcd.cpp
   - icon: ':warning:'
-    path: Data Structure/SplayTree.cpp
-    title: Data Structure/SplayTree.cpp
+    path: math/FFT.cpp
+    title: math/FFT.cpp
   - icon: ':warning:'
-    path: Data Structure/SparseTable.cpp
-    title: Data Structure/SparseTable.cpp
+    path: math/factor.cpp
+    title: math/factor.cpp
   - icon: ':warning:'
-    path: Data Structure/PartialPersistentUnionFind.cpp
-    title: Data Structure/PartialPersistentUnionFind.cpp
+    path: math/modint.cpp
+    title: math/modint.cpp
   - icon: ':warning:'
-    path: Data Structure/WaveletMatrix.cpp
-    title: Data Structure/WaveletMatrix.cpp
+    path: math/combination_big.cpp
+    title: math/combination_big.cpp
   - icon: ':warning:'
-    path: Data Structure/LiChaoTree.cpp
-    title: Data Structure/LiChaoTree.cpp
+    path: math/mod_pow.cpp
+    title: math/mod_pow.cpp
   - icon: ':warning:'
-    path: Data Structure/BIT.cpp
-    title: Data Structure/BIT.cpp
+    path: string/FM_index.cpp
+    title: string/FM_index.cpp
   - icon: ':warning:'
-    path: Data Structure/PersistentArray.cpp
-    title: Data Structure/PersistentArray.cpp
+    path: string/Zalgo.cpp
+    title: string/Zalgo.cpp
   - icon: ':warning:'
-    path: Data Structure/SegmentTree.cpp
-    title: Data Structure/SegmentTree.cpp
+    path: string/RollingHash.cpp
+    title: string/RollingHash.cpp
   - icon: ':warning:'
-    path: Data Structure/PersistentUnionFind.cpp
-    title: Data Structure/PersistentUnionFind.cpp
+    path: string/BWT.cpp
+    title: string/BWT.cpp
   - icon: ':warning:'
-    path: Data Structure/HeavyLightDecomposition.cpp
-    title: Data Structure/HeavyLightDecomposition.cpp
+    path: string/SuffixArray.cpp
+    title: string/SuffixArray.cpp
   - icon: ':warning:'
-    path: Data Structure/BitVector.cpp
-    title: Data Structure/BitVector.cpp
+    path: graph/MaxFlow.cpp
+    title: graph/MaxFlow.cpp
   - icon: ':warning:'
-    path: Graph/MaxFlow.cpp
-    title: Graph/MaxFlow.cpp
+    path: graph/SCC.cpp
+    title: graph/SCC.cpp
   - icon: ':warning:'
-    path: Graph/SCC.cpp
-    title: Graph/SCC.cpp
+    path: graph/MinCostFlow.cpp
+    title: graph/MinCostFlow.cpp
   - icon: ':warning:'
-    path: Graph/MinCostFlow.cpp
-    title: Graph/MinCostFlow.cpp
-  - icon: ':warning:'
-    path: Graph/Tree.cpp
-    title: Graph/Tree.cpp
-  _extendedVerifiedWith: []
+    path: graph/Tree.cpp
+    title: graph/Tree.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/UnionFind.test.cpp
+    title: test/UnionFind.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -119,39 +122,40 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy:
-  - Math/combination.cpp
-  - Math/CRT.cpp
-  - Math/extgcd.cpp
-  - Math/FFT.cpp
-  - Math/factor.cpp
-  - Math/modint.cpp
-  - Math/combination_big.cpp
-  - Math/mod_pow.cpp
-  - String/FM_index.cpp
-  - String/Zalgo.cpp
-  - String/RollingHash.cpp
-  - String/BWT.cpp
-  - String/SuffixArray.cpp
-  - Data Structure/SegmentTreeBeats.cpp
-  - Data Structure/UnionFind.cpp
-  - Data Structure/SplayTree.cpp
-  - Data Structure/SparseTable.cpp
-  - Data Structure/PartialPersistentUnionFind.cpp
-  - Data Structure/WaveletMatrix.cpp
-  - Data Structure/LiChaoTree.cpp
-  - Data Structure/BIT.cpp
-  - Data Structure/PersistentArray.cpp
-  - Data Structure/SegmentTree.cpp
-  - Data Structure/PersistentUnionFind.cpp
-  - Data Structure/HeavyLightDecomposition.cpp
-  - Data Structure/BitVector.cpp
-  - Graph/MaxFlow.cpp
-  - Graph/SCC.cpp
-  - Graph/MinCostFlow.cpp
-  - Graph/Tree.cpp
+  - structure/SegmentTreeBeats.cpp
+  - structure/UnionFind.cpp
+  - structure/SplayTree.cpp
+  - structure/SparseTable.cpp
+  - structure/PartialPersistentUnionFind.cpp
+  - structure/WaveletMatrix.cpp
+  - structure/LiChaoTree.cpp
+  - structure/BIT.cpp
+  - structure/PersistentArray.cpp
+  - structure/SegmentTree.cpp
+  - structure/PersistentUnionFind.cpp
+  - structure/HeavyLightDecomposition.cpp
+  - structure/BitVector.cpp
+  - math/combination.cpp
+  - math/CRT.cpp
+  - math/extgcd.cpp
+  - math/FFT.cpp
+  - math/factor.cpp
+  - math/modint.cpp
+  - math/combination_big.cpp
+  - math/mod_pow.cpp
+  - string/FM_index.cpp
+  - string/Zalgo.cpp
+  - string/RollingHash.cpp
+  - string/BWT.cpp
+  - string/SuffixArray.cpp
+  - graph/MaxFlow.cpp
+  - graph/SCC.cpp
+  - graph/MinCostFlow.cpp
+  - graph/Tree.cpp
   timestamp: '2020-09-09 20:08:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/UnionFind.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:
