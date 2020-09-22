@@ -22,28 +22,28 @@ data:
     \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
     \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
     \ true;}\n\treturn false;\n}\nconstexpr int mod = 1e9+7;\nconstexpr long long\
-    \ inf = 3e18;\n#line 3 \"structure/UnionFind.cpp\"\n\nclass UnionFind{\n\tsize_t\
-    \ N;\n\tvector<size_t>par,siz;\npublic:\n\tsize_t find(size_t x){\n\t\tassert(x<N);\n\
-    \t\treturn (par[x]==x?x:par[x]=find(par[x]));\n\t}\n\tvoid merge(size_t x,size_t\
-    \ y){\n\t\tassert(x<N&&y<N);\n\t\tx=find(x);y=find(y);\n\t\tif(x==y)return;\n\t\
-    \tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\t}\n\tbool same(size_t\
-    \ x,size_t y){\n\t\treturn find(x)==find(y);\n\t}\n\tsize_t size(size_t x){\n\t\
-    \treturn siz[find(x)];\n\t}\n\tUnionFind(size_t N):N(N),siz(N,1),par(N){\n\t\t\
-    iota(all(par),0);\n\t}\n};\n"
+    \ inf = 3e18;\n#line 3 \"structure/UnionFind.cpp\"\n\nclass UnionFind{\n\tusing\
+    \ size_type=int32_t;\n\tsize_type N;\n\tvector<size_type>par,siz;\npublic:\n\t\
+    size_type find(size_type x){\n\t\tassert(x<N);\n\t\treturn (par[x]==x?x:par[x]=find(par[x]));\n\
+    \t}\n\tvoid merge(size_type x,size_type y){\n\t\tassert(x<N&&y<N);\n\t\tx=find(x);y=find(y);\n\
+    \t\tif(x==y)return;\n\t\tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\
+    \t}\n\tbool same(size_type x,size_type y){\n\t\treturn find(x)==find(y);\n\t}\n\
+    \tsize_type size(size_type x){\n\t\treturn siz[find(x)];\n\t}\n\tUnionFind(size_type\
+    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\nclass UnionFind{\n\
-    \tsize_t N;\n\tvector<size_t>par,siz;\npublic:\n\tsize_t find(size_t x){\n\t\t\
-    assert(x<N);\n\t\treturn (par[x]==x?x:par[x]=find(par[x]));\n\t}\n\tvoid merge(size_t\
-    \ x,size_t y){\n\t\tassert(x<N&&y<N);\n\t\tx=find(x);y=find(y);\n\t\tif(x==y)return;\n\
-    \t\tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\t}\n\tbool same(size_t\
-    \ x,size_t y){\n\t\treturn find(x)==find(y);\n\t}\n\tsize_t size(size_t x){\n\t\
-    \treturn siz[find(x)];\n\t}\n\tUnionFind(size_t N):N(N),siz(N,1),par(N){\n\t\t\
-    iota(all(par),0);\n\t}\n};"
+    \tusing size_type=int32_t;\n\tsize_type N;\n\tvector<size_type>par,siz;\npublic:\n\
+    \tsize_type find(size_type x){\n\t\tassert(x<N);\n\t\treturn (par[x]==x?x:par[x]=find(par[x]));\n\
+    \t}\n\tvoid merge(size_type x,size_type y){\n\t\tassert(x<N&&y<N);\n\t\tx=find(x);y=find(y);\n\
+    \t\tif(x==y)return;\n\t\tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\
+    \t}\n\tbool same(size_type x,size_type y){\n\t\treturn find(x)==find(y);\n\t}\n\
+    \tsize_type size(size_type x){\n\t\treturn siz[find(x)];\n\t}\n\tUnionFind(size_type\
+    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/UnionFind.cpp
   requiredBy: []
-  timestamp: '2020-09-22 11:41:02+09:00'
+  timestamp: '2020-09-22 12:45:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/UnionFind.test.cpp

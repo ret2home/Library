@@ -29,9 +29,9 @@ data:
   - icon: ':warning:'
     path: structure/PersistentArray.cpp
     title: structure/PersistentArray.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: structure/SegmentTree.cpp
-    title: structure/SegmentTree.cpp
+    title: Segment Tree
   - icon: ':warning:'
     path: structure/PersistentUnionFind.cpp
     title: structure/PersistentUnionFind.cpp
@@ -94,6 +94,9 @@ data:
     title: graph/Tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/SegmentTree.test.cpp
+    title: test/SegmentTree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/UnionFind.test.cpp
     title: test/UnionFind.test.cpp
   _pathExtension: cpp
@@ -155,6 +158,7 @@ data:
   timestamp: '2020-09-09 20:08:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/SegmentTree.test.cpp
   - test/UnionFind.test.cpp
 documentation_of: template/template.cpp
 layout: document

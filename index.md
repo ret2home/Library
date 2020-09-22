@@ -81,9 +81,9 @@ data:
     - icon: ':warning:'
       path: structure/PersistentUnionFind.cpp
       title: structure/PersistentUnionFind.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: structure/SegmentTree.cpp
-      title: structure/SegmentTree.cpp
+      title: Segment Tree
     - icon: ':warning:'
       path: structure/SegmentTreeBeats.cpp
       title: structure/SegmentTreeBeats.cpp
@@ -107,6 +107,9 @@ data:
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/SegmentTree.test.cpp
+      title: test/SegmentTree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
