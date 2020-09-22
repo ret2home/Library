@@ -31,7 +31,7 @@ data:
     title: structure/PersistentArray.cpp
   - icon: ':heavy_check_mark:'
     path: structure/SegmentTree.cpp
-    title: Segment Tree
+    title: Lazy Segment Tree
   - icon: ':warning:'
     path: structure/PersistentUnionFind.cpp
     title: structure/PersistentUnionFind.cpp
@@ -41,9 +41,6 @@ data:
   - icon: ':warning:'
     path: structure/BitVector.cpp
     title: structure/BitVector.cpp
-  - icon: ':warning:'
-    path: math/combination.cpp
-    title: math/combination.cpp
   - icon: ':warning:'
     path: math/CRT.cpp
     title: math/CRT.cpp
@@ -56,7 +53,10 @@ data:
   - icon: ':warning:'
     path: math/factor.cpp
     title: math/factor.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: math/Combination.cpp
+    title: Combination (nCk)
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: math/modint.cpp
   - icon: ':warning:'
@@ -93,6 +93,9 @@ data:
     path: graph/Tree.cpp
     title: graph/Tree.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Combination.test.cpp
+    title: test/Combination.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/SegmentTree.test.cpp
     title: test/SegmentTree.test.cpp
@@ -138,11 +141,11 @@ data:
   - structure/PersistentUnionFind.cpp
   - structure/HeavyLightDecomposition.cpp
   - structure/BitVector.cpp
-  - math/combination.cpp
   - math/CRT.cpp
   - math/extgcd.cpp
   - math/FFT.cpp
   - math/factor.cpp
+  - math/Combination.cpp
   - math/modint.cpp
   - math/combination_big.cpp
   - math/mod_pow.cpp
@@ -158,6 +161,7 @@ data:
   timestamp: '2020-09-09 20:08:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/Combination.test.cpp
   - test/SegmentTree.test.cpp
   - test/UnionFind.test.cpp
 documentation_of: template/template.cpp

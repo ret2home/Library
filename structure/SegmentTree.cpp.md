@@ -13,6 +13,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/SegmentTree.md
+    document_title: Lazy Segment Tree
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -50,7 +52,7 @@ data:
     \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\
     }\n\tSegtree(size_type x,F f,G g,H h,Monoid M,OperatorMonoid OM)\n\t:f(f),g(g),h(h),M(M),OM(OM){\n\
     \t\twhile(size<x)size*=2;\n\t\tdat.resize(size*2-1,M);\n\t\tlazy.resize(size*2-1,OM);\n\
-    \t}\n};\n"
+    \t}\n};\n\n/*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<typename\
     \ Monoid,typename OperatorMonoid,typename F,typename G,typename H>\nclass Segtree{\n\
     \tusing size_type=int32_t;\n\tsize_type size=1;\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\
@@ -79,21 +81,23 @@ data:
     \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\
     }\n\tSegtree(size_type x,F f,G g,H h,Monoid M,OperatorMonoid OM)\n\t:f(f),g(g),h(h),M(M),OM(OM){\n\
     \t\twhile(size<x)size*=2;\n\t\tdat.resize(size*2-1,M);\n\t\tlazy.resize(size*2-1,OM);\n\
-    \t}\n};"
+    \t}\n};\n\n/*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2020-09-22 12:45:29+09:00'
+  timestamp: '2020-09-23 07:19:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SegmentTree.test.cpp
-documentation_of: ./structure/SegmentTree.cpp
+documentation_of: structure/SegmentTree.cpp
 layout: document
-title: Segment Tree
+redirect_from:
+- /library/structure/SegmentTree.cpp
+- /library/structure/SegmentTree.cpp.html
+title: Lazy Segment Tree
 ---
-
 ## 概要
 
 モノイドについて、区間に対する処理を高速に行えるデータ構造。

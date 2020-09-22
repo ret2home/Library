@@ -20,12 +20,12 @@ data:
     - icon: ':warning:'
       path: math/CRT.cpp
       title: math/CRT.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Combination.cpp
+      title: Combination (nCk)
     - icon: ':warning:'
       path: math/FFT.cpp
       title: math/FFT.cpp
-    - icon: ':warning:'
-      path: math/combination.cpp
-      title: math/combination.cpp
     - icon: ':warning:'
       path: math/combination_big.cpp
       title: math/combination_big.cpp
@@ -38,7 +38,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.cpp
       title: math/mod_pow.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: math/modint.cpp
   - name: string
@@ -83,7 +83,7 @@ data:
       title: structure/PersistentUnionFind.cpp
     - icon: ':heavy_check_mark:'
       path: structure/SegmentTree.cpp
-      title: Segment Tree
+      title: Lazy Segment Tree
     - icon: ':warning:'
       path: structure/SegmentTreeBeats.cpp
       title: structure/SegmentTreeBeats.cpp
@@ -107,6 +107,9 @@ data:
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/Combination.test.cpp
+      title: test/Combination.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/SegmentTree.test.cpp
       title: test/SegmentTree.test.cpp

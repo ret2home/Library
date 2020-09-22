@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: structure/SegmentTree.cpp
-    title: Segment Tree
+    title: Lazy Segment Tree
   - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
@@ -53,9 +53,10 @@ data:
     \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\
     }\n\tSegtree(size_type x,F f,G g,H h,Monoid M,OperatorMonoid OM)\n\t:f(f),g(g),h(h),M(M),OM(OM){\n\
     \t\twhile(size<x)size*=2;\n\t\tdat.resize(size*2-1,M);\n\t\tlazy.resize(size*2-1,OM);\n\
-    \t}\n};\n#line 4 \"test/SegmentTree.test.cpp\"\n\nconstexpr int MOD=998244353;\n\
-    \nauto f=[](int a,int b)->int{return (a+b)%MOD;};\nauto g=[](int a,P b,int sz)->int{return\
-    \ (a*b.first+b.second*sz)%MOD;};\nauto h=[](P a,P b)->P{return P(a.first*b.first%MOD,(a.second*b.first+b.second)%MOD);};\n\
+    \t}\n};\n\n/*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/\n#line\
+    \ 4 \"test/SegmentTree.test.cpp\"\n\nconstexpr int MOD=998244353;\n\nauto f=[](int\
+    \ a,int b)->int{return (a+b)%MOD;};\nauto g=[](int a,P b,int sz)->int{return (a*b.first+b.second*sz)%MOD;};\n\
+    auto h=[](P a,P b)->P{return P(a.first*b.first%MOD,(a.second*b.first+b.second)%MOD);};\n\
     \nsigned main(){\n\tcin.tie(0);ios::sync_with_stdio(false);\n\tint N,Q;\n\tcin>>N>>Q;\n\
     \tSegtree<int,P,decltype(f),decltype(g),decltype(h)>segtree(N,f,g,h,0,P(1,0));\n\
     \trep(i,N){\n\t\tint a;cin>>a;\n\t\tsegtree.set(i,a);\n\t}\n\tsegtree.init();\n\
@@ -78,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/SegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 12:45:29+09:00'
+  timestamp: '2020-09-23 07:19:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SegmentTree.test.cpp

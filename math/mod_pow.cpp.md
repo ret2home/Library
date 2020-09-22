@@ -6,9 +6,6 @@ data:
     title: template/template.cpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: math/combination.cpp
-    title: math/combination.cpp
-  - icon: ':warning:'
     path: math/combination_big.cpp
     title: math/combination_big.cpp
   _extendedVerifiedWith: []
@@ -36,7 +33,6 @@ data:
   isVerificationFile: false
   path: math/mod_pow.cpp
   requiredBy:
-  - math/combination.cpp
   - math/combination_big.cpp
   timestamp: '2020-09-22 11:41:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS

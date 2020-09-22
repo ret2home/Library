@@ -32,8 +32,9 @@ data:
     \t\tif(x==y)return;\n\t\tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\
     \t}\n\tbool same(size_type x,size_type y){\n\t\treturn find(x)==find(y);\n\t}\n\
     \tsize_type size(size_type x){\n\t\treturn siz[find(x)];\n\t}\n\tUnionFind(size_type\
-    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};\n#line 4 \"test/UnionFind.test.cpp\"\
-    \n\nint N,Q;\nsigned main(){\n    cin>>N>>Q;\n    UnionFind uf(N);\n    while(Q--){\n\
+    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};\n\n/*\n@brief Union\
+    \ Find\n@docs docs/UnionFind.md\n*/\n#line 4 \"test/UnionFind.test.cpp\"\n\nint\
+    \ N,Q;\nsigned main(){\n    cin>>N>>Q;\n    UnionFind uf(N);\n    while(Q--){\n\
     \        int t,u,v;cin>>t>>u>>v;\n        if(!t)uf.merge(u,v);\n        else cout<<uf.same(u,v)<<\"\
     \\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
@@ -46,7 +47,7 @@ data:
   isVerificationFile: true
   path: test/UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 12:45:29+09:00'
+  timestamp: '2020-09-23 07:19:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/UnionFind.test.cpp

@@ -1,8 +1,6 @@
 # Library
 
-[![Actions Status](https://github.com/defineProgram/Library/workflows/verify/badge.svg)](https://github.com/defineProgram/Library/actions)
-
-[![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://defineProgram.github.io/Library/) 
+[![Actions Status](https://github.com/defineProgram/Library/workflows/verify/badge.svg)](https://github.com/defineProgram/Library/actions) [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://defineProgram.github.io/Library/) 
 
 [define](https://atcoder.jp/users/define) の競プロライブラリです。
 
@@ -12,7 +10,7 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 
 ## Structure
 
-- Union Find
+- [Union Find](./structure/UnionFind.cpp)
 - Binary Indexed Tree
 - Segment Tree
 - Segment Tree Beats (Update : chmin,chmax,add Query : sum)

@@ -13,6 +13,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/UnionFind.md
+    document_title: Union Find
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -29,7 +31,8 @@ data:
     \t\tif(x==y)return;\n\t\tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\
     \t}\n\tbool same(size_type x,size_type y){\n\t\treturn find(x)==find(y);\n\t}\n\
     \tsize_type size(size_type x){\n\t\treturn siz[find(x)];\n\t}\n\tUnionFind(size_type\
-    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};\n"
+    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};\n\n/*\n@brief Union\
+    \ Find\n@docs docs/UnionFind.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\nclass UnionFind{\n\
     \tusing size_type=int32_t;\n\tsize_type N;\n\tvector<size_type>par,siz;\npublic:\n\
     \tsize_type find(size_type x){\n\t\tassert(x<N);\n\t\treturn (par[x]==x?x:par[x]=find(par[x]));\n\
@@ -37,21 +40,24 @@ data:
     \t\tif(x==y)return;\n\t\tif(siz[x]>siz[y])swap(x,y);\n\t\tpar[x]=y;siz[y]+=siz[x];\n\
     \t}\n\tbool same(size_type x,size_type y){\n\t\treturn find(x)==find(y);\n\t}\n\
     \tsize_type size(size_type x){\n\t\treturn siz[find(x)];\n\t}\n\tUnionFind(size_type\
-    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};"
+    \ N):N(N),siz(N,1),par(N){\n\t\tiota(all(par),0);\n\t}\n};\n\n/*\n@brief Union\
+    \ Find\n@docs docs/UnionFind.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/UnionFind.cpp
   requiredBy: []
-  timestamp: '2020-09-22 12:45:29+09:00'
+  timestamp: '2020-09-23 07:19:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/UnionFind.test.cpp
-documentation_of: ./structure/UnionFind.cpp
+documentation_of: structure/UnionFind.cpp
 layout: document
+redirect_from:
+- /library/structure/UnionFind.cpp
+- /library/structure/UnionFind.cpp.html
 title: Union Find
 ---
-
 ## 概要
 
 素集合データ構造、通称 Union-Find (UF) または Disjoint-Set-Union (DSU) 。
