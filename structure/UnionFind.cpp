@@ -27,3 +27,8 @@ public:
 		iota(all(par),0);
 	}
 };
+
+/*
+@brief Union Find
+@docs docs/UnionFind.md
+*/

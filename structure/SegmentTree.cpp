@@ -80,3 +80,8 @@ public:
 		lazy.resize(size*2-1,OM);
 	}
 };
+
+/*
+@brief Lazy Segment Tree
+@docs docs/SegmentTree.md
+*/

@@ -1,8 +1,3 @@
----
-title: Union Find
-documentation_of: ./structure/UnionFind.cpp
----
-
 ## 概要
 
 素集合データ構造、通称 Union-Find (UF) または Disjoint-Set-Union (DSU) 。

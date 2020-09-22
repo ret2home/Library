@@ -1,8 +1,3 @@
----
-title: Segment Tree
-documentation_of: ./structure/SegmentTree.cpp
----
-
 ## 概要
 
 モノイドについて、区間に対する処理を高速に行えるデータ構造。
