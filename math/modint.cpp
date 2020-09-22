@@ -52,4 +52,7 @@ struct mint{
 		return pow(MOD-2);
 	}
 };
-using modint=mint<mod>;
+/*
+@brief mod int
+@docs docs/modint.md
+*/
