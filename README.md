@@ -8,42 +8,43 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 
 全て0-indexedです。
 
-## Structure
+## Data Structure
 
 - [Union Find](./structure/UnionFind.cpp)
-- Binary Indexed Tree
-- Segment Tree
-- Segment Tree Beats (Update : chmin,chmax,add Query : sum)
-- Bit Vector
-- Wavelet Matrix (Rank, Quantile)
-- Heavy Light Decomposition
-- SparseTable
-- Splay Tree (find,lower_bound,upper_bound,insert,erase)
-- Convex Hull Trick (Li Chao Tree)
-- Persistent Union Find
-- Partial Persistent UnionFind
+- [Binary Indexed Tree](./structure/BIT.cpp)
+- [Lazy Segment Tree](./structure/SegmentTree.cpp)
+- [Segment Tree Beats](./structure/SegmentTreeBeats.cpp)
+- [Bit Vector](./structure/BitVector.cpp)
+- [Wavelet Matrix](./structure/WaveletMatrix.cpp)
+- [Heavy Light Decomposition](./structure/HeavyLightDecomposition.cpp)
+- [Sparse Table](./structure/SparseTable.cpp)
+- [Splay Tree](./structure/SplayTree.cpp)
+- [Li Chao Tree](./structure/LiChaoTree.cpp)
+- [Persistent Array](./structure/PersistentArray.cpp)
+- [Persistent Union Find](./structure/PersistentUnionFind.cpp)
+- [Partial Persistent UnionFind](./structure/PartialPersistentUnionFind.cpp)
 
 ## Graph
 
-- Tree (LCA)
-- Min Cost Flow (Primal Dual)
-- Max Flow (Dinic)
-- SCC
+- [Tree](./graph/Tree.cpp)
+- [Min Cost Flow (Primal Dual)](./graph/MinCostFlow.cpp)
+- [Max Flow (Dinic)](./graph/MaxFlow.cpp)
+- [SCC](./graph/SCC.cpp)
 
 ## Math
 
-- modint
-- nCk (nが小さい場合)
-- nCk (kが小さい場合)
-- Prime Factor (rho + miller rabin)
-- Fast Fourier Transform (Special Thanks : @ageprocpp)
-- extended Euclid
-- CRT
+- [modint](./math/modint.cpp)
+- [nCk ($n \leq 10^7$ 程度) ](./math/Combination.cpp)
+- [nCk ($k$ が小さい)](./math/combination_big.cpp)
+- [Prime Factor (rho + miller rabin)](./math/factor.cpp)
+- [Fast Fourier Transform](./math/FFT.cpp)
+- [extended Euclid](./math/extgcd.cpp)
+- [CRT](./math/CRT.cpp)
 
 ## String
 
-- Z Algorithm
-- Rolling Hash (mod 2^61-1)
-- Suffix Array (SA-IS)
-- BWT
-- FM-index
+- [Z Algorithm](./string/Zalgo.cpp)
+- [Rolling Hash (mod 2^61-1)](./string/RollingHash.cpp)
+- [Suffix Array (SA-IS)](./string/SuffixArray.cpp)
+- [BWT](./string/BWT.cpp)
+- [FM-index](./string/FM_index.cpp)
