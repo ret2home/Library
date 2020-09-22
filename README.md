@@ -2,13 +2,11 @@
 
 [define](https://atcoder.jp/users/define) の競プロライブラリです。
 
-勝手に使って大丈夫ですが、バグっている可能性もあります。まぁ一応Verifyはしてるので大丈夫なはず！
-
 C++17想定なので、C++14だとコンパイル通らないかもしれません。とは言ってもC++14でエラーが出るのはstd::gcdくらいなので大して問題はないかな...
 
 全て0-indexedです。
 
-## Data Structure
+## Structure
 
 - Union Find
 - Binary Indexed Tree

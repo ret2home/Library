@@ -1,6 +1,6 @@
 #pragma once
 #include "../template/template.cpp"
-#include "../Data Structure/WaveletMatrix.cpp"
+#include "../structure/WaveletMatrix.cpp"
 #include "BWT.cpp"
 
 template<class T,class C>
