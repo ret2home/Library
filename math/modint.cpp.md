@@ -16,6 +16,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/modint.md
+    document_title: mod int
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -41,7 +43,7 @@ data:
     \t\tp=mint(x);\n\t\treturn is;\n\t}\n\tmint pow(int64_t x)const{\n\t\tmint res(1),mul(n);\n\
     \t\twhile(x>0){\n\t\t\tif(x&1)res*=mul;\n\t\t\tmul*=mul;\n\t\t\tx>>=1;\n\t\t}\n\
     \t\treturn res;\n\t}\n\tmint inverse()const{\n\t\treturn pow(MOD-2);\n\t}\n};\n\
-    using modint=mint<mod>;\n"
+    /*\n@brief mod int\n@docs docs/modint.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<int MOD>\n\
     struct mint{\n\tint32_t n;\n\tmint():n(0){}\n\tmint(int x):n(x>=0?x%MOD:(MOD-(-x)%MOD)%MOD){}\n\
     \n\tmint &operator+=(const mint &p){\n\t\tif((n+=p.n)>=MOD)n-=MOD;\n\t\treturn\
@@ -58,14 +60,14 @@ data:
     \t\tp=mint(x);\n\t\treturn is;\n\t}\n\tmint pow(int64_t x)const{\n\t\tmint res(1),mul(n);\n\
     \t\twhile(x>0){\n\t\t\tif(x&1)res*=mul;\n\t\t\tmul*=mul;\n\t\t\tx>>=1;\n\t\t}\n\
     \t\treturn res;\n\t}\n\tmint inverse()const{\n\t\treturn pow(MOD-2);\n\t}\n};\n\
-    using modint=mint<mod>;\n"
+    /*\n@brief mod int\n@docs docs/modint.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: math/modint.cpp
   requiredBy:
   - math/Combination.cpp
-  timestamp: '2020-09-22 11:41:02+09:00'
+  timestamp: '2020-09-23 07:35:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Combination.test.cpp
@@ -74,5 +76,19 @@ layout: document
 redirect_from:
 - /library/math/modint.cpp
 - /library/math/modint.cpp.html
-title: math/modint.cpp
+title: mod int
 ---
+## 概要
+
+演算で全て mod を取る整数型。mod の除算などで何も考えないで済む。
+
+- 四則演算 , 代入 ( +, -, \*, /, +=, -=, \*=, /=)
+- ```pow(x)``` : ```x``` 乗
+- ```inverse()``` : mod上の逆元
+
+## 計算量
+
+- 除算 : $O(log\ mod)$
+- ```pow(x)``` : $O(log\ n)$
+- ```inverse()``` : $O(log\ mod)$
+- その他 : $O(1)$

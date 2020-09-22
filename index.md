@@ -40,7 +40,7 @@ data:
       title: math/mod_pow.cpp
     - icon: ':heavy_check_mark:'
       path: math/modint.cpp
-      title: math/modint.cpp
+      title: mod int
   - name: string
     pages:
     - icon: ':warning:'

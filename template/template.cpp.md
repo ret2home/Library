@@ -58,7 +58,7 @@ data:
     title: Combination (nCk)
   - icon: ':heavy_check_mark:'
     path: math/modint.cpp
-    title: math/modint.cpp
+    title: mod int
   - icon: ':warning:'
     path: math/combination_big.cpp
     title: math/combination_big.cpp
