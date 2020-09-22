@@ -34,8 +34,8 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 ## Math
 
 - [modint](./math/modint.cpp)
-- [nCk ($n \leq 10^7$ 程度) ](./math/Combination.cpp)
-- [nCk ($k$ が小さい)](./math/combination_big.cpp)
+- [nCk ( $n \leq 10^7$ 程度) ](./math/Combination.cpp)
+- [nCk ( $k$ が小さい時)](./math/combination_big.cpp)
 - [Prime Factor (rho + miller rabin)](./math/factor.cpp)
 - [Fast Fourier Transform](./math/FFT.cpp)
 - [extended Euclid](./math/extgcd.cpp)
