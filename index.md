@@ -35,9 +35,6 @@ data:
     - icon: ':warning:'
       path: math/factor.cpp
       title: math/factor.cpp
-    - icon: ':warning:'
-      path: math/mod_pow.cpp
-      title: math/mod_pow.cpp
     - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: mod int
@@ -60,9 +57,9 @@ data:
       title: string/Zalgo.cpp
   - name: structure
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: structure/BIT.cpp
-      title: structure/BIT.cpp
+      title: Binary Indexed Tree
     - icon: ':warning:'
       path: structure/BitVector.cpp
       title: structure/BitVector.cpp
@@ -107,6 +104,9 @@ data:
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/BIT.test.cpp
+      title: test/BIT.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Combination.test.cpp
       title: test/Combination.test.cpp

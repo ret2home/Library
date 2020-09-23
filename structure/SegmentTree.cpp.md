@@ -18,18 +18,17 @@ data:
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
-    using namespace std;\n#define int long long\n#define rep(i,n) for(int i=0;i<n;i++)\n\
-    #define REP(i,n) for(int i=1;i<n;i++)\n#define rev(i,n) for(int i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<int,int>\n#define len(s) (int)s.size()\n\
+    using namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
+    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
+    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
     \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
     \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr int mod = 1e9+7;\nconstexpr long long\
-    \ inf = 3e18;\n#line 3 \"structure/SegmentTree.cpp\"\n\ntemplate<typename Monoid,typename\
-    \ OperatorMonoid,typename F,typename G,typename H>\nclass Segtree{\n\tusing size_type=int32_t;\n\
-    \tsize_type size=1;\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\tconst\
-    \ F f;\n\tconst G g;\n\tconst H h;\n\tMonoid M;\n\tOperatorMonoid OM;\npublic:\n\
-    \tvoid set(size_type a,Monoid x){\n\t\tdat[a+size-1]=x;\n\t}\n\tvoid init(){\n\
-    \t\tfor(size_type i=size-2;i>=0;i--){\n\t\t\tdat[i]=f(dat[i*2+1],dat[i*2+2]);\n\
+    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SegmentTree.cpp\"\
+    \n\ntemplate<typename Monoid,typename OperatorMonoid,typename F,typename G,typename\
+    \ H>\nclass Segtree{\n\tusing size_type=int32_t;\n\tsize_type size=1;\n\tvector<Monoid>dat;\n\
+    \tvector<OperatorMonoid>lazy;\n\tconst F f;\n\tconst G g;\n\tconst H h;\n\tMonoid\
+    \ M;\n\tOperatorMonoid OM;\npublic:\n\tvoid set(size_type a,Monoid x){\n\t\tdat[a+size-1]=x;\n\
+    \t}\n\tvoid init(){\n\t\tfor(size_type i=size-2;i>=0;i--){\n\t\t\tdat[i]=f(dat[i*2+1],dat[i*2+2]);\n\
     \t\t}\n\t}\n\tvoid eval(size_type k,size_type l,size_type r){\n\t\tif(lazy[k]!=OM){\n\
     \t\t\tdat[k]=g(dat[k],lazy[k],(r-l));\n\t\t\tif(r-l>1){\n\t\t\t\tlazy[2*k+1]=h(lazy[2*k+1],lazy[k]);\n\
     \t\t\t\tlazy[2*k+2]=h(lazy[2*k+2],lazy[k]);\n\t\t\t}\n\t\t\tlazy[k]=OM;\n\t\t\
@@ -87,7 +86,7 @@ data:
   isVerificationFile: false
   path: structure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2020-09-23 07:19:23+09:00'
+  timestamp: '2020-09-23 19:41:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SegmentTree.test.cpp
