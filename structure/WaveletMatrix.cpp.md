@@ -4,16 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
     title: structure/BitVector.cpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
     title: string/FM_index.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/WaveletMatrix.test.cpp
+    title: test/WaveletMatrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/FM_index.test.cpp
+    title: test/FM_index.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -34,38 +40,38 @@ data:
     \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
     \      }\n    }\n};\n#line 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class\
     \ T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
-    \    vector<ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st[c]==-1)return\
+    \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
     \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
-    \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0,idx-st[c]);\n\
-    \    }\n    ll quantile(ll l,ll r,ll c){\n        ll res=0;\n        rev(i,bitlen){\n\
+    \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
+    \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
     \            ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));\n         \
     \   if(cnt<=c){\n                c-=cnt;\n                l=index[i].rank(0,N)+index[i].rank(1,l);\n\
-    \                r=index[i].rank(0,N)+index[i].rank(1,r);\n                res+=1<<i;\n\
+    \                r=index[i].rank(0,N)+index[i].rank(1,r);\n                res+=1ll<<i;\n\
     \            }else {\n                l-=index[i].rank(1,l);\n               \
     \ r-=index[i].rank(1,r);\n            }\n        }\n        return res;\n    }\n\
     \    WaveletMatrix(T V,ll bitlen):N(len(V)),bitlen(bitlen),body(V){\n        vector<bool>bit(N);\n\
     \        index.resize(bitlen,bit);\n        rev(i,bitlen){\n            T newV[2];\n\
     \            rep(j,N){\n                bit[j]=(V[j]>>i&1);\n                newV[V[j]>>i&1].push_back(V[j]);\n\
     \            }\n            V=newV[0];V.insert(V.end(),all(newV[1]));\n      \
-    \      index[i]=BitVector(bit);\n        }\n        st.assign(256,-1);\n     \
-    \   rep(i,N)if(st[V[i]]==-1)st[V[i]]=i;\n    }\n};\n"
+    \      index[i]=BitVector(bit);\n        }\n        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;\n\
+    \    }\n};\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"BitVector.cpp\"\
     \n\ntemplate<class T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
-    \    vector<ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st[c]==-1)return\
+    \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
     \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
-    \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0,idx-st[c]);\n\
-    \    }\n    ll quantile(ll l,ll r,ll c){\n        ll res=0;\n        rev(i,bitlen){\n\
+    \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
+    \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
     \            ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));\n         \
     \   if(cnt<=c){\n                c-=cnt;\n                l=index[i].rank(0,N)+index[i].rank(1,l);\n\
-    \                r=index[i].rank(0,N)+index[i].rank(1,r);\n                res+=1<<i;\n\
+    \                r=index[i].rank(0,N)+index[i].rank(1,r);\n                res+=1ll<<i;\n\
     \            }else {\n                l-=index[i].rank(1,l);\n               \
     \ r-=index[i].rank(1,r);\n            }\n        }\n        return res;\n    }\n\
     \    WaveletMatrix(T V,ll bitlen):N(len(V)),bitlen(bitlen),body(V){\n        vector<bool>bit(N);\n\
     \        index.resize(bitlen,bit);\n        rev(i,bitlen){\n            T newV[2];\n\
     \            rep(j,N){\n                bit[j]=(V[j]>>i&1);\n                newV[V[j]>>i&1].push_back(V[j]);\n\
     \            }\n            V=newV[0];V.insert(V.end(),all(newV[1]));\n      \
-    \      index[i]=BitVector(bit);\n        }\n        st.assign(256,-1);\n     \
-    \   rep(i,N)if(st[V[i]]==-1)st[V[i]]=i;\n    }\n};"
+    \      index[i]=BitVector(bit);\n        }\n        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;\n\
+    \    }\n};"
   dependsOn:
   - template/template.cpp
   - structure/BitVector.cpp
@@ -73,9 +79,11 @@ data:
   path: structure/WaveletMatrix.cpp
   requiredBy:
   - string/FM_index.cpp
-  timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-23 20:44:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/WaveletMatrix.test.cpp
+  - test/FM_index.test.cpp
 documentation_of: structure/WaveletMatrix.cpp
 layout: document
 redirect_from:

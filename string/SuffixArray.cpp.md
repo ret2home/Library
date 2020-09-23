@@ -5,17 +5,31 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
     title: string/FM_index.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/BWT.cpp
     title: string/BWT.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/SuffixArray.matching.test.cpp
+    title: test/SuffixArray.matching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/FM_index.test.cpp
+    title: test/FM_index.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/SuffixArray.LCP.test.cpp
+    title: test/SuffixArray.LCP.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/SuffixArray.test.cpp
+    title: test/SuffixArray.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/SuffixArray.md
+    document_title: Suffix Array (SA-IS)
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -72,7 +86,8 @@ data:
     }\npublic:\n\tSuffixArray(T S):ST(S){\n\t\tll mn=inf,mx=-inf;\n\t\tfor(auto i:S){\n\
     \t\t\tchmin(mn,(ll)i);chmax(mx,(ll)i);\n\t\t}\n\t\tvector<ll>newS;\n\t\tfor(auto\
     \ i:S)newS.emplace_back(i-mn+1);\n\t\tnewS.emplace_back(0);\n\t\tSA=InducedSorting(newS,mx-mn+2);\n\
-    \t\tconstructLCP();\n\t}\n};\n"
+    \t\tconstructLCP();\n\t}\n};\n\n/*\n@brief Suffix Array (SA-IS)\n@docs docs/SuffixArray.md\n\
+    */\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
     class SuffixArray{\n\t#define typeS make_pair(false,false)\n\t#define LMS make_pair(false,true)\n\
     \t#define typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\
@@ -121,7 +136,8 @@ data:
     }\npublic:\n\tSuffixArray(T S):ST(S){\n\t\tll mn=inf,mx=-inf;\n\t\tfor(auto i:S){\n\
     \t\t\tchmin(mn,(ll)i);chmax(mx,(ll)i);\n\t\t}\n\t\tvector<ll>newS;\n\t\tfor(auto\
     \ i:S)newS.emplace_back(i-mn+1);\n\t\tnewS.emplace_back(0);\n\t\tSA=InducedSorting(newS,mx-mn+2);\n\
-    \t\tconstructLCP();\n\t}\n};\n"
+    \t\tconstructLCP();\n\t}\n};\n\n/*\n@brief Suffix Array (SA-IS)\n@docs docs/SuffixArray.md\n\
+    */"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
@@ -129,13 +145,30 @@ data:
   requiredBy:
   - string/FM_index.cpp
   - string/BWT.cpp
-  timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-23 20:44:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/SuffixArray.matching.test.cpp
+  - test/FM_index.test.cpp
+  - test/SuffixArray.LCP.test.cpp
+  - test/SuffixArray.test.cpp
 documentation_of: string/SuffixArray.cpp
 layout: document
 redirect_from:
 - /library/string/SuffixArray.cpp
 - /library/string/SuffixArray.cpp.html
-title: string/SuffixArray.cpp
+title: Suffix Array (SA-IS)
 ---
+## 概要
+
+SA-IS を使ってSuffix Arrayを $O(|S|)$ で構築する。JOI夏季セミ2020 の成果物でもある。
+
+- ```[i]``` : Suffix Arrayの```i``` 番目 (0番目は末尾である事に注意)
+- ```occ(T)``` : ```T``` が登場するSuffix Array上の区間
+- ```locate(T)``` : ```T``` が登場する index の集合
+- ```LCP``` : 高さ配列
+
+## 計算量
+
+- 構築 : $O(|N|)$
+- ```occ,locate``` : $O(|T| log |S|)$

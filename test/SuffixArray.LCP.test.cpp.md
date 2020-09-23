@@ -2,37 +2,34 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':heavy_check_mark:'
     path: string/SuffixArray.cpp
     title: Suffix Array (SA-IS)
-  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: string/FM_index.cpp
-    title: string/FM_index.cpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/FM_index.test.cpp
-    title: test/FM_index.test.cpp
+    path: template/template.cpp
+    title: template/template.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
-    \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
-    using namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
-    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
-    \n\ntemplate<class T>\nclass SuffixArray{\n\t#define typeS make_pair(false,false)\n\
-    \t#define LMS make_pair(false,true)\n\t#define typeL make_pair(true,true)\n\t\
-    using TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\t\tvector<TYPE>type(len(S));\n\
-    \t\ttype[len(S)-1]=LMS;\n\t\tfor(ll i=len(S)-2;i>=0;i--){\n\t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\
-    \t\t\telse if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\
+    PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
+    links:
+    - https://judge.yosupo.jp/problem/number_of_substrings
+  bundledCode: "#line 1 \"test/SuffixArray.LCP.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\
+    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma GCC optimization\
+    \ (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\nusing namespace std;\n\
+    #define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll\
+    \ i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n\
+    #define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline\
+    \ bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
+    \ T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n\
+    }\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\n\ntemplate<class\
+    \ T>\nclass SuffixArray{\n\t#define typeS make_pair(false,false)\n\t#define LMS\
+    \ make_pair(false,true)\n\t#define typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\
+    \tvector<TYPE>assignType(vector<ll>&S){\n\t\tvector<TYPE>type(len(S));\n\t\ttype[len(S)-1]=LMS;\n\
+    \t\tfor(ll i=len(S)-2;i>=0;i--){\n\t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\t\t\t\
+    else if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\
     \t\t\t}else type[i]=type[i+1];\n\t\t}\n\t\treturn type;\n\t}\n\tvector<ll>getBucket(vector<ll>&S,ll\
     \ alph){\n\t\tvector<ll>bucket(alph);\n\t\tfor(ll i:S)bucket[i]++;\n\t\trep(i,len(bucket)-1)bucket[i+1]+=bucket[i];\n\
     \t\treturn bucket;\n\t}\n\tvoid sortTypeL(vector<ll>&S,vector<ll>&SA,vector<TYPE>&type,ll\
@@ -76,42 +73,26 @@ data:
     \t\t\tchmin(mn,(ll)i);chmax(mx,(ll)i);\n\t\t}\n\t\tvector<ll>newS;\n\t\tfor(auto\
     \ i:S)newS.emplace_back(i-mn+1);\n\t\tnewS.emplace_back(0);\n\t\tSA=InducedSorting(newS,mx-mn+2);\n\
     \t\tconstructLCP();\n\t}\n};\n\n/*\n@brief Suffix Array (SA-IS)\n@docs docs/SuffixArray.md\n\
-    */\n#line 4 \"string/BWT.cpp\"\n\ntemplate<class T>\nT BWT(T S,SuffixArray<T>&SA){\n\
-    \    S+='$';\n    T bwt;\n    rep(i,len(S)){\n        bwt.push_back(S[(SA[i]-1+len(S))%len(S)]);\n\
-    \    }\n    return bwt;\n}\n\ntemplate<class T>\nT BWTInverse(T S){\n    vector<ll>B(len(S));\n\
-    \    ll mx=-inf;\n    rep(i,len(S)){\n        B[i]=(S[i]=='$'?0:(ll)S[i]);\n \
-    \       chmax(mx,B[i]);\n    }\n    vector<vector<ll>>BB(mx+1),F(mx+1);\n    vector<P>V;\n\
-    \    rep(i,len(S)){\n        BB[B[i]].push_back(i);\n        F[B[i]].push_back(i);\n\
-    \    }\n    ll cnt=0;\n    rep(i,mx+1){\n        rep(j,len(F[i])){\n         \
-    \   F[i][j]=cnt++;\n            V.push_back({i,j});\n        }\n    }\n    ll\
-    \ now=BB[0][0];\n    T res;\n    rep(i,len(S)-1){\n        res.push_back(V[now].first);\n\
-    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"./SuffixArray.cpp\"\
-    \n\ntemplate<class T>\nT BWT(T S,SuffixArray<T>&SA){\n    S+='$';\n    T bwt;\n\
-    \    rep(i,len(S)){\n        bwt.push_back(S[(SA[i]-1+len(S))%len(S)]);\n    }\n\
-    \    return bwt;\n}\n\ntemplate<class T>\nT BWTInverse(T S){\n    vector<ll>B(len(S));\n\
-    \    ll mx=-inf;\n    rep(i,len(S)){\n        B[i]=(S[i]=='$'?0:(ll)S[i]);\n \
-    \       chmax(mx,B[i]);\n    }\n    vector<vector<ll>>BB(mx+1),F(mx+1);\n    vector<P>V;\n\
-    \    rep(i,len(S)){\n        BB[B[i]].push_back(i);\n        F[B[i]].push_back(i);\n\
-    \    }\n    ll cnt=0;\n    rep(i,mx+1){\n        rep(j,len(F[i])){\n         \
-    \   F[i][j]=cnt++;\n            V.push_back({i,j});\n        }\n    }\n    ll\
-    \ now=BB[0][0];\n    T res;\n    rep(i,len(S)-1){\n        res.push_back(V[now].first);\n\
-    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}"
+    */\n#line 4 \"test/SuffixArray.LCP.test.cpp\"\n\nint main(){\n    string S;cin>>S;\n\
+    \    ll N=len(S);\n    ll ans=N*(N-1)/2+N;\n    SuffixArray<string>SA(S);\n  \
+    \  rep(i,len(S))ans-=SA.LCP[i];\n    cout<<ans<<\"\\n\";\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\
+    \n#include \"../string/SuffixArray.cpp\"\n\nint main(){\n    string S;cin>>S;\n\
+    \    ll N=len(S);\n    ll ans=N*(N-1)/2+N;\n    SuffixArray<string>SA(S);\n  \
+    \  rep(i,len(S))ans-=SA.LCP[i];\n    cout<<ans<<\"\\n\";\n}"
   dependsOn:
-  - template/template.cpp
   - string/SuffixArray.cpp
-  isVerificationFile: false
-  path: string/BWT.cpp
-  requiredBy:
-  - string/FM_index.cpp
+  - template/template.cpp
+  isVerificationFile: true
+  path: test/SuffixArray.LCP.test.cpp
+  requiredBy: []
   timestamp: '2020-09-23 20:44:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/FM_index.test.cpp
-documentation_of: string/BWT.cpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/SuffixArray.LCP.test.cpp
 layout: document
 redirect_from:
-- /library/string/BWT.cpp
-- /library/string/BWT.cpp.html
-title: string/BWT.cpp
+- /verify/test/SuffixArray.LCP.test.cpp
+- /verify/test/SuffixArray.LCP.test.cpp.html
+title: test/SuffixArray.LCP.test.cpp
 ---

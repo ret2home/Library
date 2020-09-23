@@ -40,18 +40,18 @@ data:
       title: mod int
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/BWT.cpp
       title: string/BWT.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/FM_index.cpp
       title: string/FM_index.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/RollingHash.cpp
       title: string/RollingHash.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/SuffixArray.cpp
-      title: string/SuffixArray.cpp
+      title: Suffix Array (SA-IS)
     - icon: ':warning:'
       path: string/Zalgo.cpp
       title: string/Zalgo.cpp
@@ -60,7 +60,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/BIT.cpp
       title: Binary Indexed Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: structure/BitVector.cpp
       title: structure/BitVector.cpp
     - icon: ':warning:'
@@ -93,7 +93,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/UnionFind.cpp
       title: Union Find
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: structure/WaveletMatrix.cpp
       title: structure/WaveletMatrix.cpp
   - name: template
@@ -111,11 +111,29 @@ data:
       path: test/Combination.test.cpp
       title: test/Combination.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/FM_index.test.cpp
+      title: test/FM_index.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RollingHash.test.cpp
+      title: test/RollingHash.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/SegmentTree.test.cpp
       title: test/SegmentTree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/SuffixArray.LCP.test.cpp
+      title: test/SuffixArray.LCP.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/SuffixArray.matching.test.cpp
+      title: test/SuffixArray.matching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/SuffixArray.test.cpp
+      title: test/SuffixArray.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/WaveletMatrix.test.cpp
+      title: test/WaveletMatrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/factor.test.cpp
       title: test/factor.test.cpp

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: string/FM_index.cpp
+    title: string/FM_index.cpp
+  - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
   - icon: ':heavy_check_mark:'
@@ -17,33 +20,33 @@ data:
     path: string/SuffixArray.cpp
     title: Suffix Array (SA-IS)
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/FM_index.test.cpp
-    title: test/FM_index.test.cpp
+  _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
-    \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
-    using namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
-    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\
-    \n\nclass BitVector{\n    vector<ll>sum;\n    vector<uint64_t>bit;\npublic:\n\
-    \    ll rank(bool val,ll idx){\n        uint64_t mask=((uint64_t)1<<(idx&((1<<6)-1)))-1;\n\
-    \        ll res=sum[idx>>6]+__builtin_popcountll(bit[idx>>6]&mask);\n        return\
-    \ (val?res:idx-res);\n    }\n    BitVector(vector<bool>&v){\n        ll sz=(len(v)>>6)+1;\n\
-    \        bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n\
-    \            bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n       \
-    \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
-    \      }\n    }\n};\n#line 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class\
-    \ T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
-    \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B
+  bundledCode: "#line 1 \"test/FM_index.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B\"\
+    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma GCC optimization\
+    \ (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\nusing namespace std;\n\
+    #define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll\
+    \ i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n\
+    #define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline\
+    \ bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
+    \ T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n\
+    }\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\n\nclass BitVector{\n\
+    \    vector<ll>sum;\n    vector<uint64_t>bit;\npublic:\n    ll rank(bool val,ll\
+    \ idx){\n        uint64_t mask=((uint64_t)1<<(idx&((1<<6)-1)))-1;\n        ll\
+    \ res=sum[idx>>6]+__builtin_popcountll(bit[idx>>6]&mask);\n        return (val?res:idx-res);\n\
+    \    }\n    BitVector(vector<bool>&v){\n        ll sz=(len(v)>>6)+1;\n       \
+    \ bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n     \
+    \       bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n        rep(i,sz-1){\n\
+    \            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n        }\n    }\n\
+    };\n#line 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class T,class C>\nclass\
+    \ WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n    map<C,ll>st;\n\
+    public:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
     \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
     \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
     \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
@@ -128,38 +131,31 @@ data:
     \    bwt=BWT(S,SA);\n        WM=WaveletMatrix<T,C>(bwt,8);\n        ll mn=inf,mx=-inf;\n\
     \        for(C i:ST){\n            chmin(mn,(ll)i);\n            chmax(mx,(ll)i);\n\
     \        }\n        c.resize(mx-mn+2);\n        for(C i:ST){\n            c[(ll)i-mn+1]++;\n\
-    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"../structure/WaveletMatrix.cpp\"\
-    \n#include \"BWT.cpp\"\n\ntemplate<class T,class C>\nclass FMIndex{\n    ll N,base;\n\
-    \    T bwt;\n    vector<ll>c;\n    WaveletMatrix<T,C>WM;\n    SuffixArray<T>SA;\n\
-    \    public:\n    T ST;\n    P occ(T &S){\n        for(auto i:S)if((ll)i<base||(ll)i-base>=len(c))return\
-    \ P(0,0);\n        ll sp=0,ep=N;\n        rev(i,len(S)){\n            sp=c[(ll)S[i]-base]+WM.rank(S[i],sp);\n\
-    \            ep=c[(ll)S[i]-base]+WM.rank(S[i],ep);\n            if(sp>=ep)return\
-    \ P(0,0);\n        }\n        return P(sp,ep);\n    }\n    vector<ll>locate(T\
-    \ &S){\n        vector<bool>v(len(ST)+1);\n\t\tP range=occ(S);\n\t\tfor(ll i=range.first;i<range.second;i++)v[SA[i]]=true;\n\
-    \t\tvector<ll>res;\n\t\trep(i,len(ST)+1)if(v[i])res.emplace_back(i);\n\t\treturn\
-    \ res;\n    }\n    FMIndex(T S):N(len(S)+1),ST(S+'$'),WM(\"\",0),SA(S){\n    \
-    \    bwt=BWT(S,SA);\n        WM=WaveletMatrix<T,C>(bwt,8);\n        ll mn=inf,mx=-inf;\n\
-    \        for(C i:ST){\n            chmin(mn,(ll)i);\n            chmax(mx,(ll)i);\n\
-    \        }\n        c.resize(mx-mn+2);\n        for(C i:ST){\n            c[(ll)i-mn+1]++;\n\
-    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};"
+    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};\n\
+    #line 4 \"test/FM_index.test.cpp\"\n\nint main(){\n    string S,T;\n    cin>>S>>T;\n\
+    \    FMIndex<string,char>FM(S);\n    for(int i:FM.locate(T))cout<<i<<\"\\n\";\n\
+    }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B\"\n\
+    \n#include \"../string/FM_index.cpp\"\n\nint main(){\n    string S,T;\n    cin>>S>>T;\n\
+    \    FMIndex<string,char>FM(S);\n    for(int i:FM.locate(T))cout<<i<<\"\\n\";\n\
+    }"
   dependsOn:
+  - string/FM_index.cpp
   - template/template.cpp
   - structure/WaveletMatrix.cpp
   - structure/BitVector.cpp
   - string/BWT.cpp
   - string/SuffixArray.cpp
-  isVerificationFile: false
-  path: string/FM_index.cpp
+  isVerificationFile: true
+  path: test/FM_index.test.cpp
   requiredBy: []
   timestamp: '2020-09-23 20:44:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/FM_index.test.cpp
-documentation_of: string/FM_index.cpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/FM_index.test.cpp
 layout: document
 redirect_from:
-- /library/string/FM_index.cpp
-- /library/string/FM_index.cpp.html
-title: string/FM_index.cpp
+- /verify/test/FM_index.test.cpp
+- /verify/test/FM_index.test.cpp.html
+title: test/FM_index.test.cpp
 ---

@@ -5,15 +5,21 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
     title: structure/WaveletMatrix.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
     title: string/FM_index.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/WaveletMatrix.test.cpp
+    title: test/WaveletMatrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/FM_index.test.cpp
+    title: test/FM_index.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -50,8 +56,10 @@ data:
   - structure/WaveletMatrix.cpp
   - string/FM_index.cpp
   timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/WaveletMatrix.test.cpp
+  - test/FM_index.test.cpp
 documentation_of: structure/BitVector.cpp
 layout: document
 redirect_from:
