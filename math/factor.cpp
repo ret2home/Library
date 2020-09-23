@@ -46,3 +46,7 @@ vector<ll>factor(ll n){
 	for(ll i:factor(n/d))res.push_back(i);
 	return res;
 }
+/*
+@brief Fast Prime Factorization
+@docs docs/factor.md
+*/
