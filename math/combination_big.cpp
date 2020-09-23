@@ -1,13 +1,16 @@
 #pragma once
-#include "../template/template.cpp"
-#include "mod_pow.cpp"
+#include "modint.cpp"
 
-int perm(int x,int y){
-	int res=1;
-	for(int i=x-y+1;i<=x;i++)(res*=i%mod)%=mod;
-	return res;
-}
-int comb(int x,int y){
-	if(y>x)return 0;
-	return perm(x,y)*mod_pow(perm(y,y),mod-2)%mod;
-}
+template<int MOD>
+struct BigCombination{
+	using modint=mint<MOD>;
+	modint perm(ll x,ll y){
+		modint res=1;
+		for(ll i=x-y+1;i<=x;i++)res*=i;
+		return res;
+	}
+	modint comb(ll x,ll y){
+		if(y>x)return 0;
+		return perm(x,y)*perm(y,y).pow(MOD-2);
+	}
+};

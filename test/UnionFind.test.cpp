@@ -3,7 +3,7 @@
 #include "../structure/UnionFind.cpp"
 
 int N,Q;
-signed main(){
+int main(){
     cin>>N>>Q;
     UnionFind uf(N);
     while(Q--){

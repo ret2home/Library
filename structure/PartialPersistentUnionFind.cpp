@@ -2,31 +2,31 @@
 #include "../template/template.cpp"
 
 struct PartialPersistentUnionFind{
-	int version=0;
-	vector<int>tim,par;
+	ll version=0;
+	vector<ll>tim,par;
 	vector<vector<P>>siz;
-	int find(int x,int t){
+	ll find(ll x,ll t){
 		if(tim[x]>t)return x;
 		return find(par[x],t);
 	}
-	int same(int x,int y,int t){
+	ll same(ll x,ll y,ll t){
 		return find(x,t)==find(y,t);
 	}
-	int size(int x,int t){
+	ll size(ll x,ll t){
 		x=find(x,t);
 		return (--upper_bound(all(siz[x]),P(t,inf)))->second;
 	}
-	void merge(int x,int y){
+	void merge(ll x,ll y){
 		version++;
 		x=find(x,version);
 		y=find(y,version);
 		if(x==y)return;
-		int sx=size(x,version),sy=size(y,version);
+		ll sx=size(x,version),sy=size(y,version);
 		if(sx>sy)swap(x,y);
 		tim[x]=version;par[x]=y;
 		siz[y].push_back({version,sx+sy});
 	}
-	PartialPersistentUnionFind(int x):tim(x,inf){
+	PartialPersistentUnionFind(ll x):tim(x,inf){
 		siz.resize(x);
 		rep(i,x){
 			par.push_back(i);

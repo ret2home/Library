@@ -14,26 +14,26 @@ T BWT(T S,SuffixArray<T>&SA){
 
 template<class T>
 T BWTInverse(T S){
-    vector<int>B(len(S));
-    int mx=-inf;
+    vector<ll>B(len(S));
+    ll mx=-inf;
     rep(i,len(S)){
-        B[i]=(S[i]=='$'?0:(int)S[i]);
+        B[i]=(S[i]=='$'?0:(ll)S[i]);
         chmax(mx,B[i]);
     }
-    vector<vector<int>>BB(mx+1),F(mx+1);
+    vector<vector<ll>>BB(mx+1),F(mx+1);
     vector<P>V;
     rep(i,len(S)){
         BB[B[i]].push_back(i);
         F[B[i]].push_back(i);
     }
-    int cnt=0;
+    ll cnt=0;
     rep(i,mx+1){
         rep(j,len(F[i])){
             F[i][j]=cnt++;
             V.push_back({i,j});
         }
     }
-    int now=BB[0][0];
+    ll now=BB[0][0];
     T res;
     rep(i,len(S)-1){
         res.push_back(V[now].first);

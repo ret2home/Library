@@ -4,12 +4,12 @@
 
 template<class T,class C>
 class WaveletMatrix{
-    int N,bitlen;
+    ll N,bitlen;
     vector<BitVector>index;
-    vector<int>st;
+    vector<ll>st;
 public:
     T body;
-    int rank(C c,int idx){
+    ll rank(C c,ll idx){
         if(st[c]==-1)return 0;
         rev(i,bitlen){
             if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);
@@ -17,10 +17,10 @@ public:
         }
         return max(0,idx-st[c]);
     }
-    int quantile(int l,int r,int c){
-        int res=0;
+    ll quantile(ll l,ll r,ll c){
+        ll res=0;
         rev(i,bitlen){
-            int cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));
+            ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));
             if(cnt<=c){
                 c-=cnt;
                 l=index[i].rank(0,N)+index[i].rank(1,l);
@@ -33,7 +33,7 @@ public:
         }
         return res;
     }
-    WaveletMatrix(T V,int bitlen):N(len(V)),bitlen(bitlen),body(V){
+    WaveletMatrix(T V,ll bitlen):N(len(V)),bitlen(bitlen),body(V){
         vector<bool>bit(N);
         index.resize(bitlen,bit);
         rev(i,bitlen){

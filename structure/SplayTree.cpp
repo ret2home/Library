@@ -8,7 +8,7 @@ class SplayTree{
 		node *lch,*rch;
 	};
 	node *root=NULL;
-	int sz=0;
+	ll sz=0;
 	node *rightRotate(node *x){
 		node *y=x->lch;
 		x->lch=y->rch;
@@ -84,7 +84,7 @@ class SplayTree{
 		return x;
 	}
 public:
-	int size(){
+	ll size(){
 		return sz;
 	}
 	node *find(T x){

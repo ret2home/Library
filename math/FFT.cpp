@@ -1,8 +1,8 @@
 #pragma once
 #include "../template/template.cpp"
 
-void dft(vector<complex<double>>&func,int inv){
-	int sz=func.size();
+void dft(vector<complex<double>>&func,ll inv){
+	ll sz=func.size();
 	if(sz==1)return;
 	vector<complex<double>>va,vb;
 	rep(i,sz/2){
@@ -19,7 +19,7 @@ void dft(vector<complex<double>>&func,int inv){
 template<class T>
 vector<double>fft(vector<T>f,vector<T>g){
 	vector<complex<double>>nf,ng;
-	int sz=1;
+	ll sz=1;
 	while(sz<len(f)+len(g))sz*=2;
 	nf.resize(sz);ng.resize(sz);
 	rep(i,len(f)){

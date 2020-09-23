@@ -3,19 +3,19 @@
 
 struct PrimalDual{
 	struct edge{
-		int to,cap,cost,rev;
+		ll to,cap,cost,rev;
 	};
 	vector<vector<edge>>graph;
 	bool negative=false;
-	void add_edge(int from,int to,int cap,int cost){
+	void add_edge(ll from,ll to,ll cap,ll cost){
 		graph[from].push_back({to,cap,cost,len(graph[to])});
 		graph[to].push_back({from,0ll,-cost,len(graph[from])-1});
 		if(cost<0)negative=true;
 	}
-	int minCostFlow(int s,int t,int f){
-		int V=len(graph);
-		vector<int>potential(V),minCost,prevv(V,-1),preve(V,-1);
-		int res=0;
+	ll minCostFlow(ll s,ll t,ll f){
+		ll V=len(graph);
+		vector<ll>potential(V),minCost,prevv(V,-1),preve(V,-1);
+		ll res=0;
 		if(negative){
 			minCost.assign(V,inf);
 			minCost[s]=0;
@@ -32,7 +32,7 @@ struct PrimalDual{
 			}
 			if(minCost[t]==inf)return -1;
 			rep(i,V)potential[i]+=minCost[i];
-			for(int i=t;i!=s;i=prevv[i]){
+			for(ll i=t;i!=s;i=prevv[i]){
 				graph[prevv[i]][preve[i]].cap--;
 				graph[i][graph[prevv[i]][preve[i]].rev].cap++;
 			}
@@ -60,11 +60,11 @@ struct PrimalDual{
 
 			if(minCost[t]==inf)return -1;
 			rep(i,V)potential[i]+=minCost[i];
-			int addflow=f;
-			for(int i=t;i!=s;i=prevv[i])chmin(addflow,graph[prevv[i]][preve[i]].cap);
+			ll addflow=f;
+			for(ll i=t;i!=s;i=prevv[i])chmin(addflow,graph[prevv[i]][preve[i]].cap);
 			f-=addflow;
 			res+=addflow*potential[t];
-			for(int i=t;i!=s;i=prevv[i]){
+			for(ll i=t;i!=s;i=prevv[i]){
 				edge &e=graph[prevv[i]][preve[i]];
 				e.cap-=addflow;
 				graph[i][e.rev].cap+=addflow;
@@ -72,5 +72,5 @@ struct PrimalDual{
 		}
 		return res;
 	}
-	PrimalDual(int V):graph(V){};
+	PrimalDual(ll V):graph(V){};
 };

@@ -2,16 +2,16 @@
 #include "../template/template.cpp"
 
 class BitVector{
-    vector<int>sum;
+    vector<ll>sum;
     vector<uint64_t>bit;
 public:
-    int rank(bool val,int idx){
+    ll rank(bool val,ll idx){
         uint64_t mask=((uint64_t)1<<(idx&((1<<6)-1)))-1;
-        int res=sum[idx>>6]+__builtin_popcountll(bit[idx>>6]&mask);
+        ll res=sum[idx>>6]+__builtin_popcountll(bit[idx>>6]&mask);
         return (val?res:idx-res);
     }
     BitVector(vector<bool>&v){
-        int sz=(len(v)>>6)+1;
+        ll sz=(len(v)>>6)+1;
         bit.assign(sz,0);
         sum.assign(sz,0);
         rep(i,len(v)){
