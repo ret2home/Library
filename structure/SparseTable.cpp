@@ -1,9 +1,8 @@
 #pragma once
 #include "../template/template.cpp"
 
-template<class T>
+template<class T,class F>
 struct SparseTable{
-	using F=function<T(T,T)>;
 	vector<T>table[20];
 	vector<ll>log;
 	F f;
