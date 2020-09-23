@@ -2,5 +2,6 @@
 "test/BIT.test.cpp": "2020-09-23 19:41:50 +0900",
 "test/Combination.test.cpp": "2020-09-23 19:41:50 +0900",
 "test/SegmentTree.test.cpp": "2020-09-23 19:41:50 +0900",
-"test/UnionFind.test.cpp": "2020-09-23 19:41:50 +0900"
+"test/UnionFind.test.cpp": "2020-09-23 19:41:50 +0900",
+"test/factor.test.cpp": "2020-09-23 20:01:15 +0900"
 }
