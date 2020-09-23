@@ -1,5 +1,6 @@
 {
-"test/Combination.test.cpp": "2020-09-23 07:35:54 +0900",
-"test/SegmentTree.test.cpp": "2020-09-23 07:19:23 +0900",
-"test/UnionFind.test.cpp": "2020-09-23 07:19:23 +0900"
+"test/BIT.test.cpp": "2020-09-23 19:41:50 +0900",
+"test/Combination.test.cpp": "2020-09-23 19:41:50 +0900",
+"test/SegmentTree.test.cpp": "2020-09-23 19:41:50 +0900",
+"test/UnionFind.test.cpp": "2020-09-23 19:41:50 +0900"
 }
