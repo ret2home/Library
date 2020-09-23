@@ -5,9 +5,12 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/LiChaoTree.test.cpp
+    title: test/LiChaoTree.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -57,8 +60,9 @@ data:
   path: structure/LiChaoTree.cpp
   requiredBy: []
   timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/LiChaoTree.test.cpp
 documentation_of: structure/LiChaoTree.cpp
 layout: document
 redirect_from:

@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: structure/SplayTree.cpp
     title: structure/SplayTree.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: structure/SparseTable.cpp
     title: structure/SparseTable.cpp
   - icon: ':warning:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
     title: structure/WaveletMatrix.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: structure/LiChaoTree.cpp
     title: structure/LiChaoTree.cpp
   - icon: ':heavy_check_mark:'
@@ -100,6 +100,9 @@ data:
     path: test/BIT.test.cpp
     title: test/BIT.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/LiChaoTree.test.cpp
+    title: test/LiChaoTree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/SegmentTree.test.cpp
     title: test/SegmentTree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/FM_index.test.cpp
     title: test/FM_index.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/SparseTable.test.cpp
+    title: test/SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/SuffixArray.LCP.test.cpp
     title: test/SuffixArray.LCP.test.cpp
@@ -183,11 +189,13 @@ data:
   - test/Combination.test.cpp
   - test/WaveletMatrix.test.cpp
   - test/BIT.test.cpp
+  - test/LiChaoTree.test.cpp
   - test/SegmentTree.test.cpp
   - test/SuffixArray.matching.test.cpp
   - test/RollingHash.test.cpp
   - test/UnionFind.test.cpp
   - test/FM_index.test.cpp
+  - test/SparseTable.test.cpp
   - test/SuffixArray.LCP.test.cpp
   - test/factor.test.cpp
   - test/SuffixArray.test.cpp

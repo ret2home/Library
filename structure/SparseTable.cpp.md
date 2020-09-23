@@ -5,9 +5,12 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/SparseTable.test.cpp
+    title: test/SparseTable.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -19,19 +22,19 @@ data:
     \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
     \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
     \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\
-    \n\ntemplate<class T>\nstruct SparseTable{\n\tusing F=function<T(T,T)>;\n\tvector<T>table[20];\n\
-    \tvector<ll>log;\n\tF f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\
+    \n\ntemplate<class T,class F>\nstruct SparseTable{\n\tvector<T>table[20];\n\t\
+    vector<ll>log;\n\tF f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\
     \t\tll mx=0;\n\t\twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\t\trep(i,mx+1){\n\t\t\
     \ttable[i].resize(v.size());\n\t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
     \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
     \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
     \t}\n};\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
-    struct SparseTable{\n\tusing F=function<T(T,T)>;\n\tvector<T>table[20];\n\tvector<ll>log;\n\
-    \tF f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\t\tll mx=0;\n\
-    \t\twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\t\trep(i,mx+1){\n\t\t\ttable[i].resize(v.size());\n\
-    \t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
-    \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
+  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T,class\
+    \ F>\nstruct SparseTable{\n\tvector<T>table[20];\n\tvector<ll>log;\n\tF f;\n\t\
+    SparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\t\tll mx=0;\n\t\twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\
+    \t\trep(i,mx+1){\n\t\t\ttable[i].resize(v.size());\n\t\t\trep(j,v.size()-(1<<i)+1){\n\
+    \t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\t\t\t\t\
+    else table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
     \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
     \t}\n};\n"
   dependsOn:
@@ -39,9 +42,10 @@ data:
   isVerificationFile: false
   path: structure/SparseTable.cpp
   requiredBy: []
-  timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-23 21:18:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/SparseTable.test.cpp
 documentation_of: structure/SparseTable.cpp
 layout: document
 redirect_from:
