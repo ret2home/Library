@@ -161,7 +161,7 @@ title: Suffix Array (SA-IS)
 ---
 ## 概要
 
-SA-IS を使ってSuffix Arrayを $O(|S|)$ で構築する。JOI夏季セミ2020 の成果物でもある。
+SA-IS を使ってSuffix Arrayを $O(\mid S \mid)$ で構築する。JOI夏季セミ2020 の成果物でもある。
 
 - ```[i]``` : Suffix Arrayの```i``` 番目 (0番目は末尾である事に注意)
 - ```occ(T)``` : ```T``` が登場するSuffix Array上の区間
@@ -170,5 +170,5 @@ SA-IS を使ってSuffix Arrayを $O(|S|)$ で構築する。JOI夏季セミ2020
 
 ## 計算量
 
-- 構築 : $O(|N|)$
-- ```occ,locate``` : $O(|T| log |S|)$
+- 構築 : $O(\mid S \mid)$
+- ```occ,locate``` : $O(\mid T \mid log \mid S \mid)$
