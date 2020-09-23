@@ -157,3 +157,8 @@ public:
 		constructLCP();
 	}
 };
+
+/*
+@brief Suffix Array (SA-IS)
+@docs docs/SuffixArray.md
+*/

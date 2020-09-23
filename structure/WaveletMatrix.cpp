@@ -6,26 +6,26 @@ template<class T,class C>
 class WaveletMatrix{
     ll N,bitlen;
     vector<BitVector>index;
-    vector<ll>st;
+    map<C,ll>st;
 public:
     T body;
     ll rank(C c,ll idx){
-        if(st[c]==-1)return 0;
+        if(st.find(c)==st.end())return 0;
         rev(i,bitlen){
             if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);
             else idx-=index[i].rank(1,idx);
         }
-        return max(0,idx-st[c]);
+        return max(0ll,idx-st[c]);
     }
-    ll quantile(ll l,ll r,ll c){
-        ll res=0;
+    C quantile(ll l,ll r,ll c){
+        C res=0;
         rev(i,bitlen){
             ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));
             if(cnt<=c){
                 c-=cnt;
                 l=index[i].rank(0,N)+index[i].rank(1,l);
                 r=index[i].rank(0,N)+index[i].rank(1,r);
-                res+=1<<i;
+                res+=1ll<<i;
             }else {
                 l-=index[i].rank(1,l);
                 r-=index[i].rank(1,r);
@@ -45,7 +45,6 @@ public:
             V=newV[0];V.insert(V.end(),all(newV[1]));
             index[i]=BitVector(bit);
         }
-        st.assign(256,-1);
-        rep(i,N)if(st[V[i]]==-1)st[V[i]]=i;
+        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;
     }
 };
