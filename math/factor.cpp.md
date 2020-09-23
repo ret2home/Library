@@ -5,11 +5,16 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/factor.test.cpp
+    title: test/factor.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/factor.md
+    document_title: Fast Prime Factorization
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -30,7 +35,8 @@ data:
     \ x=x1,y=f(x);;x=f(x),y=f(f(y))){\n\t\t\tll d=gcd(g(y,x),n);\n\t\t\tif(1<d&&d<n)return\
     \ d;\n\t\t\tif(d==n)break;\n\t\t}\n\t}\n}\nvector<ll>factor(ll n){\n\tif(n==1)return\
     \ {};\n\tif(prime(n))return {n};\n\tll d=rho(n);\n\tvector<ll>res=factor(d);\n\
-    \tfor(ll i:factor(n/d))res.push_back(i);\n\treturn res;\n}\n"
+    \tfor(ll i:factor(n/d))res.push_back(i);\n\treturn res;\n}\n/*\n@brief Fast Prime\
+    \ Factorization\n@docs docs/factor.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\nll pow128(ll x,ll\
     \ y,ll m){\n\tll res=1;\n\twhile(y>0){\n\t\tif(y&1)res=(__int128_t(res)*x)%m;\n\
     \t\ty>>=1;x=(__int128_t(x)*x)%m;\n\t}\n\treturn res;\n}\n\nbool prime(ll n){\n\
@@ -43,19 +49,31 @@ data:
     \ x=x1,y=f(x);;x=f(x),y=f(f(y))){\n\t\t\tll d=gcd(g(y,x),n);\n\t\t\tif(1<d&&d<n)return\
     \ d;\n\t\t\tif(d==n)break;\n\t\t}\n\t}\n}\nvector<ll>factor(ll n){\n\tif(n==1)return\
     \ {};\n\tif(prime(n))return {n};\n\tll d=rho(n);\n\tvector<ll>res=factor(d);\n\
-    \tfor(ll i:factor(n/d))res.push_back(i);\n\treturn res;\n}"
+    \tfor(ll i:factor(n/d))res.push_back(i);\n\treturn res;\n}\n/*\n@brief Fast Prime\
+    \ Factorization\n@docs docs/factor.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: math/factor.cpp
   requiredBy: []
-  timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-23 20:01:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/factor.test.cpp
 documentation_of: math/factor.cpp
 layout: document
 redirect_from:
 - /library/math/factor.cpp
 - /library/math/factor.cpp.html
-title: math/factor.cpp
+title: Fast Prime Factorization
 ---
+## 概要
+
+ミラーラビン素数判定法と、ロー法による高速な素因数分解
+
+- ```prime(n)``` : ```n``` が素数かどうか
+- ```factor(n)``` : ```n``` の素因数分解の結果 (**再帰の関係でソートはしていない**)
+
+## 計算量
+
+詳しくは知らないけど、$10^{18}$ の素因数分解 $1000$ 個くらいは余裕ってレベル

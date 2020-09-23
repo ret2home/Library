@@ -32,9 +32,9 @@ data:
     - icon: ':warning:'
       path: math/extgcd.cpp
       title: math/extgcd.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/factor.cpp
-      title: math/factor.cpp
+      title: Fast Prime Factorization
     - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: mod int
@@ -116,5 +116,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/factor.test.cpp
+      title: test/factor.test.cpp
 layout: toppage
 ---

@@ -50,9 +50,9 @@ data:
   - icon: ':warning:'
     path: math/FFT.cpp
     title: math/FFT.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/factor.cpp
-    title: math/factor.cpp
+    title: Fast Prime Factorization
   - icon: ':heavy_check_mark:'
     path: math/Combination.cpp
     title: Combination (nCk)
@@ -102,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/UnionFind.test.cpp
     title: test/UnionFind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/factor.test.cpp
+    title: test/factor.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -163,6 +166,7 @@ data:
   - test/BIT.test.cpp
   - test/SegmentTree.test.cpp
   - test/UnionFind.test.cpp
+  - test/factor.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:
