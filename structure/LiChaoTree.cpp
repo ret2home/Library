@@ -55,3 +55,7 @@ struct LiChaoTree{
 		X.resize(size*2-1,1e9);
 	}
 };
+/*
+@brief Li Chao Tree (Convex Hull Trick)
+@docs docs/LiChaoTree.md
+*/

@@ -74,3 +74,7 @@ struct PrimalDual{
 	}
 	PrimalDual(ll V):graph(V){};
 };
+/*
+@brief Min Cost Flow (Primal Dual)
+@docs docs/MinCostFlow.md
+*/

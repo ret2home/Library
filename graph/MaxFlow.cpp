@@ -54,3 +54,7 @@ struct Dinic{
 	}
 	Dinic(ll N):G(N),level(N),iter(N){}
 };
+/*
+@brief Max Flow (Dinic)
+@docs docs/MaxFlow.md
+*/

@@ -23,3 +23,7 @@ struct SparseTable{
 		return f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);
 	}
 };
+/*
+@brief Sparse Table
+@docs docs/SparseTable.md
+*/
