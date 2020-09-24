@@ -48,3 +48,7 @@ public:
         rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;
     }
 };
+/*
+@brief Wavelet Matrix
+@docs docs/WaveletMatrix.md
+*/

@@ -22,3 +22,7 @@ public:
         }
     }
 };
+/*
+@brief Bit Vector
+@docs docs/BitVector.md
+*/

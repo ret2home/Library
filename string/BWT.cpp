@@ -41,3 +41,7 @@ T BWTInverse(T S){
     }
     return res;
 }
+/*
+@brief Burrows Wheeler Transform
+@docs docs/BWT.md
+*/

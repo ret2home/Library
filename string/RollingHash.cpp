@@ -41,3 +41,7 @@ struct RollingHash{
 		return ok;
 	}
 };
+/*
+@brief Rolling Hash (mod 2^61-1)
+@docs docs/RollingHash.md
+*/

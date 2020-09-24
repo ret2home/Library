@@ -46,3 +46,7 @@ class FMIndex{
         base=mn;
     }
 };
+/*
+@brief FM Index
+@docs docs/FM_index.md
+*/
