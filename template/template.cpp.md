@@ -19,7 +19,7 @@ data:
     title: structure/PartialPersistentUnionFind.cpp
   - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
-    title: structure/WaveletMatrix.cpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: structure/LiChaoTree.cpp
     title: Li Chao Tree (Convex Hull Trick)
@@ -40,7 +40,7 @@ data:
     title: structure/HeavyLightDecomposition.cpp
   - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
-    title: structure/BitVector.cpp
+    title: Bit Vector
   - icon: ':warning:'
     path: math/CRT.cpp
     title: math/CRT.cpp
@@ -64,16 +64,16 @@ data:
     title: math/combination_big.cpp
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
-    title: string/FM_index.cpp
+    title: FM Index
   - icon: ':warning:'
     path: string/Zalgo.cpp
     title: string/Zalgo.cpp
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.cpp
-    title: string/RollingHash.cpp
+    title: Rolling Hash (mod 2^61-1)
   - icon: ':heavy_check_mark:'
     path: string/BWT.cpp
-    title: string/BWT.cpp
+    title: Burrows Wheeler Transform
   - icon: ':heavy_check_mark:'
     path: string/SuffixArray.cpp
     title: Suffix Array (SA-IS)

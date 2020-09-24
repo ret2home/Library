@@ -6,13 +6,13 @@ data:
     title: template/template.cpp
   - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
-    title: structure/WaveletMatrix.cpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
-    title: structure/BitVector.cpp
+    title: Bit Vector
   - icon: ':heavy_check_mark:'
     path: string/BWT.cpp
-    title: string/BWT.cpp
+    title: Burrows Wheeler Transform
   - icon: ':heavy_check_mark:'
     path: string/SuffixArray.cpp
     title: Suffix Array (SA-IS)
@@ -25,6 +25,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/FM_index.md
+    document_title: FM Index
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -41,10 +43,11 @@ data:
     \        bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n\
     \            bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n       \
     \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
-    \      }\n    }\n};\n#line 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class\
-    \ T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
-    \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
-    \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
+    \      }\n    }\n};\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n#line\
+    \ 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class T,class C>\nclass WaveletMatrix{\n\
+    \    ll N,bitlen;\n    vector<BitVector>index;\n    map<C,ll>st;\npublic:\n  \
+    \  T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return 0;\n\
+    \        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
     \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
     \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
     \            ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));\n         \
@@ -57,9 +60,10 @@ data:
     \            rep(j,N){\n                bit[j]=(V[j]>>i&1);\n                newV[V[j]>>i&1].push_back(V[j]);\n\
     \            }\n            V=newV[0];V.insert(V.end(),all(newV[1]));\n      \
     \      index[i]=BitVector(bit);\n        }\n        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;\n\
-    \    }\n};\n#line 3 \"string/SuffixArray.cpp\"\n\ntemplate<class T>\nclass SuffixArray{\n\
-    \t#define typeS make_pair(false,false)\n\t#define LMS make_pair(false,true)\n\t\
-    #define typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\
+    \    }\n};\n/*\n@brief Wavelet Matrix\n@docs docs/WaveletMatrix.md\n*/\n#line\
+    \ 3 \"string/SuffixArray.cpp\"\n\ntemplate<class T>\nclass SuffixArray{\n\t#define\
+    \ typeS make_pair(false,false)\n\t#define LMS make_pair(false,true)\n\t#define\
+    \ typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\
     \t\tvector<TYPE>type(len(S));\n\t\ttype[len(S)-1]=LMS;\n\t\tfor(ll i=len(S)-2;i>=0;i--){\n\
     \t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\t\t\telse if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\
     \t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\t\t\t}else type[i]=type[i+1];\n\t\
@@ -115,10 +119,11 @@ data:
     \    }\n    ll cnt=0;\n    rep(i,mx+1){\n        rep(j,len(F[i])){\n         \
     \   F[i][j]=cnt++;\n            V.push_back({i,j});\n        }\n    }\n    ll\
     \ now=BB[0][0];\n    T res;\n    rep(i,len(S)-1){\n        res.push_back(V[now].first);\n\
-    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}\n#line\
-    \ 5 \"string/FM_index.cpp\"\n\ntemplate<class T,class C>\nclass FMIndex{\n   \
-    \ ll N,base;\n    T bwt;\n    vector<ll>c;\n    WaveletMatrix<T,C>WM;\n    SuffixArray<T>SA;\n\
-    \    public:\n    T ST;\n    P occ(T &S){\n        for(auto i:S)if((ll)i<base||(ll)i-base>=len(c))return\
+    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}\n/*\n\
+    @brief Burrows Wheeler Transform\n@docs docs/BWT.md\n*/\n#line 5 \"string/FM_index.cpp\"\
+    \n\ntemplate<class T,class C>\nclass FMIndex{\n    ll N,base;\n    T bwt;\n  \
+    \  vector<ll>c;\n    WaveletMatrix<T,C>WM;\n    SuffixArray<T>SA;\n    public:\n\
+    \    T ST;\n    P occ(T &S){\n        for(auto i:S)if((ll)i<base||(ll)i-base>=len(c))return\
     \ P(0,0);\n        ll sp=0,ep=N;\n        rev(i,len(S)){\n            sp=c[(ll)S[i]-base]+WM.rank(S[i],sp);\n\
     \            ep=c[(ll)S[i]-base]+WM.rank(S[i],ep);\n            if(sp>=ep)return\
     \ P(0,0);\n        }\n        return P(sp,ep);\n    }\n    vector<ll>locate(T\
@@ -128,7 +133,8 @@ data:
     \    bwt=BWT(S,SA);\n        WM=WaveletMatrix<T,C>(bwt,8);\n        ll mn=inf,mx=-inf;\n\
     \        for(C i:ST){\n            chmin(mn,(ll)i);\n            chmax(mx,(ll)i);\n\
     \        }\n        c.resize(mx-mn+2);\n        for(C i:ST){\n            c[(ll)i-mn+1]++;\n\
-    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};\n"
+    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};\n\
+    /*\n@brief FM Index\n@docs docs/FM_index.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"../structure/WaveletMatrix.cpp\"\
     \n#include \"BWT.cpp\"\n\ntemplate<class T,class C>\nclass FMIndex{\n    ll N,base;\n\
     \    T bwt;\n    vector<ll>c;\n    WaveletMatrix<T,C>WM;\n    SuffixArray<T>SA;\n\
@@ -142,7 +148,8 @@ data:
     \    bwt=BWT(S,SA);\n        WM=WaveletMatrix<T,C>(bwt,8);\n        ll mn=inf,mx=-inf;\n\
     \        for(C i:ST){\n            chmin(mn,(ll)i);\n            chmax(mx,(ll)i);\n\
     \        }\n        c.resize(mx-mn+2);\n        for(C i:ST){\n            c[(ll)i-mn+1]++;\n\
-    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};"
+    \        }\n        rep(i,mx-mn+1)c[i+1]+=c[i];\n        base=mn;\n    }\n};\n\
+    /*\n@brief FM Index\n@docs docs/FM_index.md\n*/"
   dependsOn:
   - template/template.cpp
   - structure/WaveletMatrix.cpp
@@ -152,7 +159,7 @@ data:
   isVerificationFile: false
   path: string/FM_index.cpp
   requiredBy: []
-  timestamp: '2020-09-23 20:44:00+09:00'
+  timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/FM_index.test.cpp
@@ -161,5 +168,22 @@ layout: document
 redirect_from:
 - /library/string/FM_index.cpp
 - /library/string/FM_index.cpp.html
-title: string/FM_index.cpp
+title: FM Index
 ---
+## 概要
+
+高速な全文検索を提供する FM Indexの実装。JOI 夏季セミナー 2020 の成果物。
+
+- ```occ(T)``` : ```T``` が登場するSuffix Array上の区間
+- ```locate(T)``` : ```T``` が登場する index の集合
+
+Suffix Arrayと同じ。
+
+## 計算量
+
+- 構築 : $O(\mid S \mid)$
+- クエリ : $O(\mid T \mid log\ \sigma)$ ($\sigma$ は文字の種類数で、26とか)
+
+Suffix Arrayはクエリが $O(\mid T \mid log \mid S \mid)$ なのに対し、こちらの方が速いのが特長。
+
+ただし、Suffix Arrayの方のクエリは定数倍が軽いので実際はあんまり変わらない事もある。

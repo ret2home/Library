@@ -7,10 +7,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
-    title: string/FM_index.cpp
+    title: FM Index
   - icon: ':heavy_check_mark:'
     path: string/BWT.cpp
-    title: string/BWT.cpp
+    title: Burrows Wheeler Transform
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/SuffixArray.matching.test.cpp

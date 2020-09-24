@@ -7,10 +7,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
-    title: structure/WaveletMatrix.cpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
-    title: string/FM_index.cpp
+    title: FM Index
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/WaveletMatrix.test.cpp
@@ -22,6 +22,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/BitVector.md
+    document_title: Bit Vector
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -38,7 +40,7 @@ data:
     \        bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n\
     \            bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n       \
     \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
-    \      }\n    }\n};\n"
+    \      }\n    }\n};\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\nclass BitVector{\n\
     \    vector<ll>sum;\n    vector<uint64_t>bit;\npublic:\n    ll rank(bool val,ll\
     \ idx){\n        uint64_t mask=((uint64_t)1<<(idx&((1<<6)-1)))-1;\n        ll\
@@ -47,7 +49,7 @@ data:
     \ bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n     \
     \       bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n        rep(i,sz-1){\n\
     \            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n        }\n    }\n\
-    };"
+    };\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
@@ -55,7 +57,7 @@ data:
   requiredBy:
   - structure/WaveletMatrix.cpp
   - string/FM_index.cpp
-  timestamp: '2020-09-23 19:41:50+09:00'
+  timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WaveletMatrix.test.cpp
@@ -65,5 +67,16 @@ layout: document
 redirect_from:
 - /library/structure/BitVector.cpp
 - /library/structure/BitVector.cpp.html
-title: structure/BitVector.cpp
+title: Bit Vector
 ---
+## 概要
+
+ビットベクトル。64bitに畳み込んでいる。
+
+- ```rank(c,x)``` : ```c``` が $[0,x)$ に何回登場したか
+
+## 計算量
+
+$O(1)$
+
+```__builtin_popcountll``` の部分は QCFium法をすると速くなる。

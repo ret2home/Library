@@ -13,6 +13,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/RollingHash.md
+    document_title: Rolling Hash (mod 2^61-1)
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -32,7 +34,8 @@ data:
     \t\t}\n\t}\n\tll get(ll l,ll r){\n\t\treturn calcmod(hash[r]-mul(hash[l],power[r-l])+MOD);\n\
     \t}\n\tll lcp(ll x,ll y){\n\t\tll len=min(hash.size()-1-y,hash.size()-1-x);\n\t\
     \tll ok=0,ng=len+1;\n\t\twhile(ng-ok>1){\n\t\t\tll mid=(ok+ng)/2;\n\t\t\tif(get(x,x+mid)==get(y,y+mid))ok=mid;\n\
-    \t\t\telse ng=mid;\n\t\t}\n\t\treturn ok;\n\t}\n};\n"
+    \t\t\telse ng=mid;\n\t\t}\n\t\treturn ok;\n\t}\n};\n/*\n@brief Rolling Hash (mod\
+    \ 2^61-1)\n@docs docs/RollingHash.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
     struct RollingHash{\n\tll Base=283;\n\tconst ll MASK30=(1ll<<30)-1;\n\tconst ll\
     \ MASK31=(1ll<<31)-1;\n\tconst ll MOD=(1ll<<61)-1;\n\tvector<ll>hash,power;\n\t\
@@ -44,13 +47,14 @@ data:
     \t\t}\n\t}\n\tll get(ll l,ll r){\n\t\treturn calcmod(hash[r]-mul(hash[l],power[r-l])+MOD);\n\
     \t}\n\tll lcp(ll x,ll y){\n\t\tll len=min(hash.size()-1-y,hash.size()-1-x);\n\t\
     \tll ok=0,ng=len+1;\n\t\twhile(ng-ok>1){\n\t\t\tll mid=(ok+ng)/2;\n\t\t\tif(get(x,x+mid)==get(y,y+mid))ok=mid;\n\
-    \t\t\telse ng=mid;\n\t\t}\n\t\treturn ok;\n\t}\n};"
+    \t\t\telse ng=mid;\n\t\t}\n\t\treturn ok;\n\t}\n};\n/*\n@brief Rolling Hash (mod\
+    \ 2^61-1)\n@docs docs/RollingHash.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: string/RollingHash.cpp
   requiredBy: []
-  timestamp: '2020-09-23 19:41:50+09:00'
+  timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RollingHash.test.cpp
@@ -59,5 +63,16 @@ layout: document
 redirect_from:
 - /library/string/RollingHash.cpp
 - /library/string/RollingHash.cpp.html
-title: string/RollingHash.cpp
+title: Rolling Hash (mod 2^61-1)
 ---
+## 概要
+
+$mod\ 2^{61}-1$ のRolling Hash。[解説記事](https://qiita.com/keymoon/items/11fac5627672a6d6a9f6)
+
+- ```get(l,r)``` : $[l,r)$ の Hash
+- ```lcp(x,y)``` : ```x``` 文字目からと ```y``` 文字目からが最長で何文字一致しているか
+
+## 計算量
+
+- ```get``` : $O(1)$
+- ```lcp``` : $O(log \mid S \mid)$

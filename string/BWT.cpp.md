@@ -10,7 +10,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
-    title: string/FM_index.cpp
+    title: FM Index
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/FM_index.test.cpp
@@ -19,6 +19,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/BWT.md
+    document_title: Burrows Wheeler Transform
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -85,7 +87,8 @@ data:
     \    }\n    ll cnt=0;\n    rep(i,mx+1){\n        rep(j,len(F[i])){\n         \
     \   F[i][j]=cnt++;\n            V.push_back({i,j});\n        }\n    }\n    ll\
     \ now=BB[0][0];\n    T res;\n    rep(i,len(S)-1){\n        res.push_back(V[now].first);\n\
-    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}\n"
+    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}\n/*\n\
+    @brief Burrows Wheeler Transform\n@docs docs/BWT.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"./SuffixArray.cpp\"\
     \n\ntemplate<class T>\nT BWT(T S,SuffixArray<T>&SA){\n    S+='$';\n    T bwt;\n\
     \    rep(i,len(S)){\n        bwt.push_back(S[(SA[i]-1+len(S))%len(S)]);\n    }\n\
@@ -96,7 +99,8 @@ data:
     \    }\n    ll cnt=0;\n    rep(i,mx+1){\n        rep(j,len(F[i])){\n         \
     \   F[i][j]=cnt++;\n            V.push_back({i,j});\n        }\n    }\n    ll\
     \ now=BB[0][0];\n    T res;\n    rep(i,len(S)-1){\n        res.push_back(V[now].first);\n\
-    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}"
+    \        now=BB[V[now].first][V[now].second];\n    }\n    return res;\n}\n/*\n\
+    @brief Burrows Wheeler Transform\n@docs docs/BWT.md\n*/"
   dependsOn:
   - template/template.cpp
   - string/SuffixArray.cpp
@@ -104,7 +108,7 @@ data:
   path: string/BWT.cpp
   requiredBy:
   - string/FM_index.cpp
-  timestamp: '2020-09-23 20:44:00+09:00'
+  timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/FM_index.test.cpp
@@ -113,5 +117,15 @@ layout: document
 redirect_from:
 - /library/string/BWT.cpp
 - /library/string/BWT.cpp.html
-title: string/BWT.cpp
+title: Burrows Wheeler Transform
 ---
+## 概要
+
+FM_index で使う用の BW変換。SA-IS同様、JOI夏季セミナー2020の成果物。
+
+- ```BWT(S,SA)``` : ```S``` と その Suffix Array ```SA``` からBW変換
+- ```BWTInverse(S)``` : ```S``` をBWT逆変換
+
+## 計算量
+
+全て $O(\mid S \mid)$

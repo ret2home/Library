@@ -6,11 +6,11 @@ data:
     title: template/template.cpp
   - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
-    title: structure/BitVector.cpp
+    title: Bit Vector
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
-    title: string/FM_index.cpp
+    title: FM Index
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/WaveletMatrix.test.cpp
@@ -22,6 +22,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/WaveletMatrix.md
+    document_title: Wavelet Matrix
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -38,10 +40,11 @@ data:
     \        bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n\
     \            bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n       \
     \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
-    \      }\n    }\n};\n#line 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class\
-    \ T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
-    \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
-    \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
+    \      }\n    }\n};\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n#line\
+    \ 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class T,class C>\nclass WaveletMatrix{\n\
+    \    ll N,bitlen;\n    vector<BitVector>index;\n    map<C,ll>st;\npublic:\n  \
+    \  T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return 0;\n\
+    \        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
     \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
     \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
     \            ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));\n         \
@@ -54,7 +57,7 @@ data:
     \            rep(j,N){\n                bit[j]=(V[j]>>i&1);\n                newV[V[j]>>i&1].push_back(V[j]);\n\
     \            }\n            V=newV[0];V.insert(V.end(),all(newV[1]));\n      \
     \      index[i]=BitVector(bit);\n        }\n        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;\n\
-    \    }\n};\n"
+    \    }\n};\n/*\n@brief Wavelet Matrix\n@docs docs/WaveletMatrix.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"BitVector.cpp\"\
     \n\ntemplate<class T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
     \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
@@ -71,7 +74,7 @@ data:
     \            rep(j,N){\n                bit[j]=(V[j]>>i&1);\n                newV[V[j]>>i&1].push_back(V[j]);\n\
     \            }\n            V=newV[0];V.insert(V.end(),all(newV[1]));\n      \
     \      index[i]=BitVector(bit);\n        }\n        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;\n\
-    \    }\n};"
+    \    }\n};\n/*\n@brief Wavelet Matrix\n@docs docs/WaveletMatrix.md\n*/"
   dependsOn:
   - template/template.cpp
   - structure/BitVector.cpp
@@ -79,7 +82,7 @@ data:
   path: structure/WaveletMatrix.cpp
   requiredBy:
   - string/FM_index.cpp
-  timestamp: '2020-09-23 20:44:00+09:00'
+  timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WaveletMatrix.test.cpp
@@ -89,5 +92,15 @@ layout: document
 redirect_from:
 - /library/structure/WaveletMatrix.cpp
 - /library/structure/WaveletMatrix.cpp.html
-title: structure/WaveletMatrix.cpp
+title: Wavelet Matrix
 ---
+## 概要
+
+Wavelet Matrix
+
+- ```rank(c,x)``` : $[0,c)$ に ```x``` が何回存在するか
+- ```quantile(l,r,c)``` : $[l,r)$ 中で $c+1$ 番目に大きい数
+
+## 計算量
+
+全て $O(log \sigma)$ ($\sigma$は数の種類数)

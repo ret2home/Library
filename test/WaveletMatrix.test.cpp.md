@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
-    title: structure/WaveletMatrix.cpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
   - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
-    title: structure/BitVector.cpp
+    title: Bit Vector
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -35,9 +35,9 @@ data:
     \ bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n     \
     \       bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n        rep(i,sz-1){\n\
     \            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n        }\n    }\n\
-    };\n#line 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class T,class C>\nclass\
-    \ WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n    map<C,ll>st;\n\
-    public:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
+    };\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n#line 4 \"structure/WaveletMatrix.cpp\"\
+    \n\ntemplate<class T,class C>\nclass WaveletMatrix{\n    ll N,bitlen;\n    vector<BitVector>index;\n\
+    \    map<C,ll>st;\npublic:\n    T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return\
     \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
     \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
     \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
@@ -51,8 +51,9 @@ data:
     \            rep(j,N){\n                bit[j]=(V[j]>>i&1);\n                newV[V[j]>>i&1].push_back(V[j]);\n\
     \            }\n            V=newV[0];V.insert(V.end(),all(newV[1]));\n      \
     \      index[i]=BitVector(bit);\n        }\n        rep(i,N)if(st.find(V[i])==st.end())st[V[i]]=i;\n\
-    \    }\n};\n#line 4 \"test/WaveletMatrix.test.cpp\"\n\nint main(){\n    int N,Q;\n\
-    \    cin>>N>>Q;\n    vector<int>V(N);\n    for(int &i:V)cin>>i;\n    WaveletMatrix<vector<int>,int>WM(V,30);\n\
+    \    }\n};\n/*\n@brief Wavelet Matrix\n@docs docs/WaveletMatrix.md\n*/\n#line\
+    \ 4 \"test/WaveletMatrix.test.cpp\"\n\nint main(){\n    int N,Q;\n    cin>>N>>Q;\n\
+    \    vector<int>V(N);\n    for(int &i:V)cin>>i;\n    WaveletMatrix<vector<int>,int>WM(V,30);\n\
     \    while(Q--){\n        int l,r,k;cin>>l>>r>>k;\n        cout<<WM.quantile(l,r,k)<<\"\
     \\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
@@ -67,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/WaveletMatrix.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 20:44:00+09:00'
+  timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/WaveletMatrix.test.cpp
