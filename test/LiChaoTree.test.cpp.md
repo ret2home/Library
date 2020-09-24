@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: structure/LiChaoTree.cpp
-    title: structure/LiChaoTree.cpp
+    title: Li Chao Tree (Convex Hull Trick)
   - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
@@ -39,8 +39,9 @@ data:
     if(r-l==1)return f(dat[k],X[a]);\n\t\tif(a<(l+r)/2)return min(query(a,k*2+1,l,(l+r)/2),f(dat[k],X[a]));\n\
     \t\telse return min(query(a,k*2+2,(l+r)/2,r),f(dat[k],X[a]));\n\t}\n\tLiChaoTree(vector<T>v):X(v){\n\
     \t\tll N=len(v);\n\t\twhile(size<N)size*=2;\n\t\tdat.resize(size*2-1,ini);\n\t\
-    \tX.resize(size*2-1,1e9);\n\t}\n};\n#line 4 \"test/LiChaoTree.test.cpp\"\n\nll\
-    \ N,Q;\nll L[200005],R[200005],x[200005],y[200005];\nll l[200005],r[200005],a[200005],b[200005];\n\
+    \tX.resize(size*2-1,1e9);\n\t}\n};\n/*\n@brief Li Chao Tree (Convex Hull Trick)\n\
+    @docs docs/LiChaoTree.md\n*/\n#line 4 \"test/LiChaoTree.test.cpp\"\n\nll N,Q;\n\
+    ll L[200005],R[200005],x[200005],y[200005];\nll l[200005],r[200005],a[200005],b[200005];\n\
     vector<ll>v;\nsigned main(){\n\tcin>>N>>Q;\n\trep(i,N){\n\t\tcin>>L[i]>>R[i]>>x[i]>>y[i];\n\
     \t\tv.push_back(L[i]);v.push_back(R[i]);\n\t}\n\trep(i,Q){\n\t\tint type;cin>>type;\n\
     \t\tif(type==0){\n\t\t\tcin>>l[i]>>r[i]>>a[i]>>b[i];\n\t\t\tv.push_back(l[i]);v.push_back(r[i]);\n\
@@ -69,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/LiChaoTree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 21:18:08+09:00'
+  timestamp: '2020-09-24 19:55:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/LiChaoTree.test.cpp

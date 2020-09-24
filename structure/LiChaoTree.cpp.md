@@ -13,6 +13,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/LiChaoTree.md
+    document_title: Li Chao Tree (Convex Hull Trick)
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -37,7 +39,8 @@ data:
     \ f(dat[k],X[a]);\n\t\tif(a<(l+r)/2)return min(query(a,k*2+1,l,(l+r)/2),f(dat[k],X[a]));\n\
     \t\telse return min(query(a,k*2+2,(l+r)/2,r),f(dat[k],X[a]));\n\t}\n\tLiChaoTree(vector<T>v):X(v){\n\
     \t\tll N=len(v);\n\t\twhile(size<N)size*=2;\n\t\tdat.resize(size*2-1,ini);\n\t\
-    \tX.resize(size*2-1,1e9);\n\t}\n};\n"
+    \tX.resize(size*2-1,1e9);\n\t}\n};\n/*\n@brief Li Chao Tree (Convex Hull Trick)\n\
+    @docs docs/LiChaoTree.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
     struct LiChaoTree{\n\tstruct L{\n\t\tT a,b;\n\t\tL(T a,T b):a(a),b(b){}\n\t\t\
     bool operator==(L l){return a==l.a&&b==l.b;};\n\t};\n\tT f(L line,T x){\n\t\t\
@@ -53,13 +56,14 @@ data:
     if(r-l==1)return f(dat[k],X[a]);\n\t\tif(a<(l+r)/2)return min(query(a,k*2+1,l,(l+r)/2),f(dat[k],X[a]));\n\
     \t\telse return min(query(a,k*2+2,(l+r)/2,r),f(dat[k],X[a]));\n\t}\n\tLiChaoTree(vector<T>v):X(v){\n\
     \t\tll N=len(v);\n\t\twhile(size<N)size*=2;\n\t\tdat.resize(size*2-1,ini);\n\t\
-    \tX.resize(size*2-1,1e9);\n\t}\n};\n"
+    \tX.resize(size*2-1,1e9);\n\t}\n};\n/*\n@brief Li Chao Tree (Convex Hull Trick)\n\
+    @docs docs/LiChaoTree.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/LiChaoTree.cpp
   requiredBy: []
-  timestamp: '2020-09-23 19:41:50+09:00'
+  timestamp: '2020-09-24 19:55:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/LiChaoTree.test.cpp
@@ -68,5 +72,16 @@ layout: document
 redirect_from:
 - /library/structure/LiChaoTree.cpp
 - /library/structure/LiChaoTree.cpp.html
-title: structure/LiChaoTree.cpp
+title: Li Chao Tree (Convex Hull Trick)
 ---
+## 概要
+
+Convex Hull Trick の Li Chao Treeで実装したバージョン
+
+- ```add(a,b,l)``` : 登録した $x$ 座標の $[a,b)$ に線分 $l$ を追加
+- ```query(a)``` : 登録した $x$ 座標の $a$ 番目を含む線分の $y$ 座標の最小値 (線分が存在しない場合はinf)
+
+## 計算量
+
+- ```add(a,b,l)``` : $O(log^2\ N)$
+- ```query(a)``` : $O(log\ N)$

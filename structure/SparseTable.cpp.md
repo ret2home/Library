@@ -13,6 +13,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/SparseTable.md
+    document_title: Sparse Table
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -28,7 +30,7 @@ data:
     \ttable[i].resize(v.size());\n\t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
     \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
     \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
-    \t}\n};\n"
+    \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T,class\
     \ F>\nstruct SparseTable{\n\tvector<T>table[20];\n\tvector<ll>log;\n\tF f;\n\t\
     SparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\t\tll mx=0;\n\t\twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\
@@ -36,13 +38,13 @@ data:
     \t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\t\t\t\t\
     else table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
     \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
-    \t}\n};\n"
+    \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/SparseTable.cpp
   requiredBy: []
-  timestamp: '2020-09-23 21:18:08+09:00'
+  timestamp: '2020-09-24 19:55:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SparseTable.test.cpp
@@ -51,5 +53,17 @@ layout: document
 redirect_from:
 - /library/structure/SparseTable.cpp
 - /library/structure/SparseTable.cpp.html
-title: structure/SparseTable.cpp
+title: Sparse Table
 ---
+## 概要
+
+前計算を $O(N\ log N)$,クエリを $O(1)$ で処理するデータ構造。$f(a,f(b,c))=f(f(a,b),f(b,c))=f(f(a,b),c)$ が成り立つようなものしか載せられない。
+
+例えばRMQはOKだが、RSQはNG。
+
+- ```query(l,r)``` : $[l,r)$ の演算の結果
+
+## 計算量
+
+- 構築 : $O(N\ log N)$
+- ```query(l,r)``` : $O(1)$

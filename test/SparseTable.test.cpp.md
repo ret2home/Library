@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: structure/SparseTable.cpp
-    title: structure/SparseTable.cpp
+    title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
@@ -31,10 +31,11 @@ data:
     \t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
     \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
     \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
-    \t}\n};\n#line 4 \"test/SparseTable.test.cpp\"\n\nint main(){\n\tint N,Q;cin>>N>>Q;\n\
-    \tvector<int>V(N);\n\tfor(int &i:V)cin>>i;\n\tauto f=[](int a,int b)->int{return\
-    \ min(a,b);};\n\tSparseTable<int,decltype(f)>ST(V,f);\n\twhile(Q--){\n\t\tint\
-    \ l,r;cin>>l>>r;\n\t\tcout<<ST.query(l,r)<<\"\\n\";\n\t}\n}\n"
+    \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n#line 4 \"test/SparseTable.test.cpp\"\
+    \n\nint main(){\n\tint N,Q;cin>>N>>Q;\n\tvector<int>V(N);\n\tfor(int &i:V)cin>>i;\n\
+    \tauto f=[](int a,int b)->int{return min(a,b);};\n\tSparseTable<int,decltype(f)>ST(V,f);\n\
+    \twhile(Q--){\n\t\tint l,r;cin>>l>>r;\n\t\tcout<<ST.query(l,r)<<\"\\n\";\n\t}\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
     \ \"../structure/SparseTable.cpp\"\n\nint main(){\n\tint N,Q;cin>>N>>Q;\n\tvector<int>V(N);\n\
     \tfor(int &i:V)cin>>i;\n\tauto f=[](int a,int b)->int{return min(a,b);};\n\tSparseTable<int,decltype(f)>ST(V,f);\n\
@@ -46,7 +47,7 @@ data:
   isVerificationFile: true
   path: test/SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 21:18:08+09:00'
+  timestamp: '2020-09-24 19:55:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SparseTable.test.cpp

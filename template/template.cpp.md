@@ -13,7 +13,7 @@ data:
     title: structure/SplayTree.cpp
   - icon: ':heavy_check_mark:'
     path: structure/SparseTable.cpp
-    title: structure/SparseTable.cpp
+    title: Sparse Table
   - icon: ':warning:'
     path: structure/PartialPersistentUnionFind.cpp
     title: structure/PartialPersistentUnionFind.cpp
@@ -22,7 +22,7 @@ data:
     title: structure/WaveletMatrix.cpp
   - icon: ':heavy_check_mark:'
     path: structure/LiChaoTree.cpp
-    title: structure/LiChaoTree.cpp
+    title: Li Chao Tree (Convex Hull Trick)
   - icon: ':heavy_check_mark:'
     path: structure/BIT.cpp
     title: Binary Indexed Tree
@@ -77,15 +77,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/SuffixArray.cpp
     title: Suffix Array (SA-IS)
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/MaxFlow.cpp
-    title: graph/MaxFlow.cpp
+    title: Max Flow (Dinic)
   - icon: ':warning:'
     path: graph/SCC.cpp
     title: graph/SCC.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/MinCostFlow.cpp
-    title: graph/MinCostFlow.cpp
+    title: Min Cost Flow (Primal Dual)
   - icon: ':warning:'
     path: graph/Tree.cpp
     title: graph/Tree.cpp
@@ -115,6 +115,9 @@ data:
     path: test/UnionFind.test.cpp
     title: test/UnionFind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/MaxFlow.test.cpp
+    title: test/MaxFlow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/FM_index.test.cpp
     title: test/FM_index.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/SuffixArray.test.cpp
     title: test/SuffixArray.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/MinCostFlow.test.cpp
+    title: test/MinCostFlow.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -194,11 +200,13 @@ data:
   - test/SuffixArray.matching.test.cpp
   - test/RollingHash.test.cpp
   - test/UnionFind.test.cpp
+  - test/MaxFlow.test.cpp
   - test/FM_index.test.cpp
   - test/SparseTable.test.cpp
   - test/SuffixArray.LCP.test.cpp
   - test/factor.test.cpp
   - test/SuffixArray.test.cpp
+  - test/MinCostFlow.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:

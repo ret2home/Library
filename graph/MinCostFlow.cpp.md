@@ -5,11 +5,16 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/MinCostFlow.test.cpp
+    title: test/MinCostFlow.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/MinCostFlow.md
+    document_title: Min Cost Flow (Primal Dual)
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
@@ -41,7 +46,8 @@ data:
     \t\t\tf-=addflow;\n\t\t\tres+=addflow*potential[t];\n\t\t\tfor(ll i=t;i!=s;i=prevv[i]){\n\
     \t\t\t\tedge &e=graph[prevv[i]][preve[i]];\n\t\t\t\te.cap-=addflow;\n\t\t\t\t\
     graph[i][e.rev].cap+=addflow;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tPrimalDual(ll\
-    \ V):graph(V){};\n};\n"
+    \ V):graph(V){};\n};\n/*\n@brief Min Cost Flow (Primal Dual)\n@docs docs/MinCostFlow.md\n\
+    */\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\nstruct PrimalDual{\n\
     \tstruct edge{\n\t\tll to,cap,cost,rev;\n\t};\n\tvector<vector<edge>>graph;\n\t\
     bool negative=false;\n\tvoid add_edge(ll from,ll to,ll cap,ll cost){\n\t\tgraph[from].push_back({to,cap,cost,len(graph[to])});\n\
@@ -65,19 +71,32 @@ data:
     \t\t\tf-=addflow;\n\t\t\tres+=addflow*potential[t];\n\t\t\tfor(ll i=t;i!=s;i=prevv[i]){\n\
     \t\t\t\tedge &e=graph[prevv[i]][preve[i]];\n\t\t\t\te.cap-=addflow;\n\t\t\t\t\
     graph[i][e.rev].cap+=addflow;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tPrimalDual(ll\
-    \ V):graph(V){};\n};\n"
+    \ V):graph(V){};\n};\n/*\n@brief Min Cost Flow (Primal Dual)\n@docs docs/MinCostFlow.md\n\
+    */"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: graph/MinCostFlow.cpp
   requiredBy: []
-  timestamp: '2020-09-23 19:41:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-24 19:55:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/MinCostFlow.test.cpp
 documentation_of: graph/MinCostFlow.cpp
 layout: document
 redirect_from:
 - /library/graph/MinCostFlow.cpp
 - /library/graph/MinCostFlow.cpp.html
-title: graph/MinCostFlow.cpp
+title: Min Cost Flow (Primal Dual)
 ---
+## 概要
+
+最小費用流のアルゴリズム Primal Dual の実装。負のコストの辺にも対応。
+
+- ```addEdge(from,to,cap,cost)``` : ```from``` -> ```to``` に容量 ```cap``` , コスト ```cost``` の辺を張る
+- ```minCostFlow(from,to,F)``` : ```from``` -> ```to``` に流量 ```f``` を流す時のコストの最小値（流せない場合は -1）
+
+## 計算量
+
+- ```addEdge``` : $O(1)$
+- ```minCostFlow``` : $O(F\ E\ log V)$ (ただし、負の辺がある場合は 追加で $O(VE)$ がかかる)

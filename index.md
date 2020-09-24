@@ -3,12 +3,12 @@ data:
   libraryCategories:
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/MaxFlow.cpp
-      title: graph/MaxFlow.cpp
-    - icon: ':warning:'
+      title: Max Flow (Dinic)
+    - icon: ':heavy_check_mark:'
       path: graph/MinCostFlow.cpp
-      title: graph/MinCostFlow.cpp
+      title: Min Cost Flow (Primal Dual)
     - icon: ':warning:'
       path: graph/SCC.cpp
       title: graph/SCC.cpp
@@ -68,7 +68,7 @@ data:
       title: structure/HeavyLightDecomposition.cpp
     - icon: ':heavy_check_mark:'
       path: structure/LiChaoTree.cpp
-      title: structure/LiChaoTree.cpp
+      title: Li Chao Tree (Convex Hull Trick)
     - icon: ':warning:'
       path: structure/PartialPersistentUnionFind.cpp
       title: structure/PartialPersistentUnionFind.cpp
@@ -86,7 +86,7 @@ data:
       title: structure/SegmentTreeBeats.cpp
     - icon: ':heavy_check_mark:'
       path: structure/SparseTable.cpp
-      title: structure/SparseTable.cpp
+      title: Sparse Table
     - icon: ':warning:'
       path: structure/SplayTree.cpp
       title: structure/SplayTree.cpp
@@ -116,6 +116,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/LiChaoTree.test.cpp
       title: test/LiChaoTree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/MaxFlow.test.cpp
+      title: test/MaxFlow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/MinCostFlow.test.cpp
+      title: test/MinCostFlow.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
