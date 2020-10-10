@@ -5,7 +5,7 @@ template<int MOD>
 struct mint{
 	int32_t n;
 	mint():n(0){}
-	mint(int x):n(x>=0?x%MOD:(MOD-(-x)%MOD)%MOD){}
+	mint(ll x):n(x>=0?x%MOD:(MOD-(-x)%MOD)%MOD){}
 
 	mint &operator+=(const mint &p){
 		if((n+=p.n)>=MOD)n-=MOD;
