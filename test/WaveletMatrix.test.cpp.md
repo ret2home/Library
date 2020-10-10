@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: structure/BitVector.cpp
+    title: Bit Vector
+  - icon: ':heavy_check_mark:'
     path: structure/WaveletMatrix.cpp
     title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: template/template.cpp
     title: template/template.cpp
-  - icon: ':heavy_check_mark:'
-    path: structure/BitVector.cpp
-    title: Bit Vector
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

@@ -2,26 +2,25 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
     title: Bit Vector
+  - icon: ':heavy_check_mark:'
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
     title: FM Index
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/WaveletMatrix.test.cpp
-    title: test/WaveletMatrix.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/FM_index.test.cpp
     title: test/FM_index.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/WaveletMatrix.test.cpp
+    title: test/WaveletMatrix.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/WaveletMatrix.md
     document_title: Wavelet Matrix
     links: []
@@ -85,8 +84,8 @@ data:
   timestamp: '2020-09-24 20:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/WaveletMatrix.test.cpp
   - test/FM_index.test.cpp
+  - test/WaveletMatrix.test.cpp
 documentation_of: structure/WaveletMatrix.cpp
 layout: document
 redirect_from:

@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':heavy_check_mark:'
     path: string/SuffixArray.cpp
     title: Suffix Array (SA-IS)
+  - icon: ':heavy_check_mark:'
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
@@ -18,7 +18,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/BWT.md
     document_title: Burrows Wheeler Transform
     links: []

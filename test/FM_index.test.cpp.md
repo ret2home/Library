@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: string/BWT.cpp
+    title: Burrows Wheeler Transform
+  - icon: ':heavy_check_mark:'
     path: string/FM_index.cpp
     title: FM Index
   - icon: ':heavy_check_mark:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':heavy_check_mark:'
-    path: structure/WaveletMatrix.cpp
-    title: Wavelet Matrix
+    path: string/SuffixArray.cpp
+    title: Suffix Array (SA-IS)
   - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
     title: Bit Vector
   - icon: ':heavy_check_mark:'
-    path: string/BWT.cpp
-    title: Burrows Wheeler Transform
+    path: structure/WaveletMatrix.cpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
-    path: string/SuffixArray.cpp
-    title: Suffix Array (SA-IS)
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

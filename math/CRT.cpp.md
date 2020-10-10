@@ -1,18 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template/template.cpp
-    title: template/template.cpp
   - icon: ':warning:'
     path: math/extgcd.cpp
     title: math/extgcd.cpp
+  - icon: ':heavy_check_mark:'
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
     \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\

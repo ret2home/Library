@@ -6,15 +6,12 @@ data:
     title: template/template.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: string/FM_index.cpp
-    title: FM Index
-  - icon: ':heavy_check_mark:'
     path: string/BWT.cpp
     title: Burrows Wheeler Transform
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/SuffixArray.matching.test.cpp
-    title: test/SuffixArray.matching.test.cpp
+    path: string/FM_index.cpp
+    title: FM Index
+  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/FM_index.test.cpp
     title: test/FM_index.test.cpp
@@ -22,12 +19,14 @@ data:
     path: test/SuffixArray.LCP.test.cpp
     title: test/SuffixArray.LCP.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/SuffixArray.matching.test.cpp
+    title: test/SuffixArray.matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/SuffixArray.test.cpp
     title: test/SuffixArray.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/SuffixArray.md
     document_title: Suffix Array (SA-IS)
     links: []
@@ -148,10 +147,10 @@ data:
   timestamp: '2020-09-23 20:44:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/SuffixArray.matching.test.cpp
   - test/FM_index.test.cpp
-  - test/SuffixArray.LCP.test.cpp
   - test/SuffixArray.test.cpp
+  - test/SuffixArray.LCP.test.cpp
+  - test/SuffixArray.matching.test.cpp
 documentation_of: string/SuffixArray.cpp
 layout: document
 redirect_from:

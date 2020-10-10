@@ -15,7 +15,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/Combination.md
     document_title: Combination (nCk)
     links: []
@@ -27,7 +26,7 @@ data:
     \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
     \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
     \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/modint.cpp\"\
-    \n\ntemplate<int MOD>\nstruct mint{\n\tint32_t n;\n\tmint():n(0){}\n\tmint(int\
+    \n\ntemplate<int MOD>\nstruct mint{\n\tint32_t n;\n\tmint():n(0){}\n\tmint(ll\
     \ x):n(x>=0?x%MOD:(MOD-(-x)%MOD)%MOD){}\n\n\tmint &operator+=(const mint &p){\n\
     \t\tif((n+=p.n)>=MOD)n-=MOD;\n\t\treturn *this;\n\t}\n\tmint &operator-=(const\
     \ mint &p){\n\t\tif((n+=MOD-p.n)>=MOD)n-=MOD;\n\t\treturn *this;\n\t}\n\tmint\
@@ -63,7 +62,7 @@ data:
   isVerificationFile: false
   path: math/Combination.cpp
   requiredBy: []
-  timestamp: '2020-09-23 19:41:50+09:00'
+  timestamp: '2020-10-10 22:46:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Combination.test.cpp
