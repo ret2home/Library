@@ -139,73 +139,71 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
-    \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
-    using namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
     \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
     \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
     \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n"
-  code: "#pragma once\n#include<bits/stdc++.h>\n#pragma GCC optimization (\"Ofast\"\
-    )\n#pragma GCC optimization (\"unroll-loops\")\nusing namespace std;\n#define\
-    \ ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll\
-    \ i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n\
-    #define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline\
-    \ bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
+  code: "#pragma once\n#include<bits/stdc++.h>\nusing namespace std;\n#define ll long\
+    \ long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll i=1;i<n;i++)\n\
+    #define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n#define\
+    \ P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline bool\
+    \ chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
     \ T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n\
     }\nconstexpr ll inf = 3e18;"
   dependsOn: []
   isVerificationFile: false
   path: template/template.cpp
   requiredBy:
-  - string/FM_index.cpp
-  - string/RollingHash.cpp
-  - string/Zalgo.cpp
   - string/BWT.cpp
   - string/SuffixArray.cpp
+  - string/RollingHash.cpp
+  - string/Zalgo.cpp
+  - string/FM_index.cpp
+  - math/CRT.cpp
+  - math/factor.cpp
+  - math/FFT.cpp
+  - math/Combination.cpp
+  - math/modint.cpp
+  - math/extgcd.cpp
+  - math/combination_big.cpp
+  - graph/Tree.cpp
+  - graph/SCC.cpp
+  - graph/MaxFlow.cpp
+  - graph/MinCostFlow.cpp
+  - structure/HeavyLightDecomposition.cpp
+  - structure/BIT.cpp
   - structure/WaveletMatrix.cpp
-  - structure/BitVector.cpp
+  - structure/SegmentTreeBeats.cpp
+  - structure/PartialPersistentUnionFind.cpp
   - structure/PersistentArray.cpp
   - structure/UnionFind.cpp
   - structure/PersistentUnionFind.cpp
-  - structure/SplayTree.cpp
-  - structure/SegmentTreeBeats.cpp
+  - structure/BitVector.cpp
   - structure/SegmentTree.cpp
   - structure/SparseTable.cpp
+  - structure/SplayTree.cpp
   - structure/LiChaoTree.cpp
-  - structure/PartialPersistentUnionFind.cpp
-  - structure/BIT.cpp
-  - structure/HeavyLightDecomposition.cpp
-  - graph/SCC.cpp
-  - graph/MinCostFlow.cpp
-  - graph/MaxFlow.cpp
-  - graph/Tree.cpp
-  - math/Combination.cpp
-  - math/CRT.cpp
-  - math/combination_big.cpp
-  - math/factor.cpp
-  - math/FFT.cpp
-  - math/extgcd.cpp
-  - math/modint.cpp
-  timestamp: '2020-09-23 19:41:50+09:00'
+  timestamp: '2020-10-25 14:09:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Combination.test.cpp
-  - test/FM_index.test.cpp
-  - test/BIT.test.cpp
   - test/SuffixArray.test.cpp
-  - test/SuffixArray.LCP.test.cpp
-  - test/RollingHash.test.cpp
-  - test/SegmentTree.test.cpp
-  - test/LiChaoTree.test.cpp
-  - test/SuffixArray.matching.test.cpp
-  - test/MinCostFlow.test.cpp
-  - test/WaveletMatrix.test.cpp
-  - test/MaxFlow.test.cpp
-  - test/SparseTable.test.cpp
-  - test/factor.test.cpp
   - test/UnionFind.test.cpp
+  - test/SegmentTree.test.cpp
+  - test/Combination.test.cpp
+  - test/RollingHash.test.cpp
+  - test/SuffixArray.LCP.test.cpp
+  - test/SuffixArray.matching.test.cpp
+  - test/MaxFlow.test.cpp
+  - test/MinCostFlow.test.cpp
+  - test/LiChaoTree.test.cpp
+  - test/FM_index.test.cpp
+  - test/factor.test.cpp
+  - test/BIT.test.cpp
+  - test/WaveletMatrix.test.cpp
+  - test/SparseTable.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:

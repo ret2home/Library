@@ -30,9 +30,8 @@ data:
     _deprecated_at_docs: docs/SuffixArray.md
     document_title: Suffix Array (SA-IS)
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma\
-    \ GCC optimization (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\n\
-    using namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
     \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
@@ -142,15 +141,15 @@ data:
   isVerificationFile: false
   path: string/SuffixArray.cpp
   requiredBy:
-  - string/FM_index.cpp
   - string/BWT.cpp
-  timestamp: '2020-09-23 20:44:00+09:00'
+  - string/FM_index.cpp
+  timestamp: '2020-10-25 14:09:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/FM_index.test.cpp
   - test/SuffixArray.test.cpp
   - test/SuffixArray.LCP.test.cpp
   - test/SuffixArray.matching.test.cpp
+  - test/FM_index.test.cpp
 documentation_of: string/SuffixArray.cpp
 layout: document
 redirect_from:

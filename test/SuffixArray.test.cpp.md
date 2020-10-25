@@ -17,19 +17,18 @@ data:
     links:
     - https://judge.yosupo.jp/problem/suffixarray
   bundledCode: "#line 1 \"test/SuffixArray.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\
-    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma GCC optimization\
-    \ (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\nusing namespace std;\n\
-    #define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll\
-    \ i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n\
-    #define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline\
-    \ bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
-    \ T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\n\ntemplate<class\
-    \ T>\nclass SuffixArray{\n\t#define typeS make_pair(false,false)\n\t#define LMS\
-    \ make_pair(false,true)\n\t#define typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\
-    \tvector<TYPE>assignType(vector<ll>&S){\n\t\tvector<TYPE>type(len(S));\n\t\ttype[len(S)-1]=LMS;\n\
-    \t\tfor(ll i=len(S)-2;i>=0;i--){\n\t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\t\t\t\
-    else if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\
+    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing namespace\
+    \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
+    \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
+    \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
+    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
+    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
+    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
+    \n\ntemplate<class T>\nclass SuffixArray{\n\t#define typeS make_pair(false,false)\n\
+    \t#define LMS make_pair(false,true)\n\t#define typeL make_pair(true,true)\n\t\
+    using TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\t\tvector<TYPE>type(len(S));\n\
+    \t\ttype[len(S)-1]=LMS;\n\t\tfor(ll i=len(S)-2;i>=0;i--){\n\t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\
+    \t\t\telse if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\
     \t\t\t}else type[i]=type[i+1];\n\t\t}\n\t\treturn type;\n\t}\n\tvector<ll>getBucket(vector<ll>&S,ll\
     \ alph){\n\t\tvector<ll>bucket(alph);\n\t\tfor(ll i:S)bucket[i]++;\n\t\trep(i,len(bucket)-1)bucket[i+1]+=bucket[i];\n\
     \t\treturn bucket;\n\t}\n\tvoid sortTypeL(vector<ll>&S,vector<ll>&SA,vector<TYPE>&type,ll\
@@ -85,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/SuffixArray.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 20:44:00+09:00'
+  timestamp: '2020-10-25 14:09:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SuffixArray.test.cpp

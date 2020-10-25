@@ -17,18 +17,17 @@ data:
     links:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/SparseTable.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
-    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma GCC optimization\
-    \ (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\nusing namespace std;\n\
-    #define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll\
-    \ i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n\
-    #define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline\
-    \ bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
-    \ T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\n\ntemplate<class\
-    \ T,class F>\nstruct SparseTable{\n\tvector<T>table[20];\n\tvector<ll>log;\n\t\
-    F f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\t\tll mx=0;\n\t\
-    \twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\t\trep(i,mx+1){\n\t\t\ttable[i].resize(v.size());\n\
-    \t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
+    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing namespace\
+    \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
+    \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
+    \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
+    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
+    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
+    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\
+    \n\ntemplate<class T,class F>\nstruct SparseTable{\n\tvector<T>table[20];\n\t\
+    vector<ll>log;\n\tF f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\
+    \t\tll mx=0;\n\t\twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\t\trep(i,mx+1){\n\t\t\
+    \ttable[i].resize(v.size());\n\t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
     \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
     \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
     \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n#line 4 \"test/SparseTable.test.cpp\"\
@@ -47,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2020-09-24 19:55:13+09:00'
+  timestamp: '2020-10-25 14:09:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SparseTable.test.cpp

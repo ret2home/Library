@@ -17,16 +17,15 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B
   bundledCode: "#line 1 \"test/RollingHash.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B\"\
-    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\n#pragma GCC optimization\
-    \ (\"Ofast\")\n#pragma GCC optimization (\"unroll-loops\")\nusing namespace std;\n\
-    #define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll\
-    \ i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n\
-    #define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T> inline\
-    \ bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
-    \ T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"string/RollingHash.cpp\"\n\ntemplate<class\
-    \ T>\nstruct RollingHash{\n\tll Base=283;\n\tconst ll MASK30=(1ll<<30)-1;\n\t\
-    const ll MASK31=(1ll<<31)-1;\n\tconst ll MOD=(1ll<<61)-1;\n\tvector<ll>hash,power;\n\
+    \n\n#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing namespace\
+    \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
+    \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
+    \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
+    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
+    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
+    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/RollingHash.cpp\"\
+    \n\ntemplate<class T>\nstruct RollingHash{\n\tll Base=283;\n\tconst ll MASK30=(1ll<<30)-1;\n\
+    \tconst ll MASK31=(1ll<<31)-1;\n\tconst ll MOD=(1ll<<61)-1;\n\tvector<ll>hash,power;\n\
     \tll calcmod(ll v){\n\t\tv=(v&MOD)+(v>>61);\n\t\tif(v>MOD)v-=MOD;\n\t\treturn\
     \ v;\n\t}\n\tll mul(ll x,ll y){\n\t\tll xu=x>>31,xd=x&MASK31;\n\t\tll yu=y>>31,yd=y&MASK31;\n\
     \t\tll mid=xd*yu+xu*yd,midu=mid>>30,midd=mid&MASK30;\n\t\treturn calcmod(xu*yu*2+midu+(midd<<31)+xd*yd);\n\
@@ -50,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2020-09-24 20:22:55+09:00'
+  timestamp: '2020-10-25 14:09:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/RollingHash.test.cpp
