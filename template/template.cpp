@@ -1,7 +1,5 @@
 #pragma once
 #include<bits/stdc++.h>
-#pragma GCC optimization ("Ofast")
-#pragma GCC optimization ("unroll-loops")
 using namespace std;
 #define ll long long
 #define rep(i,n) for(ll i=0;i<n;i++)
