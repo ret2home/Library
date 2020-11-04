@@ -1,6 +1,6 @@
 # Library
 
-[![Actions Status](https://github.com/defineProgram/Library/workflows/verify/badge.svg)](https://github.com/defineProgram/Library/actions) [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://defineProgram.github.io/Library/) 
+[![Actions Status](https://github.com/define0411/Library/workflows/verify/badge.svg)](https://github.com/define0411/Library/actions) [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://define0411.github.io/Library/) 
 
 [define](https://atcoder.jp/users/define) の競プロライブラリです。
 
