@@ -63,6 +63,9 @@ data:
     path: structure/LiChaoTree.cpp
     title: Li Chao Tree (Convex Hull Trick)
   - icon: ':warning:'
+    path: structure/Mo.cpp
+    title: structure/Mo.cpp
+  - icon: ':warning:'
     path: structure/PartialPersistentUnionFind.cpp
     title: structure/PartialPersistentUnionFind.cpp
   - icon: ':warning:'
@@ -175,6 +178,7 @@ data:
   - graph/MinCostFlow.cpp
   - structure/HeavyLightDecomposition.cpp
   - structure/BIT.cpp
+  - structure/Mo.cpp
   - structure/WaveletMatrix.cpp
   - structure/SegmentTreeBeats.cpp
   - structure/PartialPersistentUnionFind.cpp
