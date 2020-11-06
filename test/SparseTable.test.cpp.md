@@ -25,11 +25,11 @@ data:
     }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
     \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\
     \n\ntemplate<class T,class F>\nstruct SparseTable{\n\tvector<T>table[20];\n\t\
-    vector<ll>log;\n\tF f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\
-    \t\tll mx=0;\n\t\twhile(1ll<<(mx+1)<=(ll)v.size())++mx;\n\t\trep(i,mx+1){\n\t\t\
-    \ttable[i].resize(v.size());\n\t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1ll<<(i-1))]);\n\
-    \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(ll i=2;i<=(ll)v.size();i++)log[i]=log[i>>1]+1;\n\
-    \t}\n\tT query(ll l,ll r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
+    vector<int>log;\n\tF f;\n\tSparseTable(vector<T>v,F f)\n\t:log(v.size()+1),f(f){\n\
+    \t\tint mx=0;\n\t\twhile(1<<(mx+1)<=len(v))++mx;\n\t\trep(i,mx+1){\n\t\t\ttable[i].resize(len(v));\n\
+    \t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1<<(i-1))]);\n\
+    \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(int i=2;i<=len(v);i++)log[i]=log[i>>1]+1;\n\
+    \t}\n\tT query(int l,int r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
     \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n#line 4 \"test/SparseTable.test.cpp\"\
     \n\nint main(){\n\tint N,Q;cin>>N>>Q;\n\tvector<int>V(N);\n\tfor(int &i:V)cin>>i;\n\
     \tauto f=[](int a,int b)->int{return min(a,b);};\n\tSparseTable<int,decltype(f)>ST(V,f);\n\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-06 12:28:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SparseTable.test.cpp

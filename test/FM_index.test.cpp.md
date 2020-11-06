@@ -45,11 +45,11 @@ data:
     \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
     \      }\n    }\n};\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n#line\
     \ 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class T,class C>\nclass WaveletMatrix{\n\
-    \    ll N,bitlen;\n    vector<BitVector>index;\n    map<C,ll>st;\npublic:\n  \
-    \  T body;\n    ll rank(C c,ll idx){\n        if(st.find(c)==st.end())return 0;\n\
-    \        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
-    \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0ll,idx-st[c]);\n\
-    \    }\n    C quantile(ll l,ll r,ll c){\n        C res=0;\n        rev(i,bitlen){\n\
+    \    int N,bitlen;\n    vector<BitVector>index;\n    map<C,int>st;\npublic:\n\
+    \    T body;\n    int rank(C c,int idx){\n        if(st.find(c)==st.end())return\
+    \ 0;\n        rev(i,bitlen){\n            if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);\n\
+    \            else idx-=index[i].rank(1,idx);\n        }\n        return max(0,idx-st[c]);\n\
+    \    }\n    C quantile(int l,int r,int c){\n        C res=0;\n        rev(i,bitlen){\n\
     \            ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));\n         \
     \   if(cnt<=c){\n                c-=cnt;\n                l=index[i].rank(0,N)+index[i].rank(1,l);\n\
     \                r=index[i].rank(0,N)+index[i].rank(1,r);\n                res+=1ll<<i;\n\
@@ -151,7 +151,7 @@ data:
   isVerificationFile: true
   path: test/FM_index.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-06 12:28:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/FM_index.test.cpp
