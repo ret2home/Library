@@ -4,20 +4,20 @@
 
 template<class T,class C>
 class WaveletMatrix{
-    ll N,bitlen;
+    int N,bitlen;
     vector<BitVector>index;
-    map<C,ll>st;
+    map<C,int>st;
 public:
     T body;
-    ll rank(C c,ll idx){
+    int rank(C c,int idx){
         if(st.find(c)==st.end())return 0;
         rev(i,bitlen){
             if(c>>i&1)idx=index[i].rank(1,idx)+index[i].rank(0,N);
             else idx-=index[i].rank(1,idx);
         }
-        return max(0ll,idx-st[c]);
+        return max(0,idx-st[c]);
     }
-    C quantile(ll l,ll r,ll c){
+    C quantile(int l,int r,int c){
         C res=0;
         rev(i,bitlen){
             ll cnt=(r-l)-(index[i].rank(1,r)-index[i].rank(1,l));
