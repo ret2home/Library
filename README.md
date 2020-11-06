@@ -23,6 +23,7 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 - [Persistent Array](./structure/PersistentArray.cpp)
 - [Persistent Union Find](./structure/PersistentUnionFind.cpp)
 - [Partial Persistent UnionFind](./structure/PartialPersistentUnionFind.cpp)
+- [Mo's Algorithm](./structure/Mo.cpp)
 
 ## Graph
 
