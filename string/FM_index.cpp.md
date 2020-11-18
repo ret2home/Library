@@ -31,17 +31,17 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\
-    \n\nclass BitVector{\n    vector<ll>sum;\n    vector<uint64_t>bit;\npublic:\n\
-    \    ll rank(bool val,ll idx){\n        uint64_t mask=((uint64_t)1<<(idx&((1<<6)-1)))-1;\n\
-    \        ll res=sum[idx>>6]+__builtin_popcountll(bit[idx>>6]&mask);\n        return\
-    \ (val?res:idx-res);\n    }\n    BitVector(vector<bool>&v){\n        ll sz=(len(v)>>6)+1;\n\
-    \        bit.assign(sz,0);\n        sum.assign(sz,0);\n        rep(i,len(v)){\n\
-    \            bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n        }\n       \
-    \ rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n  \
-    \      }\n    }\n};\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n#line\
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"structure/BitVector.cpp\"\n\nclass BitVector{\n    vector<ll>sum;\n\
+    \    vector<uint64_t>bit;\npublic:\n    ll rank(bool val,ll idx){\n        uint64_t\
+    \ mask=((uint64_t)1<<(idx&((1<<6)-1)))-1;\n        ll res=sum[idx>>6]+__builtin_popcountll(bit[idx>>6]&mask);\n\
+    \        return (val?res:idx-res);\n    }\n    BitVector(vector<bool>&v){\n  \
+    \      ll sz=(len(v)>>6)+1;\n        bit.assign(sz,0);\n        sum.assign(sz,0);\n\
+    \        rep(i,len(v)){\n            bit[i>>6]|=(uint64_t)(v[i])<<(i&((1<<6)-1));\n\
+    \        }\n        rep(i,sz-1){\n            sum[i+1]=sum[i]+__builtin_popcountll(bit[i]);\n\
+    \        }\n    }\n};\n/*\n@brief Bit Vector\n@docs docs/BitVector.md\n*/\n#line\
     \ 4 \"structure/WaveletMatrix.cpp\"\n\ntemplate<class T,class C>\nclass WaveletMatrix{\n\
     \    int N,bitlen;\n    vector<BitVector>index;\n    map<C,int>st;\npublic:\n\
     \    T body;\n    int rank(C c,int idx){\n        if(st.find(c)==st.end())return\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: string/FM_index.cpp
   requiredBy: []
-  timestamp: '2020-11-06 12:28:01+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/FM_index.test.cpp

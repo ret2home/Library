@@ -16,7 +16,7 @@ C++17想定なので、C++14だとコンパイル通らないかもしれませ�
 - [Segment Tree Beats](./structure/SegmentTreeBeats.cpp)
 - [Bit Vector](./structure/BitVector.cpp)
 - [Wavelet Matrix](./structure/WaveletMatrix.cpp)
-- [Heavy Light Decomposition](./structure/HeavyLightDecomposition.cpp)
+- [Heavy Light Decomposition](./structure/HLD.cpp)
 - [Sparse Table](./structure/SparseTable.cpp)
 - [Splay Tree](./structure/SplayTree.cpp)
 - [Li Chao Tree](./structure/LiChaoTree.cpp)

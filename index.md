@@ -64,8 +64,8 @@ data:
       path: structure/BitVector.cpp
       title: Bit Vector
     - icon: ':warning:'
-      path: structure/HeavyLightDecomposition.cpp
-      title: structure/HeavyLightDecomposition.cpp
+      path: structure/HLD.cpp
+      title: structure/HLD.cpp
     - icon: ':heavy_check_mark:'
       path: structure/LiChaoTree.cpp
       title: Li Chao Tree (Convex Hull Trick)

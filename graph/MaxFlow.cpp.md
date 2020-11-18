@@ -19,17 +19,18 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MaxFlow.cpp\"\
-    \n\nstruct Dinic{\n\tstruct Edge{\n\t\tll to,cap,rev;\n\t};\n\tvector<vector<Edge>>G;\n\
-    \tvector<ll>level,iter;\n\tvoid addEdge(ll from,ll to,ll cap){\n\t\tG[from].push_back({to,cap,len(G[to])});\n\
-    \t\tG[to].push_back({from,0,len(G[from])-1});\n\t}\n\tvoid bfs(ll s){\n\t\tfill(all(level),-1);\n\
-    \t\tlevel[s]=0;\n\t\tqueue<ll>que;que.push(s);\n\t\twhile(len(que)){\n\t\t\tll\
-    \ p=que.front();que.pop();\n\t\t\tfor(Edge e:G[p]){\n\t\t\t\tif(e.cap>0&&level[e.to]==-1){\n\
-    \t\t\t\t\tlevel[e.to]=level[p]+1;\n\t\t\t\t\tque.push(e.to);\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t}\n\t}\n\tll dfs(ll v,ll t,ll f){\n\t\tif(v==t)return f;\n\t\tfor(ll &i=iter[v];i<len(G[v]);i++){\n\
-    \t\t\tEdge &e=G[v][i];\n\t\t\tif(e.cap>0&&level[e.to]>level[v]){\n\t\t\t\tll d=dfs(e.to,t,min(f,e.cap));\n\
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"graph/MaxFlow.cpp\"\n\nstruct Dinic{\n\tstruct Edge{\n\t\tll to,cap,rev;\n\
+    \t};\n\tvector<vector<Edge>>G;\n\tvector<ll>level,iter;\n\tvoid addEdge(ll from,ll\
+    \ to,ll cap){\n\t\tG[from].push_back({to,cap,len(G[to])});\n\t\tG[to].push_back({from,0,len(G[from])-1});\n\
+    \t}\n\tvoid bfs(ll s){\n\t\tfill(all(level),-1);\n\t\tlevel[s]=0;\n\t\tqueue<ll>que;que.push(s);\n\
+    \t\twhile(len(que)){\n\t\t\tll p=que.front();que.pop();\n\t\t\tfor(Edge e:G[p]){\n\
+    \t\t\t\tif(e.cap>0&&level[e.to]==-1){\n\t\t\t\t\tlevel[e.to]=level[p]+1;\n\t\t\
+    \t\t\tque.push(e.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tll dfs(ll v,ll t,ll f){\n\
+    \t\tif(v==t)return f;\n\t\tfor(ll &i=iter[v];i<len(G[v]);i++){\n\t\t\tEdge &e=G[v][i];\n\
+    \t\t\tif(e.cap>0&&level[e.to]>level[v]){\n\t\t\t\tll d=dfs(e.to,t,min(f,e.cap));\n\
     \t\t\t\tif(d>0){\n\t\t\t\t\te.cap-=d;\n\t\t\t\t\tG[e.to][e.rev].cap+=d;\n\t\t\t\
     \t\treturn d;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn 0;\n\t}\n\tll maxFlow(ll\
     \ s,ll t){\n\t\tll flow=0;\n\t\twhile(1){\n\t\t\tbfs(s);\n\t\t\tif(level[t]<0)return\
@@ -56,7 +57,7 @@ data:
   isVerificationFile: false
   path: graph/MaxFlow.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/MaxFlow.test.cpp

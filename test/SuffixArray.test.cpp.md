@@ -21,9 +21,9 @@ data:
     \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
     \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
     \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
-    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
-    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
-    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
+    \ T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return true;}\n\treturn\
+    \ false;\n}\ntemplate<class T,class U> inline bool chmax(T &a, U b){\n\tif(a<b){a=b;return\
+    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
     \n\ntemplate<class T>\nclass SuffixArray{\n\t#define typeS make_pair(false,false)\n\
     \t#define LMS make_pair(false,true)\n\t#define typeL make_pair(true,true)\n\t\
     using TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\t\tvector<TYPE>type(len(S));\n\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/SuffixArray.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SuffixArray.test.cpp

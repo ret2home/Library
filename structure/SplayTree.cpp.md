@@ -14,30 +14,31 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SplayTree.cpp\"\
-    \n\ntemplate<class T>\nclass SplayTree{\n\tstruct node{\n\t\tT val;\n\t\tnode\
-    \ *lch,*rch;\n\t};\n\tnode *root=NULL;\n\tll sz=0;\n\tnode *rightRotate(node *x){\n\
-    \t\tnode *y=x->lch;\n\t\tx->lch=y->rch;\n\t\ty->rch=x;\n\t\treturn y;\n\t}\n\t\
-    node *leftRotate(node *x){\n\t\tnode *y=x->rch;\n\t\tx->rch=y->lch;\n\t\ty->lch=x;\n\
-    \t\treturn y;\n\t}\n\tnode *splay(node *x,T v){\n\t\tif(x==NULL||x->val==v)return\
-    \ x;\n\t\tif(v<x->val){\n\t\t\tif(x->lch==NULL)return x;\n\t\t\tif(v<x->lch->val){\n\
-    \t\t\t\tx->lch->lch=splay(x->lch->lch,v);\n\t\t\t\tx=rightRotate(x);\n\t\t\t}else\
-    \ if(x->lch->val<v){\n\t\t\t\tx->lch->rch=splay(x->lch->rch,v);\n\t\t\t\tif(x->lch->rch!=NULL)\n\
-    \t\t\t\t\tx->lch=leftRotate(x->lch);\n\t\t\t}\n\t\t\treturn (x->lch==NULL)?x:rightRotate(x);\n\
-    \t\t}else {\n\t\t\tif(x->rch==NULL)return x;\n\t\t\tif(v<x->rch->val){\n\t\t\t\
-    \tx->rch->lch=splay(x->rch->lch,v);\n\t\t\t\tif(x->rch->lch!=NULL)\n\t\t\t\t\t\
-    x->rch=rightRotate(x->rch);\n\t\t\t}else if(x->rch->val<v){\n\t\t\t\tx->rch->rch=splay(x->rch->rch,v);\n\
-    \t\t\t\tx=leftRotate(x);\n\t\t\t}\n\t\t\treturn (x->rch==NULL)?x:leftRotate(x);\n\
-    \t\t}\n\t}\n\tnode *insert(node *x,T v){\n\t\tif(x==NULL){\n\t\t\tnode *q=new\
-    \ node;\n\t\t\tq->val=v;\n\t\t\tq->lch=q->rch=NULL;\n\t\t\treturn q;\n\t\t}\n\t\
-    \tif(v<x->val)x->lch=insert(x->lch,v);\n\t\telse x->rch=insert(x->rch,v);\n\t\t\
-    return x;\n\t}\n\tnode *erase(node *x,T v){\n\t\tif(x==NULL)return NULL;\n\t\t\
-    if(v<x->val)x->lch=erase(x->lch,v);\n\t\telse if(x->val<v)x->rch=erase(x->rch,v);\n\
-    \t\telse if(x->lch==NULL){\n\t\t\tnode *q=x->rch;\n\t\t\tdelete x;\n\t\t\treturn\
-    \ q;\n\t\t}else if(x->lch->rch==NULL){\n\t\t\tnode *q=x->lch;\n\t\t\tq->rch=x->rch;\n\
-    \t\t\tdelete x;\n\t\t\treturn q;\n\t\t}else {\n\t\t\tnode *q;\n\t\t\tfor(q=x->lch;q->rch->rch!=NULL;q=q->rch);\n\
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"structure/SplayTree.cpp\"\n\ntemplate<class T>\nclass SplayTree{\n\t\
+    struct node{\n\t\tT val;\n\t\tnode *lch,*rch;\n\t};\n\tnode *root=NULL;\n\tll\
+    \ sz=0;\n\tnode *rightRotate(node *x){\n\t\tnode *y=x->lch;\n\t\tx->lch=y->rch;\n\
+    \t\ty->rch=x;\n\t\treturn y;\n\t}\n\tnode *leftRotate(node *x){\n\t\tnode *y=x->rch;\n\
+    \t\tx->rch=y->lch;\n\t\ty->lch=x;\n\t\treturn y;\n\t}\n\tnode *splay(node *x,T\
+    \ v){\n\t\tif(x==NULL||x->val==v)return x;\n\t\tif(v<x->val){\n\t\t\tif(x->lch==NULL)return\
+    \ x;\n\t\t\tif(v<x->lch->val){\n\t\t\t\tx->lch->lch=splay(x->lch->lch,v);\n\t\t\
+    \t\tx=rightRotate(x);\n\t\t\t}else if(x->lch->val<v){\n\t\t\t\tx->lch->rch=splay(x->lch->rch,v);\n\
+    \t\t\t\tif(x->lch->rch!=NULL)\n\t\t\t\t\tx->lch=leftRotate(x->lch);\n\t\t\t}\n\
+    \t\t\treturn (x->lch==NULL)?x:rightRotate(x);\n\t\t}else {\n\t\t\tif(x->rch==NULL)return\
+    \ x;\n\t\t\tif(v<x->rch->val){\n\t\t\t\tx->rch->lch=splay(x->rch->lch,v);\n\t\t\
+    \t\tif(x->rch->lch!=NULL)\n\t\t\t\t\tx->rch=rightRotate(x->rch);\n\t\t\t}else\
+    \ if(x->rch->val<v){\n\t\t\t\tx->rch->rch=splay(x->rch->rch,v);\n\t\t\t\tx=leftRotate(x);\n\
+    \t\t\t}\n\t\t\treturn (x->rch==NULL)?x:leftRotate(x);\n\t\t}\n\t}\n\tnode *insert(node\
+    \ *x,T v){\n\t\tif(x==NULL){\n\t\t\tnode *q=new node;\n\t\t\tq->val=v;\n\t\t\t\
+    q->lch=q->rch=NULL;\n\t\t\treturn q;\n\t\t}\n\t\tif(v<x->val)x->lch=insert(x->lch,v);\n\
+    \t\telse x->rch=insert(x->rch,v);\n\t\treturn x;\n\t}\n\tnode *erase(node *x,T\
+    \ v){\n\t\tif(x==NULL)return NULL;\n\t\tif(v<x->val)x->lch=erase(x->lch,v);\n\t\
+    \telse if(x->val<v)x->rch=erase(x->rch,v);\n\t\telse if(x->lch==NULL){\n\t\t\t\
+    node *q=x->rch;\n\t\t\tdelete x;\n\t\t\treturn q;\n\t\t}else if(x->lch->rch==NULL){\n\
+    \t\t\tnode *q=x->lch;\n\t\t\tq->rch=x->rch;\n\t\t\tdelete x;\n\t\t\treturn q;\n\
+    \t\t}else {\n\t\t\tnode *q;\n\t\t\tfor(q=x->lch;q->rch->rch!=NULL;q=q->rch);\n\
     \t\t\tnode *r=q->rch;\n\t\t\tq->rch=r->lch;\n\t\t\tr->lch=x->lch;\n\t\t\tr->rch=x->rch;\n\
     \t\t\tdelete x;\n\t\t\treturn r;\n\t\t}\n\t\treturn x;\n\t}\npublic:\n\tll size(){\n\
     \t\treturn sz;\n\t}\n\tnode *find(T x){\n\t\troot=splay(root,x);\n\t\tif(root==NULL||root->val!=x)return\
@@ -87,7 +88,7 @@ data:
   isVerificationFile: false
   path: structure/SplayTree.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/SplayTree.cpp

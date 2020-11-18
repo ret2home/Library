@@ -19,18 +19,18 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BIT.cpp\"\
-    \n\ntemplate<class T>\nclass BIT{\n\tll N;\n\tvector<T>bit;\n\tvoid add_(ll x,T\
-    \ y){\n\t\twhile(x<=N){\n\t\t\tbit[x]+=y;x+=x&-x;\n\t\t}\n\t}\n\tT sum_(ll x){\n\
-    \t\tT res=0;\n\t\twhile(x>0){\n\t\t\tres+=bit[x];x-=x&-x;\n\t\t}\n\t\treturn res;\n\
-    \t}\npublic:\n\tll lower_bound(T w){\n\t\tif(w<=0)return -1;\n\t\tll x=0;\n\t\t\
-    ll k=1;while(k*2<=N)k*=2;\n\t\tfor(;k>0;k/=2){\n\t\t\tif(x+k<=N&&bit[x+k]<w){\n\
-    \t\t\t\tw-=bit[x+k];\n\t\t\t\tx+=k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\tvoid\
-    \ add(ll x,T y){add_(x+1,y);}\n\tT sum(ll l,ll r){return sum_(r)-sum_(l);}\n\t\
-    BIT(ll x):N(x),bit(x+1){}\n};\n/*\n@brief Binary Indexed Tree\n@docs docs/BIT.md\n\
-    */\n"
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"structure/BIT.cpp\"\n\ntemplate<class T>\nclass BIT{\n\tll N;\n\tvector<T>bit;\n\
+    \tvoid add_(ll x,T y){\n\t\twhile(x<=N){\n\t\t\tbit[x]+=y;x+=x&-x;\n\t\t}\n\t\
+    }\n\tT sum_(ll x){\n\t\tT res=0;\n\t\twhile(x>0){\n\t\t\tres+=bit[x];x-=x&-x;\n\
+    \t\t}\n\t\treturn res;\n\t}\npublic:\n\tll lower_bound(T w){\n\t\tif(w<=0)return\
+    \ -1;\n\t\tll x=0;\n\t\tll k=1;while(k*2<=N)k*=2;\n\t\tfor(;k>0;k/=2){\n\t\t\t\
+    if(x+k<=N&&bit[x+k]<w){\n\t\t\t\tw-=bit[x+k];\n\t\t\t\tx+=k;\n\t\t\t}\n\t\t}\n\
+    \t\treturn x;\n\t}\n\tvoid add(ll x,T y){add_(x+1,y);}\n\tT sum(ll l,ll r){return\
+    \ sum_(r)-sum_(l);}\n\tBIT(ll x):N(x),bit(x+1){}\n};\n/*\n@brief Binary Indexed\
+    \ Tree\n@docs docs/BIT.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
     class BIT{\n\tll N;\n\tvector<T>bit;\n\tvoid add_(ll x,T y){\n\t\twhile(x<=N){\n\
     \t\t\tbit[x]+=y;x+=x&-x;\n\t\t}\n\t}\n\tT sum_(ll x){\n\t\tT res=0;\n\t\twhile(x>0){\n\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: structure/BIT.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BIT.test.cpp

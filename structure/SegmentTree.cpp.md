@@ -19,24 +19,24 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SegmentTree.cpp\"\
-    \n\ntemplate<typename Monoid,typename OperatorMonoid,typename F,typename G,typename\
-    \ H>\nclass Segtree{\n\tusing size_type=int32_t;\npublic:\n\tsize_type size=1;\n\
-    private:\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\tconst F f;\n\t\
-    const G g;\n\tconst H h;\n\tMonoid M;\n\tOperatorMonoid OM;\npublic:\n\tvoid eval(size_type\
-    \ k,size_type l,size_type r){\n\t\tif(lazy[k]!=OM){\n\t\t\tdat[k]=g(dat[k],lazy[k],r-l);\n\
-    \t\t\tif(r-l>1){\n\t\t\t\tlazy[2*k+1]=h(lazy[2*k+1],lazy[k],r-l);\n\t\t\t\tlazy[2*k+2]=h(lazy[2*k+2],lazy[k],r-l);\n\
-    \t\t\t}\n\t\t\tlazy[k]=OM;\n\t\t}\n\t}\n\tvoid update(size_type a,size_type b,OperatorMonoid\
-    \ M,size_type k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
-    \t\tif(r<=a||b<=l)return;\n\t\tif(a<=l&&r<=b){\n\t\t\tlazy[k]=h(lazy[k],M,r-l);\n\
-    \t\t\teval(k,l,r);\n\t\t\treturn;\n\t\t}\n\t\tupdate(a,b,M,k*2+1,l,(l+r)/2);\n\
-    \t\tupdate(a,b,M,k*2+2,(l+r)/2,r);\n\t\tdat[k]=f(dat[k*2+1],dat[k*2+2],r-l);\n\
-    \t}\n\tMonoid query(size_type a,size_type b,size_type k=0,size_type l=0,size_type\
-    \ r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return M;\n\
-    \t\tif(a<=l&&r<=b)return dat[k];\n\t\tMonoid lv=query(a,b,k*2+1,l,(l+r)/2);\n\t\
-    \tMonoid rv=query(a,b,k*2+2,(l+r)/2,r);\n\t\treturn f(lv,rv,r-l);\n\t}\n\ttemplate<class\
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"structure/SegmentTree.cpp\"\n\ntemplate<typename Monoid,typename OperatorMonoid,typename\
+    \ F,typename G,typename H>\nclass Segtree{\n\tusing size_type=int32_t;\npublic:\n\
+    \tsize_type size=1;\nprivate:\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\
+    \tconst F f;\n\tconst G g;\n\tconst H h;\n\tMonoid M;\n\tOperatorMonoid OM;\n\
+    public:\n\tvoid eval(size_type k,size_type l,size_type r){\n\t\tif(lazy[k]!=OM){\n\
+    \t\t\tdat[k]=g(dat[k],lazy[k],r-l);\n\t\t\tif(r-l>1){\n\t\t\t\tlazy[2*k+1]=h(lazy[2*k+1],lazy[k],r-l);\n\
+    \t\t\t\tlazy[2*k+2]=h(lazy[2*k+2],lazy[k],r-l);\n\t\t\t}\n\t\t\tlazy[k]=OM;\n\t\
+    \t}\n\t}\n\tvoid update(size_type a,size_type b,OperatorMonoid M,size_type k=0,size_type\
+    \ l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return;\n\
+    \t\tif(a<=l&&r<=b){\n\t\t\tlazy[k]=h(lazy[k],M,r-l);\n\t\t\teval(k,l,r);\n\t\t\
+    \treturn;\n\t\t}\n\t\tupdate(a,b,M,k*2+1,l,(l+r)/2);\n\t\tupdate(a,b,M,k*2+2,(l+r)/2,r);\n\
+    \t\tdat[k]=f(dat[k*2+1],dat[k*2+2],r-l);\n\t}\n\tMonoid query(size_type a,size_type\
+    \ b,size_type k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
+    \t\tif(r<=a||b<=l)return M;\n\t\tif(a<=l&&r<=b)return dat[k];\n\t\tMonoid lv=query(a,b,k*2+1,l,(l+r)/2);\n\
+    \t\tMonoid rv=query(a,b,k*2+2,(l+r)/2,r);\n\t\treturn f(lv,rv,r-l);\n\t}\n\ttemplate<class\
     \ C>\n\tsize_type minLeft(size_type a,size_type b,C &check,Monoid x,size_type\
     \ k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
     \t\tif(r<=a||b<=l||!check(dat[k],x))return -1;\n\t\tif(r-l==1)return l;\n\t\t\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: structure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SegmentTree.test.cpp

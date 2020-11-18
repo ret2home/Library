@@ -21,9 +21,9 @@ data:
     \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
     \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
     \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
-    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
-    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
-    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/LiChaoTree.cpp\"\
+    \ T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return true;}\n\treturn\
+    \ false;\n}\ntemplate<class T,class U> inline bool chmax(T &a, U b){\n\tif(a<b){a=b;return\
+    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/LiChaoTree.cpp\"\
     \n\ntemplate<class T>\nstruct LiChaoTree{\n\tstruct L{\n\t\tT a,b;\n\t\tL(T a,T\
     \ b):a(a),b(b){}\n\t\tbool operator==(L l){return a==l.a&&b==l.b;};\n\t};\n\t\
     T f(L line,T x){\n\t\treturn line.a*x+line.b;\n\t}\n\tll size=1;\n\tL ini={0,inf};\n\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/LiChaoTree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/LiChaoTree.test.cpp

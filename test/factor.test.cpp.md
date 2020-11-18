@@ -21,10 +21,10 @@ data:
     \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
     \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
     \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
-    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
-    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
-    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/factor.cpp\"\n\n\
-    ll pow128(ll x,ll y,ll m){\n\tll res=1;\n\twhile(y>0){\n\t\tif(y&1)res=(__int128_t(res)*x)%m;\n\
+    \ T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return true;}\n\treturn\
+    \ false;\n}\ntemplate<class T,class U> inline bool chmax(T &a, U b){\n\tif(a<b){a=b;return\
+    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/factor.cpp\"\
+    \n\nll pow128(ll x,ll y,ll m){\n\tll res=1;\n\twhile(y>0){\n\t\tif(y&1)res=(__int128_t(res)*x)%m;\n\
     \t\ty>>=1;x=(__int128_t(x)*x)%m;\n\t}\n\treturn res;\n}\n\nbool prime(ll n){\n\
     \tif(n<2||n%2==0)return n==2;\n\tll d=n-1;while(d%2==0)d>>=1;\n\tfor(ll x:{2,325,9375,28178,450775,9780504,1795265022}){\n\
     \t\tif(n<=x)break;\n\t\tll t=d,y=pow128(x,t,n);\n\t\twhile(t!=n-1&&y!=1&&y!=n-1){\n\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/factor.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/factor.test.cpp

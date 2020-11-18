@@ -17,11 +17,12 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/extgcd.cpp\"\
-    \n\nll extGCD(ll a,ll b,ll &x,ll &y){\n\tif(!b){\n\t\tx=1;y=0;return a;\n\t}\n\
-    \tll d=extGCD(b,a%b,y,x);\n\ty-=a/b*x;\n\treturn d;\n}\n"
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"math/extgcd.cpp\"\n\nll extGCD(ll a,ll b,ll &x,ll &y){\n\tif(!b){\n\t\
+    \tx=1;y=0;return a;\n\t}\n\tll d=extGCD(b,a%b,y,x);\n\ty-=a/b*x;\n\treturn d;\n\
+    }\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\nll extGCD(ll a,ll\
     \ b,ll &x,ll &y){\n\tif(!b){\n\t\tx=1;y=0;return a;\n\t}\n\tll d=extGCD(b,a%b,y,x);\n\
     \ty-=a/b*x;\n\treturn d;\n}"
@@ -31,7 +32,7 @@ data:
   path: math/extgcd.cpp
   requiredBy:
   - math/CRT.cpp
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/extgcd.cpp

@@ -14,15 +14,16 @@ data:
     \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
     #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
     #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\
-    \treturn false;\n}\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return\
-    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SegmentTreeBeats.cpp\"\
-    \n\nstruct SegtreeBeats{\n\tint size=1;\nprivate:\n\tvector<ll>mx,smx,mxc;\n\t\
-    vector<ll>mn,smn,mnc;\n\tvector<ll>sum,lazy;\n\tvector<bool>flag;\n\t\n\tvoid\
-    \ update(int k){\n\t\tsum[k]=sum[k*2+1]+sum[k*2+2];\n\n\t\tmx[k]=max(mx[2*k+1],mx[2*k+2]);\n\
-    \t\tif(mx[2*k+1]<mx[2*k+2]){\n\t\t\tmxc[k]=mxc[2*k+2];\n\t\t\tsmx[k]=max(mx[2*k+1],smx[2*k+2]);\n\
-    \t\t}else if(mx[2*k+1]>mx[2*k+2]){\n\t\t\tmxc[k]=mxc[2*k+1];\n\t\t\tsmx[k]=max(smx[2*k+1],mx[2*k+2]);\n\
-    \t\t}else {\n\t\t\tmxc[k]=mxc[2*k+1]+mxc[2*k+2];\n\t\t\tsmx[k]=max(smx[2*k+1],smx[2*k+2]);\n\
+    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
+    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
+    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"structure/SegmentTreeBeats.cpp\"\n\nstruct SegtreeBeats{\n\tint size=1;\n\
+    private:\n\tvector<ll>mx,smx,mxc;\n\tvector<ll>mn,smn,mnc;\n\tvector<ll>sum,lazy;\n\
+    \tvector<bool>flag;\n\t\n\tvoid update(int k){\n\t\tsum[k]=sum[k*2+1]+sum[k*2+2];\n\
+    \n\t\tmx[k]=max(mx[2*k+1],mx[2*k+2]);\n\t\tif(mx[2*k+1]<mx[2*k+2]){\n\t\t\tmxc[k]=mxc[2*k+2];\n\
+    \t\t\tsmx[k]=max(mx[2*k+1],smx[2*k+2]);\n\t\t}else if(mx[2*k+1]>mx[2*k+2]){\n\t\
+    \t\tmxc[k]=mxc[2*k+1];\n\t\t\tsmx[k]=max(smx[2*k+1],mx[2*k+2]);\n\t\t}else {\n\
+    \t\t\tmxc[k]=mxc[2*k+1]+mxc[2*k+2];\n\t\t\tsmx[k]=max(smx[2*k+1],smx[2*k+2]);\n\
     \t\t}\n\n\t\tmn[k]=min(mn[2*k+1],mn[2*k+2]);\n\t\tif(mn[2*k+1]<mn[2*k+2]){\n\t\
     \t\tmnc[k]=mnc[2*k+1];\n\t\t\tsmn[k]=min(smn[2*k+1],mn[2*k+2]);\n\t\t}else if(mn[2*k+1]>mn[2*k+2]){\n\
     \t\t\tmnc[k]=mnc[2*k+2];\n\t\t\tsmn[k]=min(mn[2*k+1],smn[2*k+2]);\n\t\t}else {\n\
@@ -129,7 +130,7 @@ data:
   isVerificationFile: false
   path: structure/SegmentTreeBeats.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/SegmentTreeBeats.cpp

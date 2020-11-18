@@ -21,9 +21,9 @@ data:
     \ std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n)\
     \ for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v)\
     \ v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class\
-    \ T> inline bool chmin(T &a, T b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n\
-    }\ntemplate<class T> inline bool chmax(T &a, T b){\n\tif(a<b){a=b;return true;}\n\
-    \treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MinCostFlow.cpp\"\
+    \ T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return true;}\n\treturn\
+    \ false;\n}\ntemplate<class T,class U> inline bool chmax(T &a, U b){\n\tif(a<b){a=b;return\
+    \ true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MinCostFlow.cpp\"\
     \n\nstruct PrimalDual{\n\tstruct edge{\n\t\tll to,cap,cost,rev;\n\t};\n\tvector<vector<edge>>graph;\n\
     \tbool negative=false;\n\tvoid add_edge(ll from,ll to,ll cap,ll cost){\n\t\tgraph[from].push_back({to,cap,cost,len(graph[to])});\n\
     \t\tgraph[to].push_back({from,0ll,-cost,len(graph[from])-1});\n\t\tif(cost<0)negative=true;\n\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/MinCostFlow.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 14:09:40+09:00'
+  timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/MinCostFlow.test.cpp
