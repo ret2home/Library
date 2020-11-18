@@ -11,7 +11,7 @@
 "test/SuffixArray.LCP.test.cpp": "2020-10-25 14:09:40 +0900",
 "test/SuffixArray.matching.test.cpp": "2020-10-25 14:09:40 +0900",
 "test/SuffixArray.test.cpp": "2020-10-25 14:09:40 +0900",
-"test/UnionFind.test.cpp": "2020-10-25 14:09:40 +0900",
+"test/UnionFind.test.cpp": "2020-11-06 18:26:13 +0900",
 "test/WaveletMatrix.test.cpp": "2020-11-06 12:28:01 +0900",
 "test/factor.test.cpp": "2020-10-25 14:09:40 +0900"
 }
