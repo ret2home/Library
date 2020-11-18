@@ -9,11 +9,11 @@ using namespace std;
 #define P pair<ll,ll>
 #define len(s) (ll)s.size()
  
-template<class T> inline bool chmin(T &a, T b){
+template<class T,class U> inline bool chmin(T &a, U b){
 	if(a>b){a=b;return true;}
 	return false;
 }
-template<class T> inline bool chmax(T &a, T b){
+template<class T,class U> inline bool chmax(T &a, U b){
 	if(a<b){a=b;return true;}
 	return false;
 }

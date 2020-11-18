@@ -2,33 +2,32 @@
 #include "../template/template.cpp"
 
 struct HLD{
-	using V=vector<pair<ll,P>>;
 	struct heavy_set{
-		vector<ll>ele;
-		ll depth,par,cost1=1,cost2=1;
-		heavy_set(ll v,ll d,ll par)
+		vector<int>ele;
+		int depth,par,cost1=0,cost2=0;
+		heavy_set(int v,int d,int par)
 		:ele(1,v),depth(d),par(par){}
 	};
-	vector<vector<ll>>G;
+	vector<vector<int>>G;
 	vector<heavy_set>S;
-	vector<ll>subsize,stidx,eleidx;
-	ll subtree(ll v,ll p){
-		ll &sz=subsize[v];
+	vector<int>subsize,stidx,eleidx;
+	int subtree(int v,int p){
+		int &sz=subsize[v];
 		if(sz)return sz;
 		sz=1;
-		for(ll i:G[v])if(i!=p)sz+=subtree(i,v);
+		for(int i:G[v])if(i!=p)sz+=subtree(i,v);
 		return sz;
 	}
-	void make_path(ll v,ll p,ll id){
+	void make_path(int v,int p,int id){
 		stidx[v]=id;
 		eleidx[v]=S[id].ele.size()-1;
-		ll mxidx,mx=0;
-		for(ll i:G[v])if(i!=p){
+		int mxidx,mx=0;
+		for(int i:G[v])if(i!=p){
 			if(mx<subtree(i,v)){
 				mx=subtree(i,v);mxidx=i;
 			}
 		}
-		for(ll i:G[v])if(i!=p){
+		for(int i:G[v])if(i!=p){
 			if(mxidx==i){
 				S[id].ele.push_back(i);
 				make_path(i,v,id);
@@ -38,10 +37,10 @@ struct HLD{
 			}
 		}
 	}
-	ll st(ll v){return stidx[v];}
-	ll el(ll v){return eleidx[v];}
-	HLD(vector<vector<ll>>&G):G(G){
-		ll N=G.size();
+	int st(int v){return stidx[v];}
+	int el(int v){return eleidx[v];}
+	HLD(vector<vector<int>>&G):G(G){
+		int N=G.size();
 		subsize.resize(N);
 		eleidx.resize(N);
 		stidx.resize(N);
