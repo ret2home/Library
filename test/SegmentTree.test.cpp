@@ -16,7 +16,7 @@ int main(){
 	cin.tie(0);ios::sync_with_stdio(false);
 	int N,Q;
 	cin>>N>>Q;
-	Segtree<modint,PM,decltype(f),decltype(g),decltype(h)>segtree(N,f,g,h,0,PM(1,0));
+	Segtree<modint,PM,f,g,h>segtree(N,0,PM(1,0));
 	rep(i,N){
 		int a;cin>>a;
 		segtree.update(i,i+1,PM(1,a));

@@ -1,13 +1,12 @@
 #pragma once
 #include "../template/template.cpp"
 
-template<class T,class F>
+template<class T,T(*f)(T,T)>
 struct SparseTable{
 	vector<T>table[20];
 	vector<int>log;
-	F f;
-	SparseTable(vector<T>v,F f)
-	:log(v.size()+1),f(f){
+	SparseTable(vector<T>v)
+	:log(v.size()+1){
 		int mx=0;
 		while(1<<(mx+1)<=len(v))++mx;
 		rep(i,mx+1){

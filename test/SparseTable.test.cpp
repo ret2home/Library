@@ -2,12 +2,12 @@
 
 #include "../structure/SparseTable.cpp"
 
+auto f=[](int a,int b)->int{return min(a,b);};
 int main(){
 	int N,Q;cin>>N>>Q;
 	vector<int>V(N);
 	for(int &i:V)cin>>i;
-	auto f=[](int a,int b)->int{return min(a,b);};
-	SparseTable<int,decltype(f)>ST(V,f);
+	SparseTable<int,f>ST(V);
 	while(Q--){
 		int l,r;cin>>l>>r;
 		cout<<ST.query(l,r)<<"\n";
