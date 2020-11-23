@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/factor.cpp
       title: Fast Prime Factorization
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: mod int
   - name: string
@@ -81,13 +81,13 @@ data:
     - icon: ':warning:'
       path: structure/PersistentUnionFind.cpp
       title: structure/PersistentUnionFind.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: structure/SegmentTree.cpp
       title: Lazy Segment Tree
     - icon: ':warning:'
       path: structure/SegmentTreeBeats.cpp
       title: structure/SegmentTreeBeats.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: structure/SparseTable.cpp
       title: Sparse Table
     - icon: ':warning:'
@@ -101,7 +101,7 @@ data:
       title: Wavelet Matrix
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.cpp
       title: template/template.cpp
   verificationCategories:
@@ -128,10 +128,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/SegmentTree.test.cpp
       title: test/SegmentTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/SparseTable.test.cpp
       title: test/SparseTable.test.cpp
     - icon: ':heavy_check_mark:'

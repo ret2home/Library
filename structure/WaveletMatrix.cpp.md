@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/BitVector.cpp
     title: Bit Vector
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy:
@@ -83,8 +83,8 @@ data:
   timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/FM_index.test.cpp
   - test/WaveletMatrix.test.cpp
+  - test/FM_index.test.cpp
 documentation_of: structure/WaveletMatrix.cpp
 layout: document
 redirect_from:

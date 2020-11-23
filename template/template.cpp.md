@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factor.cpp
     title: Fast Prime Factorization
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: mod int
   - icon: ':heavy_check_mark:'
@@ -74,13 +74,13 @@ data:
   - icon: ':warning:'
     path: structure/PersistentUnionFind.cpp
     title: structure/PersistentUnionFind.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: structure/SegmentTree.cpp
     title: Lazy Segment Tree
   - icon: ':warning:'
     path: structure/SegmentTreeBeats.cpp
     title: structure/SegmentTreeBeats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: structure/SparseTable.cpp
     title: Sparse Table
   - icon: ':warning:'
@@ -114,10 +114,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RollingHash.test.cpp
     title: test/RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/SegmentTree.test.cpp
     title: test/SegmentTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/SparseTable.test.cpp
     title: test/SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -139,7 +139,7 @@ data:
     path: test/factor.test.cpp
     title: test/factor.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
@@ -160,54 +160,54 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy:
+  - string/RollingHash.cpp
   - string/BWT.cpp
   - string/SuffixArray.cpp
-  - string/RollingHash.cpp
-  - string/Zalgo.cpp
   - string/FM_index.cpp
-  - math/CRT.cpp
-  - math/factor.cpp
-  - math/FFT.cpp
+  - string/Zalgo.cpp
   - math/Combination.cpp
-  - math/modint.cpp
+  - math/CRT.cpp
+  - math/FFT.cpp
   - math/extgcd.cpp
+  - math/modint.cpp
+  - math/factor.cpp
   - math/combination_big.cpp
-  - graph/Tree.cpp
-  - graph/SCC.cpp
-  - graph/MaxFlow.cpp
-  - graph/MinCostFlow.cpp
-  - structure/BIT.cpp
   - structure/HLD.cpp
+  - structure/PersistentUnionFind.cpp
+  - structure/BIT.cpp
+  - structure/SplayTree.cpp
   - structure/Mo.cpp
   - structure/WaveletMatrix.cpp
-  - structure/SegmentTreeBeats.cpp
-  - structure/PartialPersistentUnionFind.cpp
-  - structure/PersistentArray.cpp
   - structure/UnionFind.cpp
-  - structure/PersistentUnionFind.cpp
-  - structure/BitVector.cpp
-  - structure/SegmentTree.cpp
   - structure/SparseTable.cpp
-  - structure/SplayTree.cpp
+  - structure/BitVector.cpp
+  - structure/PartialPersistentUnionFind.cpp
   - structure/LiChaoTree.cpp
+  - structure/SegmentTree.cpp
+  - structure/SegmentTreeBeats.cpp
+  - structure/PersistentArray.cpp
+  - graph/Tree.cpp
+  - graph/MaxFlow.cpp
+  - graph/SCC.cpp
+  - graph/MinCostFlow.cpp
   timestamp: '2020-11-18 20:02:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/SuffixArray.test.cpp
+  - test/MinCostFlow.test.cpp
   - test/UnionFind.test.cpp
   - test/SegmentTree.test.cpp
-  - test/Combination.test.cpp
-  - test/RollingHash.test.cpp
   - test/SuffixArray.LCP.test.cpp
-  - test/SuffixArray.matching.test.cpp
-  - test/MaxFlow.test.cpp
-  - test/MinCostFlow.test.cpp
+  - test/BIT.test.cpp
+  - test/SparseTable.test.cpp
   - test/LiChaoTree.test.cpp
+  - test/WaveletMatrix.test.cpp
+  - test/MaxFlow.test.cpp
+  - test/SuffixArray.test.cpp
   - test/FM_index.test.cpp
   - test/factor.test.cpp
-  - test/BIT.test.cpp
-  - test/WaveletMatrix.test.cpp
-  - test/SparseTable.test.cpp
+  - test/SuffixArray.matching.test.cpp
+  - test/RollingHash.test.cpp
+  - test/Combination.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:

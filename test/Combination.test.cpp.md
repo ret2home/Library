@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combination.cpp
     title: Combination (nCk)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []

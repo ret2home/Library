@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.cpp
     title: Rolling Hash (mod 2^61-1)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []

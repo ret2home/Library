@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/extgcd.cpp
     title: math/extgcd.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []

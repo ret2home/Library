@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: structure/PersistentArray.cpp
     title: structure/PersistentArray.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []

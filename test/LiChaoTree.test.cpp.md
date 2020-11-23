@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/LiChaoTree.cpp
     title: Li Chao Tree (Convex Hull Trick)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []

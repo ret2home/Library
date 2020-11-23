@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy:
@@ -15,11 +15,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Combination.test.cpp
     title: test/Combination.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/SegmentTree.test.cpp
     title: test/SegmentTree.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/modint.md
     document_title: mod int
@@ -73,7 +73,7 @@ data:
   - math/Combination.cpp
   - math/combination_big.cpp
   timestamp: '2020-11-18 20:02:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/SegmentTree.test.cpp
   - test/Combination.test.cpp

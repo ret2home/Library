@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy:
@@ -147,10 +147,10 @@ data:
   timestamp: '2020-11-18 20:02:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/SuffixArray.test.cpp
   - test/SuffixArray.LCP.test.cpp
-  - test/SuffixArray.matching.test.cpp
+  - test/SuffixArray.test.cpp
   - test/FM_index.test.cpp
+  - test/SuffixArray.matching.test.cpp
 documentation_of: string/SuffixArray.cpp
 layout: document
 redirect_from:

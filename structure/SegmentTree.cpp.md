@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/SegmentTree.test.cpp
     title: test/SegmentTree.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SegmentTree.md
     document_title: Lazy Segment Tree
@@ -22,68 +22,65 @@ data:
     \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
     \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
     \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
-    #line 3 \"structure/SegmentTree.cpp\"\n\ntemplate<typename Monoid,typename OperatorMonoid,typename\
-    \ F,typename G,typename H>\nclass Segtree{\n\tusing size_type=int32_t;\npublic:\n\
-    \tsize_type size=1;\nprivate:\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\
-    \tconst F f;\n\tconst G g;\n\tconst H h;\n\tMonoid M;\n\tOperatorMonoid OM;\n\
-    public:\n\tvoid eval(size_type k,size_type l,size_type r){\n\t\tif(lazy[k]!=OM){\n\
-    \t\t\tdat[k]=g(dat[k],lazy[k],r-l);\n\t\t\tif(r-l>1){\n\t\t\t\tlazy[2*k+1]=h(lazy[2*k+1],lazy[k],r-l);\n\
-    \t\t\t\tlazy[2*k+2]=h(lazy[2*k+2],lazy[k],r-l);\n\t\t\t}\n\t\t\tlazy[k]=OM;\n\t\
-    \t}\n\t}\n\tvoid update(size_type a,size_type b,OperatorMonoid M,size_type k=0,size_type\
-    \ l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return;\n\
+    #line 3 \"structure/SegmentTree.cpp\"\n\ntemplate<typename Monoid,\n\t\ttypename\
+    \ OperatorMonoid,\n\t\tMonoid(*f)(Monoid,Monoid,int),\n\t\tMonoid(*g)(Monoid,OperatorMonoid,int),\n\
+    \t\tOperatorMonoid(*h)(OperatorMonoid,OperatorMonoid,int)>\nstruct Segtree{\n\t\
+    int size=1;\nprivate:\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\t\
+    Monoid M;\n\tOperatorMonoid OM;\npublic:\n\tvoid eval(int k,int l,int r){\n\t\t\
+    if(lazy[k]!=OM){\n\t\t\tdat[k]=g(dat[k],lazy[k],r-l);\n\t\t\tif(r-l>1){\n\t\t\t\
+    \tlazy[(k<<1)+1]=h(lazy[(k<<1)+1],lazy[k],r-l);\n\t\t\t\tlazy[(k<<1)+2]=h(lazy[(k<<1)+2],lazy[k],r-l);\n\
+    \t\t\t}\n\t\t\tlazy[k]=OM;\n\t\t}\n\t}\n\tvoid update(int a,int b,OperatorMonoid\
+    \ M,int k=0,int l=0,int r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return;\n\
     \t\tif(a<=l&&r<=b){\n\t\t\tlazy[k]=h(lazy[k],M,r-l);\n\t\t\teval(k,l,r);\n\t\t\
-    \treturn;\n\t\t}\n\t\tupdate(a,b,M,k*2+1,l,(l+r)/2);\n\t\tupdate(a,b,M,k*2+2,(l+r)/2,r);\n\
-    \t\tdat[k]=f(dat[k*2+1],dat[k*2+2],r-l);\n\t}\n\tMonoid query(size_type a,size_type\
-    \ b,size_type k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
-    \t\tif(r<=a||b<=l)return M;\n\t\tif(a<=l&&r<=b)return dat[k];\n\t\tMonoid lv=query(a,b,k*2+1,l,(l+r)/2);\n\
-    \t\tMonoid rv=query(a,b,k*2+2,(l+r)/2,r);\n\t\treturn f(lv,rv,r-l);\n\t}\n\ttemplate<class\
-    \ C>\n\tsize_type minLeft(size_type a,size_type b,C &check,Monoid x,size_type\
-    \ k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
-    \t\tif(r<=a||b<=l||!check(dat[k],x))return -1;\n\t\tif(r-l==1)return l;\n\t\t\
-    size_type lv=minLeft(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\tif(lv!=-1)return lv;\n\
-    \t\treturn minLeft(a,b,check,x,k*2+2,(l+r)/2,r);\n\t}\n\ttemplate<class C>\n\t\
-    size_type maxRight(size_type a,size_type b,C &check,Monoid x,size_type k=0,size_type\
-    \ l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l||!check(dat[k],x))return\
-    \ -1;\n\t\tif(r-l==1)return l;\n\t\tsize_type rv=maxRight(a,b,check,x,k*2+2,(l+r)/2,r);\n\
-    \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\
-    }\n\tSegtree(size_type x,F f,G g,H h,Monoid M,OperatorMonoid OM)\n\t:f(f),g(g),h(h),M(M),OM(OM){\n\
-    \t\twhile(size<x)size*=2;\n\t\tdat.resize(size*2-1,M);\n\t\tlazy.resize(size*2-1,OM);\n\
-    \t}\n};\n\n/*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/\n"
+    \treturn;\n\t\t}\n\t\tupdate(a,b,M,(k<<1)+1,l,(l+r)>>1);\n\t\tupdate(a,b,M,(k<<1)+2,(l+r)>>1,r);\n\
+    \t\tdat[k]=f(dat[(k<<1)+1],dat[(k<<1)+2],r-l);\n\t}\n\tMonoid query(int a,int\
+    \ b,int k=0,int l=0,int r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return\
+    \ M;\n\t\tif(a<=l&&r<=b)return dat[k];\n\t\tMonoid lv=query(a,b,(k<<1)+1,l,(l+r)>>1);\n\
+    \t\tMonoid rv=query(a,b,(k<<1)+2,(l+r)>>1,r);\n\t\treturn f(lv,rv,r-l);\n\t}\n\
+    \ttemplate<class C>\n\tint minLeft(int a,int b,C &check,Monoid x,int k=0,int l=0,int\
+    \ r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l||!check(dat[k],x))return\
+    \ -1;\n\t\tif(r-l==1)return l;\n\t\tint lv=minLeft(a,b,check,x,(k<<1)+1,l,(l+r)>>1);\n\
+    \t\tif(lv!=-1)return lv;\n\t\treturn minLeft(a,b,check,x,(k<<1)+2,(l+r)>>1,r);\n\
+    \t}\n\ttemplate<class C>\n\tint maxRight(int a,int b,C &check,Monoid x,int k=0,int\
+    \ l=0,int r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l||!check(dat[k],x))return\
+    \ -1;\n\t\tif(r-l==1)return l;\n\t\tint rv=maxRight(a,b,check,x,(k<<1)+2,(l+r)>>1,r);\n\
+    \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,(k<<1)+1,l,(l+r)>>1);\n\
+    \t}\n\tSegtree(int x,Monoid M,OperatorMonoid OM)\n\t:M(M),OM(OM){\n\t\twhile(size<x)size<<=1;\n\
+    \t\tdat.resize((size<<1)-1,M);\n\t\tlazy.resize((size<<1)-1,OM);\n\t}\n};\n\n\
+    /*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<typename\
-    \ Monoid,typename OperatorMonoid,typename F,typename G,typename H>\nclass Segtree{\n\
-    \tusing size_type=int32_t;\npublic:\n\tsize_type size=1;\nprivate:\n\tvector<Monoid>dat;\n\
-    \tvector<OperatorMonoid>lazy;\n\tconst F f;\n\tconst G g;\n\tconst H h;\n\tMonoid\
-    \ M;\n\tOperatorMonoid OM;\npublic:\n\tvoid eval(size_type k,size_type l,size_type\
-    \ r){\n\t\tif(lazy[k]!=OM){\n\t\t\tdat[k]=g(dat[k],lazy[k],r-l);\n\t\t\tif(r-l>1){\n\
-    \t\t\t\tlazy[2*k+1]=h(lazy[2*k+1],lazy[k],r-l);\n\t\t\t\tlazy[2*k+2]=h(lazy[2*k+2],lazy[k],r-l);\n\
-    \t\t\t}\n\t\t\tlazy[k]=OM;\n\t\t}\n\t}\n\tvoid update(size_type a,size_type b,OperatorMonoid\
-    \ M,size_type k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
-    \t\tif(r<=a||b<=l)return;\n\t\tif(a<=l&&r<=b){\n\t\t\tlazy[k]=h(lazy[k],M,r-l);\n\
-    \t\t\teval(k,l,r);\n\t\t\treturn;\n\t\t}\n\t\tupdate(a,b,M,k*2+1,l,(l+r)/2);\n\
-    \t\tupdate(a,b,M,k*2+2,(l+r)/2,r);\n\t\tdat[k]=f(dat[k*2+1],dat[k*2+2],r-l);\n\
-    \t}\n\tMonoid query(size_type a,size_type b,size_type k=0,size_type l=0,size_type\
-    \ r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return M;\n\
-    \t\tif(a<=l&&r<=b)return dat[k];\n\t\tMonoid lv=query(a,b,k*2+1,l,(l+r)/2);\n\t\
-    \tMonoid rv=query(a,b,k*2+2,(l+r)/2,r);\n\t\treturn f(lv,rv,r-l);\n\t}\n\ttemplate<class\
-    \ C>\n\tsize_type minLeft(size_type a,size_type b,C &check,Monoid x,size_type\
-    \ k=0,size_type l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\
-    \t\tif(r<=a||b<=l||!check(dat[k],x))return -1;\n\t\tif(r-l==1)return l;\n\t\t\
-    size_type lv=minLeft(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\tif(lv!=-1)return lv;\n\
-    \t\treturn minLeft(a,b,check,x,k*2+2,(l+r)/2,r);\n\t}\n\ttemplate<class C>\n\t\
-    size_type maxRight(size_type a,size_type b,C &check,Monoid x,size_type k=0,size_type\
-    \ l=0,size_type r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l||!check(dat[k],x))return\
-    \ -1;\n\t\tif(r-l==1)return l;\n\t\tsize_type rv=maxRight(a,b,check,x,k*2+2,(l+r)/2,r);\n\
-    \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,k*2+1,l,(l+r)/2);\n\t\
-    }\n\tSegtree(size_type x,F f,G g,H h,Monoid M,OperatorMonoid OM)\n\t:f(f),g(g),h(h),M(M),OM(OM){\n\
-    \t\twhile(size<x)size*=2;\n\t\tdat.resize(size*2-1,M);\n\t\tlazy.resize(size*2-1,OM);\n\
-    \t}\n};\n\n/*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/"
+    \ Monoid,\n\t\ttypename OperatorMonoid,\n\t\tMonoid(*f)(Monoid,Monoid,int),\n\t\
+    \tMonoid(*g)(Monoid,OperatorMonoid,int),\n\t\tOperatorMonoid(*h)(OperatorMonoid,OperatorMonoid,int)>\n\
+    struct Segtree{\n\tint size=1;\nprivate:\n\tvector<Monoid>dat;\n\tvector<OperatorMonoid>lazy;\n\
+    \tMonoid M;\n\tOperatorMonoid OM;\npublic:\n\tvoid eval(int k,int l,int r){\n\t\
+    \tif(lazy[k]!=OM){\n\t\t\tdat[k]=g(dat[k],lazy[k],r-l);\n\t\t\tif(r-l>1){\n\t\t\
+    \t\tlazy[(k<<1)+1]=h(lazy[(k<<1)+1],lazy[k],r-l);\n\t\t\t\tlazy[(k<<1)+2]=h(lazy[(k<<1)+2],lazy[k],r-l);\n\
+    \t\t\t}\n\t\t\tlazy[k]=OM;\n\t\t}\n\t}\n\tvoid update(int a,int b,OperatorMonoid\
+    \ M,int k=0,int l=0,int r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return;\n\
+    \t\tif(a<=l&&r<=b){\n\t\t\tlazy[k]=h(lazy[k],M,r-l);\n\t\t\teval(k,l,r);\n\t\t\
+    \treturn;\n\t\t}\n\t\tupdate(a,b,M,(k<<1)+1,l,(l+r)>>1);\n\t\tupdate(a,b,M,(k<<1)+2,(l+r)>>1,r);\n\
+    \t\tdat[k]=f(dat[(k<<1)+1],dat[(k<<1)+2],r-l);\n\t}\n\tMonoid query(int a,int\
+    \ b,int k=0,int l=0,int r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l)return\
+    \ M;\n\t\tif(a<=l&&r<=b)return dat[k];\n\t\tMonoid lv=query(a,b,(k<<1)+1,l,(l+r)>>1);\n\
+    \t\tMonoid rv=query(a,b,(k<<1)+2,(l+r)>>1,r);\n\t\treturn f(lv,rv,r-l);\n\t}\n\
+    \ttemplate<class C>\n\tint minLeft(int a,int b,C &check,Monoid x,int k=0,int l=0,int\
+    \ r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l||!check(dat[k],x))return\
+    \ -1;\n\t\tif(r-l==1)return l;\n\t\tint lv=minLeft(a,b,check,x,(k<<1)+1,l,(l+r)>>1);\n\
+    \t\tif(lv!=-1)return lv;\n\t\treturn minLeft(a,b,check,x,(k<<1)+2,(l+r)>>1,r);\n\
+    \t}\n\ttemplate<class C>\n\tint maxRight(int a,int b,C &check,Monoid x,int k=0,int\
+    \ l=0,int r=-1){\n\t\tif(r==-1)r=size;\n\t\teval(k,l,r);\n\t\tif(r<=a||b<=l||!check(dat[k],x))return\
+    \ -1;\n\t\tif(r-l==1)return l;\n\t\tint rv=maxRight(a,b,check,x,(k<<1)+2,(l+r)>>1,r);\n\
+    \t\tif(rv!=-1)return rv;\n\t\treturn maxRight(a,b,check,x,(k<<1)+1,l,(l+r)>>1);\n\
+    \t}\n\tSegtree(int x,Monoid M,OperatorMonoid OM)\n\t:M(M),OM(OM){\n\t\twhile(size<x)size<<=1;\n\
+    \t\tdat.resize((size<<1)-1,M);\n\t\tlazy.resize((size<<1)-1,OM);\n\t}\n};\n\n\
+    /*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2020-11-18 20:02:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-11-23 14:22:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/SegmentTree.test.cpp
 documentation_of: structure/SegmentTree.cpp
@@ -99,9 +96,10 @@ title: Lazy Segment Tree
 
 結合律が成立し、かつ単位元が存在するならモノイドだと思って OK (Minimum や Sum など)。
 
-型は ```Segtree<Monoid,OperatorMonoid,decltype(F),decltype(G),decltype(H)>``` のように書く（詳細はTestのソースコード)
+型は ```Segtree<Monoid,OperatorMonoid,F,G,H>``` のように書く（詳細はTestのソースコード)。
+```F``` は要素同士の、```G``` は要素と作用素、```H``` は作用素同士の二項演算。
 
-- ```Segtree(N,f,g,h,M,OM)``` 要素数 ```N``` , 要素同士の演算 ```f``` , 要素と作用素の演算 ```g``` , 作用素同士の二項演算 ```h``` , 要素の単位元 ```M``` , 作用素の単位元 ```OM``` で初期化する
+- ```Segtree(N,M,OM)``` 要素数 ```N``` , 要素の単位元 ```M``` , 作用素の単位元 ```OM``` で初期化する
 - ```update(a,b,x)``` : ```[a,b)``` に対して 作用素 ```x``` を適用
 - ```query(a,b)``` : ```[a,b)``` の演算の結果
 - ```minLeft(a,b,C,x)``` : ```[a,b)``` で ```C(要素,x)``` を満たす最小の index
