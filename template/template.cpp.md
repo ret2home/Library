@@ -142,71 +142,75 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
-    \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
-    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
-    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
-    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n"
-  code: "#pragma once\n#include<bits/stdc++.h>\nusing namespace std;\n#define ll long\
-    \ long\n#define rep(i,n) for(ll i=0;i<n;i++)\n#define REP(i,n) for(ll i=1;i<n;i++)\n\
-    #define rev(i,n) for(ll i=n-1;i>=0;i--)\n#define all(v) v.begin(),v.end()\n#define\
-    \ P pair<ll,ll>\n#define len(s) (ll)s.size()\n \ntemplate<class T,class U> inline\
-    \ bool chmin(T &a, U b){\n\tif(a>b){a=b;return true;}\n\treturn false;\n}\ntemplate<class\
-    \ T,class U> inline bool chmax(T &a, U b){\n\tif(a<b){a=b;return true;}\n\treturn\
-    \ false;\n}\nconstexpr ll inf = 3e18;"
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n;\
+    \ i++)\n#define REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll\
+    \ i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
+    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
+    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n"
+  code: "#pragma once\n#include <bits/stdc++.h>\nusing namespace std;\n#define ll\
+    \ long long\n#define rep(i, n) for (ll i = 0; i < n; i++)\n#define REP(i, n) for\
+    \ (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll i = n - 1; i >= 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define len(s) (ll)\
+    \ s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n  \
+    \  if (a > b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
+    }\ntemplate <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b)\
+    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr\
+    \ ll inf = 3e18;"
   dependsOn: []
   isVerificationFile: false
   path: template/template.cpp
   requiredBy:
-  - string/RollingHash.cpp
-  - string/BWT.cpp
   - string/SuffixArray.cpp
-  - string/FM_index.cpp
+  - string/BWT.cpp
   - string/Zalgo.cpp
-  - math/Combination.cpp
-  - math/CRT.cpp
-  - math/FFT.cpp
-  - math/extgcd.cpp
-  - math/modint.cpp
-  - math/factor.cpp
-  - math/combination_big.cpp
-  - structure/HLD.cpp
-  - structure/PersistentUnionFind.cpp
-  - structure/BIT.cpp
-  - structure/SplayTree.cpp
-  - structure/Mo.cpp
-  - structure/WaveletMatrix.cpp
-  - structure/UnionFind.cpp
-  - structure/SparseTable.cpp
-  - structure/BitVector.cpp
-  - structure/PartialPersistentUnionFind.cpp
-  - structure/LiChaoTree.cpp
-  - structure/SegmentTree.cpp
-  - structure/SegmentTreeBeats.cpp
-  - structure/PersistentArray.cpp
+  - string/FM_index.cpp
+  - string/RollingHash.cpp
   - graph/Tree.cpp
-  - graph/MaxFlow.cpp
-  - graph/SCC.cpp
   - graph/MinCostFlow.cpp
-  timestamp: '2020-11-18 20:02:50+09:00'
+  - graph/SCC.cpp
+  - graph/MaxFlow.cpp
+  - math/CRT.cpp
+  - math/factor.cpp
+  - math/Combination.cpp
+  - math/modint.cpp
+  - math/combination_big.cpp
+  - math/extgcd.cpp
+  - math/FFT.cpp
+  - structure/WaveletMatrix.cpp
+  - structure/BitVector.cpp
+  - structure/BIT.cpp
+  - structure/PartialPersistentUnionFind.cpp
+  - structure/HLD.cpp
+  - structure/LiChaoTree.cpp
+  - structure/PersistentArray.cpp
+  - structure/SegmentTree.cpp
+  - structure/SparseTable.cpp
+  - structure/PersistentUnionFind.cpp
+  - structure/SplayTree.cpp
+  - structure/SegmentTreeBeats.cpp
+  - structure/UnionFind.cpp
+  - structure/Mo.cpp
+  timestamp: '2020-12-15 15:31:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/BIT.test.cpp
+  - test/RollingHash.test.cpp
+  - test/factor.test.cpp
+  - test/LiChaoTree.test.cpp
+  - test/SuffixArray.LCP.test.cpp
+  - test/SuffixArray.test.cpp
+  - test/SegmentTree.test.cpp
+  - test/MaxFlow.test.cpp
   - test/MinCostFlow.test.cpp
   - test/UnionFind.test.cpp
-  - test/SegmentTree.test.cpp
-  - test/SuffixArray.LCP.test.cpp
-  - test/BIT.test.cpp
-  - test/SparseTable.test.cpp
-  - test/LiChaoTree.test.cpp
-  - test/WaveletMatrix.test.cpp
-  - test/MaxFlow.test.cpp
-  - test/SuffixArray.test.cpp
-  - test/FM_index.test.cpp
-  - test/factor.test.cpp
   - test/SuffixArray.matching.test.cpp
-  - test/RollingHash.test.cpp
+  - test/SparseTable.test.cpp
+  - test/WaveletMatrix.test.cpp
+  - test/FM_index.test.cpp
   - test/Combination.test.cpp
 documentation_of: template/template.cpp
 layout: document

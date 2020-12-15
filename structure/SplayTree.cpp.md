@@ -10,85 +10,114 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
-    \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
-    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
-    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
-    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
-    #line 3 \"structure/SplayTree.cpp\"\n\ntemplate<class T>\nclass SplayTree{\n\t\
-    struct node{\n\t\tT val;\n\t\tnode *lch,*rch;\n\t};\n\tnode *root=NULL;\n\tll\
-    \ sz=0;\n\tnode *rightRotate(node *x){\n\t\tnode *y=x->lch;\n\t\tx->lch=y->rch;\n\
-    \t\ty->rch=x;\n\t\treturn y;\n\t}\n\tnode *leftRotate(node *x){\n\t\tnode *y=x->rch;\n\
-    \t\tx->rch=y->lch;\n\t\ty->lch=x;\n\t\treturn y;\n\t}\n\tnode *splay(node *x,T\
-    \ v){\n\t\tif(x==NULL||x->val==v)return x;\n\t\tif(v<x->val){\n\t\t\tif(x->lch==NULL)return\
-    \ x;\n\t\t\tif(v<x->lch->val){\n\t\t\t\tx->lch->lch=splay(x->lch->lch,v);\n\t\t\
-    \t\tx=rightRotate(x);\n\t\t\t}else if(x->lch->val<v){\n\t\t\t\tx->lch->rch=splay(x->lch->rch,v);\n\
-    \t\t\t\tif(x->lch->rch!=NULL)\n\t\t\t\t\tx->lch=leftRotate(x->lch);\n\t\t\t}\n\
-    \t\t\treturn (x->lch==NULL)?x:rightRotate(x);\n\t\t}else {\n\t\t\tif(x->rch==NULL)return\
-    \ x;\n\t\t\tif(v<x->rch->val){\n\t\t\t\tx->rch->lch=splay(x->rch->lch,v);\n\t\t\
-    \t\tif(x->rch->lch!=NULL)\n\t\t\t\t\tx->rch=rightRotate(x->rch);\n\t\t\t}else\
-    \ if(x->rch->val<v){\n\t\t\t\tx->rch->rch=splay(x->rch->rch,v);\n\t\t\t\tx=leftRotate(x);\n\
-    \t\t\t}\n\t\t\treturn (x->rch==NULL)?x:leftRotate(x);\n\t\t}\n\t}\n\tnode *insert(node\
-    \ *x,T v){\n\t\tif(x==NULL){\n\t\t\tnode *q=new node;\n\t\t\tq->val=v;\n\t\t\t\
-    q->lch=q->rch=NULL;\n\t\t\treturn q;\n\t\t}\n\t\tif(v<x->val)x->lch=insert(x->lch,v);\n\
-    \t\telse x->rch=insert(x->rch,v);\n\t\treturn x;\n\t}\n\tnode *erase(node *x,T\
-    \ v){\n\t\tif(x==NULL)return NULL;\n\t\tif(v<x->val)x->lch=erase(x->lch,v);\n\t\
-    \telse if(x->val<v)x->rch=erase(x->rch,v);\n\t\telse if(x->lch==NULL){\n\t\t\t\
-    node *q=x->rch;\n\t\t\tdelete x;\n\t\t\treturn q;\n\t\t}else if(x->lch->rch==NULL){\n\
-    \t\t\tnode *q=x->lch;\n\t\t\tq->rch=x->rch;\n\t\t\tdelete x;\n\t\t\treturn q;\n\
-    \t\t}else {\n\t\t\tnode *q;\n\t\t\tfor(q=x->lch;q->rch->rch!=NULL;q=q->rch);\n\
-    \t\t\tnode *r=q->rch;\n\t\t\tq->rch=r->lch;\n\t\t\tr->lch=x->lch;\n\t\t\tr->rch=x->rch;\n\
-    \t\t\tdelete x;\n\t\t\treturn r;\n\t\t}\n\t\treturn x;\n\t}\npublic:\n\tll size(){\n\
-    \t\treturn sz;\n\t}\n\tnode *find(T x){\n\t\troot=splay(root,x);\n\t\tif(root==NULL||root->val!=x)return\
-    \ NULL;\n\t\treturn root;\n\t}\n\tvoid insert(T x){\n\t\tif(!find(x)){\n\t\t\t\
-    root=insert(root,x);sz++;\n\t\t}\n\t}\n\tvoid erase(T x){\n\t\tif(find(x)){\n\t\
-    \t\troot=erase(root,x);\n\t\t\tsz--;\n\t\t}\n\t}\n\tnode* lower_bound(T x){\n\t\
-    \troot=splay(root,x);\n\t\tif(root==NULL||root->val>=x)return root;\n\t\tif(root->rch==NULL)return\
-    \ NULL;\n\t\tnode *q;\n\t\tfor(q=root->rch;q->lch!=NULL;q=q->lch);\n\t\treturn\
-    \ q;\n\t}\n\tnode *upper_bound(T x){\n\t\troot=splay(root,x);\n\t\tif(root==NULL||root->val>x)return\
-    \ root;\n\t\tif(root->rch==NULL)return NULL;\n\t\tnode *q;\n\t\tfor(q=root->rch;q->lch!=NULL;q=q->lch);\n\
-    \t\treturn q;\n\t}\n};\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
-    class SplayTree{\n\tstruct node{\n\t\tT val;\n\t\tnode *lch,*rch;\n\t};\n\tnode\
-    \ *root=NULL;\n\tll sz=0;\n\tnode *rightRotate(node *x){\n\t\tnode *y=x->lch;\n\
-    \t\tx->lch=y->rch;\n\t\ty->rch=x;\n\t\treturn y;\n\t}\n\tnode *leftRotate(node\
-    \ *x){\n\t\tnode *y=x->rch;\n\t\tx->rch=y->lch;\n\t\ty->lch=x;\n\t\treturn y;\n\
-    \t}\n\tnode *splay(node *x,T v){\n\t\tif(x==NULL||x->val==v)return x;\n\t\tif(v<x->val){\n\
-    \t\t\tif(x->lch==NULL)return x;\n\t\t\tif(v<x->lch->val){\n\t\t\t\tx->lch->lch=splay(x->lch->lch,v);\n\
-    \t\t\t\tx=rightRotate(x);\n\t\t\t}else if(x->lch->val<v){\n\t\t\t\tx->lch->rch=splay(x->lch->rch,v);\n\
-    \t\t\t\tif(x->lch->rch!=NULL)\n\t\t\t\t\tx->lch=leftRotate(x->lch);\n\t\t\t}\n\
-    \t\t\treturn (x->lch==NULL)?x:rightRotate(x);\n\t\t}else {\n\t\t\tif(x->rch==NULL)return\
-    \ x;\n\t\t\tif(v<x->rch->val){\n\t\t\t\tx->rch->lch=splay(x->rch->lch,v);\n\t\t\
-    \t\tif(x->rch->lch!=NULL)\n\t\t\t\t\tx->rch=rightRotate(x->rch);\n\t\t\t}else\
-    \ if(x->rch->val<v){\n\t\t\t\tx->rch->rch=splay(x->rch->rch,v);\n\t\t\t\tx=leftRotate(x);\n\
-    \t\t\t}\n\t\t\treturn (x->rch==NULL)?x:leftRotate(x);\n\t\t}\n\t}\n\tnode *insert(node\
-    \ *x,T v){\n\t\tif(x==NULL){\n\t\t\tnode *q=new node;\n\t\t\tq->val=v;\n\t\t\t\
-    q->lch=q->rch=NULL;\n\t\t\treturn q;\n\t\t}\n\t\tif(v<x->val)x->lch=insert(x->lch,v);\n\
-    \t\telse x->rch=insert(x->rch,v);\n\t\treturn x;\n\t}\n\tnode *erase(node *x,T\
-    \ v){\n\t\tif(x==NULL)return NULL;\n\t\tif(v<x->val)x->lch=erase(x->lch,v);\n\t\
-    \telse if(x->val<v)x->rch=erase(x->rch,v);\n\t\telse if(x->lch==NULL){\n\t\t\t\
-    node *q=x->rch;\n\t\t\tdelete x;\n\t\t\treturn q;\n\t\t}else if(x->lch->rch==NULL){\n\
-    \t\t\tnode *q=x->lch;\n\t\t\tq->rch=x->rch;\n\t\t\tdelete x;\n\t\t\treturn q;\n\
-    \t\t}else {\n\t\t\tnode *q;\n\t\t\tfor(q=x->lch;q->rch->rch!=NULL;q=q->rch);\n\
-    \t\t\tnode *r=q->rch;\n\t\t\tq->rch=r->lch;\n\t\t\tr->lch=x->lch;\n\t\t\tr->rch=x->rch;\n\
-    \t\t\tdelete x;\n\t\t\treturn r;\n\t\t}\n\t\treturn x;\n\t}\npublic:\n\tll size(){\n\
-    \t\treturn sz;\n\t}\n\tnode *find(T x){\n\t\troot=splay(root,x);\n\t\tif(root==NULL||root->val!=x)return\
-    \ NULL;\n\t\treturn root;\n\t}\n\tvoid insert(T x){\n\t\tif(!find(x)){\n\t\t\t\
-    root=insert(root,x);sz++;\n\t\t}\n\t}\n\tvoid erase(T x){\n\t\tif(find(x)){\n\t\
-    \t\troot=erase(root,x);\n\t\t\tsz--;\n\t\t}\n\t}\n\tnode* lower_bound(T x){\n\t\
-    \troot=splay(root,x);\n\t\tif(root==NULL||root->val>=x)return root;\n\t\tif(root->rch==NULL)return\
-    \ NULL;\n\t\tnode *q;\n\t\tfor(q=root->rch;q->lch!=NULL;q=q->lch);\n\t\treturn\
-    \ q;\n\t}\n\tnode *upper_bound(T x){\n\t\troot=splay(root,x);\n\t\tif(root==NULL||root->val>x)return\
-    \ root;\n\t\tif(root->rch==NULL)return NULL;\n\t\tnode *q;\n\t\tfor(q=root->rch;q->lch!=NULL;q=q->lch);\n\
-    \t\treturn q;\n\t}\n};"
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n;\
+    \ i++)\n#define REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll\
+    \ i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
+    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
+    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SplayTree.cpp\"\
+    \n\ntemplate <class T>\nclass SplayTree {\n    struct node {\n        T val;\n\
+    \        node *lch, *rch;\n    };\n    node *root = NULL;\n    ll sz = 0;\n  \
+    \  node *rightRotate(node *x) {\n        node *y = x->lch;\n        x->lch = y->rch;\n\
+    \        y->rch = x;\n        return y;\n    }\n    node *leftRotate(node *x)\
+    \ {\n        node *y = x->rch;\n        x->rch = y->lch;\n        y->lch = x;\n\
+    \        return y;\n    }\n    node *splay(node *x, T v) {\n        if (x == NULL\
+    \ || x->val == v) return x;\n        if (v < x->val) {\n            if (x->lch\
+    \ == NULL) return x;\n            if (v < x->lch->val) {\n                x->lch->lch\
+    \ = splay(x->lch->lch, v);\n                x = rightRotate(x);\n            }\
+    \ else if (x->lch->val < v) {\n                x->lch->rch = splay(x->lch->rch,\
+    \ v);\n                if (x->lch->rch != NULL)\n                    x->lch =\
+    \ leftRotate(x->lch);\n            }\n            return (x->lch == NULL) ? x\
+    \ : rightRotate(x);\n        } else {\n            if (x->rch == NULL) return\
+    \ x;\n            if (v < x->rch->val) {\n                x->rch->lch = splay(x->rch->lch,\
+    \ v);\n                if (x->rch->lch != NULL)\n                    x->rch =\
+    \ rightRotate(x->rch);\n            } else if (x->rch->val < v) {\n          \
+    \      x->rch->rch = splay(x->rch->rch, v);\n                x = leftRotate(x);\n\
+    \            }\n            return (x->rch == NULL) ? x : leftRotate(x);\n   \
+    \     }\n    }\n    node *insert(node *x, T v) {\n        if (x == NULL) {\n \
+    \           node *q = new node;\n            q->val = v;\n            q->lch =\
+    \ q->rch = NULL;\n            return q;\n        }\n        if (v < x->val)\n\
+    \            x->lch = insert(x->lch, v);\n        else\n            x->rch = insert(x->rch,\
+    \ v);\n        return x;\n    }\n    node *erase(node *x, T v) {\n        if (x\
+    \ == NULL) return NULL;\n        if (v < x->val)\n            x->lch = erase(x->lch,\
+    \ v);\n        else if (x->val < v)\n            x->rch = erase(x->rch, v);\n\
+    \        else if (x->lch == NULL) {\n            node *q = x->rch;\n         \
+    \   delete x;\n            return q;\n        } else if (x->lch->rch == NULL)\
+    \ {\n            node *q = x->lch;\n            q->rch = x->rch;\n           \
+    \ delete x;\n            return q;\n        } else {\n            node *q;\n \
+    \           for (q = x->lch; q->rch->rch != NULL; q = q->rch)\n              \
+    \  ;\n            node *r = q->rch;\n            q->rch = r->lch;\n          \
+    \  r->lch = x->lch;\n            r->rch = x->rch;\n            delete x;\n   \
+    \         return r;\n        }\n        return x;\n    }\n\n   public:\n    ll\
+    \ size() {\n        return sz;\n    }\n    node *find(T x) {\n        root = splay(root,\
+    \ x);\n        if (root == NULL || root->val != x) return NULL;\n        return\
+    \ root;\n    }\n    void insert(T x) {\n        if (!find(x)) {\n            root\
+    \ = insert(root, x);\n            sz++;\n        }\n    }\n    void erase(T x)\
+    \ {\n        if (find(x)) {\n            root = erase(root, x);\n            sz--;\n\
+    \        }\n    }\n    node *lower_bound(T x) {\n        root = splay(root, x);\n\
+    \        if (root == NULL || root->val >= x) return root;\n        if (root->rch\
+    \ == NULL) return NULL;\n        node *q;\n        for (q = root->rch; q->lch\
+    \ != NULL; q = q->lch)\n            ;\n        return q;\n    }\n    node *upper_bound(T\
+    \ x) {\n        root = splay(root, x);\n        if (root == NULL || root->val\
+    \ > x) return root;\n        if (root->rch == NULL) return NULL;\n        node\
+    \ *q;\n        for (q = root->rch; q->lch != NULL; q = q->lch)\n            ;\n\
+    \        return q;\n    }\n};\n"
+  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate <class T>\n\
+    class SplayTree {\n    struct node {\n        T val;\n        node *lch, *rch;\n\
+    \    };\n    node *root = NULL;\n    ll sz = 0;\n    node *rightRotate(node *x)\
+    \ {\n        node *y = x->lch;\n        x->lch = y->rch;\n        y->rch = x;\n\
+    \        return y;\n    }\n    node *leftRotate(node *x) {\n        node *y =\
+    \ x->rch;\n        x->rch = y->lch;\n        y->lch = x;\n        return y;\n\
+    \    }\n    node *splay(node *x, T v) {\n        if (x == NULL || x->val == v)\
+    \ return x;\n        if (v < x->val) {\n            if (x->lch == NULL) return\
+    \ x;\n            if (v < x->lch->val) {\n                x->lch->lch = splay(x->lch->lch,\
+    \ v);\n                x = rightRotate(x);\n            } else if (x->lch->val\
+    \ < v) {\n                x->lch->rch = splay(x->lch->rch, v);\n             \
+    \   if (x->lch->rch != NULL)\n                    x->lch = leftRotate(x->lch);\n\
+    \            }\n            return (x->lch == NULL) ? x : rightRotate(x);\n  \
+    \      } else {\n            if (x->rch == NULL) return x;\n            if (v\
+    \ < x->rch->val) {\n                x->rch->lch = splay(x->rch->lch, v);\n   \
+    \             if (x->rch->lch != NULL)\n                    x->rch = rightRotate(x->rch);\n\
+    \            } else if (x->rch->val < v) {\n                x->rch->rch = splay(x->rch->rch,\
+    \ v);\n                x = leftRotate(x);\n            }\n            return (x->rch\
+    \ == NULL) ? x : leftRotate(x);\n        }\n    }\n    node *insert(node *x, T\
+    \ v) {\n        if (x == NULL) {\n            node *q = new node;\n          \
+    \  q->val = v;\n            q->lch = q->rch = NULL;\n            return q;\n \
+    \       }\n        if (v < x->val)\n            x->lch = insert(x->lch, v);\n\
+    \        else\n            x->rch = insert(x->rch, v);\n        return x;\n  \
+    \  }\n    node *erase(node *x, T v) {\n        if (x == NULL) return NULL;\n \
+    \       if (v < x->val)\n            x->lch = erase(x->lch, v);\n        else\
+    \ if (x->val < v)\n            x->rch = erase(x->rch, v);\n        else if (x->lch\
+    \ == NULL) {\n            node *q = x->rch;\n            delete x;\n         \
+    \   return q;\n        } else if (x->lch->rch == NULL) {\n            node *q\
+    \ = x->lch;\n            q->rch = x->rch;\n            delete x;\n           \
+    \ return q;\n        } else {\n            node *q;\n            for (q = x->lch;\
+    \ q->rch->rch != NULL; q = q->rch)\n                ;\n            node *r = q->rch;\n\
+    \            q->rch = r->lch;\n            r->lch = x->lch;\n            r->rch\
+    \ = x->rch;\n            delete x;\n            return r;\n        }\n       \
+    \ return x;\n    }\n\n   public:\n    ll size() {\n        return sz;\n    }\n\
+    \    node *find(T x) {\n        root = splay(root, x);\n        if (root == NULL\
+    \ || root->val != x) return NULL;\n        return root;\n    }\n    void insert(T\
+    \ x) {\n        if (!find(x)) {\n            root = insert(root, x);\n       \
+    \     sz++;\n        }\n    }\n    void erase(T x) {\n        if (find(x)) {\n\
+    \            root = erase(root, x);\n            sz--;\n        }\n    }\n   \
+    \ node *lower_bound(T x) {\n        root = splay(root, x);\n        if (root ==\
+    \ NULL || root->val >= x) return root;\n        if (root->rch == NULL) return\
+    \ NULL;\n        node *q;\n        for (q = root->rch; q->lch != NULL; q = q->lch)\n\
+    \            ;\n        return q;\n    }\n    node *upper_bound(T x) {\n     \
+    \   root = splay(root, x);\n        if (root == NULL || root->val > x) return\
+    \ root;\n        if (root->rch == NULL) return NULL;\n        node *q;\n     \
+    \   for (q = root->rch; q->lch != NULL; q = q->lch)\n            ;\n        return\
+    \ q;\n    }\n};"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/SplayTree.cpp
   requiredBy: []
-  timestamp: '2020-11-18 20:02:50+09:00'
+  timestamp: '2020-12-15 15:31:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/SplayTree.cpp

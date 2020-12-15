@@ -15,33 +15,44 @@ data:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: Sparse Table
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
-    \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
-    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
-    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
-    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
-    #line 3 \"structure/SparseTable.cpp\"\n\ntemplate<class T,T(*f)(T,T)>\nstruct\
-    \ SparseTable{\n\tvector<T>table[20];\n\tvector<int>log;\n\tSparseTable(vector<T>v)\n\
-    \t:log(v.size()+1){\n\t\tint mx=0;\n\t\twhile(1<<(mx+1)<=len(v))++mx;\n\t\trep(i,mx+1){\n\
-    \t\t\ttable[i].resize(len(v));\n\t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1<<(i-1))]);\n\
-    \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(int i=2;i<=len(v);i++)log[i]=log[i>>1]+1;\n\
-    \t}\n\tT query(int l,int r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
-    \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T,T(*f)(T,T)>\n\
-    struct SparseTable{\n\tvector<T>table[20];\n\tvector<int>log;\n\tSparseTable(vector<T>v)\n\
-    \t:log(v.size()+1){\n\t\tint mx=0;\n\t\twhile(1<<(mx+1)<=len(v))++mx;\n\t\trep(i,mx+1){\n\
-    \t\t\ttable[i].resize(len(v));\n\t\t\trep(j,v.size()-(1<<i)+1){\n\t\t\t\tif(i)table[i][j]=f(table[i-1][j],table[i-1][j+(1<<(i-1))]);\n\
-    \t\t\t\telse table[i][j]=v[j];\n\t\t\t}\n\t\t}\n\t\tfor(int i=2;i<=len(v);i++)log[i]=log[i>>1]+1;\n\
-    \t}\n\tT query(int l,int r){\n\t\treturn f(table[log[r-l]][l],table[log[r-l]][r-(1<<log[r-l])]);\n\
-    \t}\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n*/\n"
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n;\
+    \ i++)\n#define REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll\
+    \ i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
+    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
+    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\
+    \n\ntemplate <class T, T (*f)(T, T)>\nstruct SparseTable {\n    vector<T> table[20];\n\
+    \    vector<int> log;\n    SparseTable(vector<T> v)\n        : log(v.size() +\
+    \ 1) {\n        int mx = 0;\n        while (1 << (mx + 1) <= len(v)) ++mx;\n \
+    \       rep(i, mx + 1) {\n            table[i].resize(len(v));\n            rep(j,\
+    \ v.size() - (1 << i) + 1) {\n                if (i)\n                    table[i][j]\
+    \ = f(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n                else\n\
+    \                    table[i][j] = v[j];\n            }\n        }\n        for\
+    \ (int i = 2; i <= len(v); i++) log[i] = log[i >> 1] + 1;\n    }\n    T query(int\
+    \ l, int r) {\n        return f(table[log[r - l]][l], table[log[r - l]][r - (1\
+    \ << log[r - l])]);\n    }\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n\
+    */\n"
+  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate <class T,\
+    \ T (*f)(T, T)>\nstruct SparseTable {\n    vector<T> table[20];\n    vector<int>\
+    \ log;\n    SparseTable(vector<T> v)\n        : log(v.size() + 1) {\n        int\
+    \ mx = 0;\n        while (1 << (mx + 1) <= len(v)) ++mx;\n        rep(i, mx +\
+    \ 1) {\n            table[i].resize(len(v));\n            rep(j, v.size() - (1\
+    \ << i) + 1) {\n                if (i)\n                    table[i][j] = f(table[i\
+    \ - 1][j], table[i - 1][j + (1 << (i - 1))]);\n                else\n        \
+    \            table[i][j] = v[j];\n            }\n        }\n        for (int i\
+    \ = 2; i <= len(v); i++) log[i] = log[i >> 1] + 1;\n    }\n    T query(int l,\
+    \ int r) {\n        return f(table[log[r - l]][l], table[log[r - l]][r - (1 <<\
+    \ log[r - l])]);\n    }\n};\n/*\n@brief Sparse Table\n@docs docs/SparseTable.md\n\
+    */\n"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/SparseTable.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:22:56+09:00'
+  timestamp: '2020-12-15 15:31:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/SparseTable.test.cpp

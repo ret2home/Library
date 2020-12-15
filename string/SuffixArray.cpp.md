@@ -30,113 +30,160 @@ data:
     _deprecated_at_docs: docs/SuffixArray.md
     document_title: Suffix Array (SA-IS)
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include<bits/stdc++.h>\nusing\
-    \ namespace std;\n#define ll long long\n#define rep(i,n) for(ll i=0;i<n;i++)\n\
-    #define REP(i,n) for(ll i=1;i<n;i++)\n#define rev(i,n) for(ll i=n-1;i>=0;i--)\n\
-    #define all(v) v.begin(),v.end()\n#define P pair<ll,ll>\n#define len(s) (ll)s.size()\n\
-    \ \ntemplate<class T,class U> inline bool chmin(T &a, U b){\n\tif(a>b){a=b;return\
-    \ true;}\n\treturn false;\n}\ntemplate<class T,class U> inline bool chmax(T &a,\
-    \ U b){\n\tif(a<b){a=b;return true;}\n\treturn false;\n}\nconstexpr ll inf = 3e18;\n\
-    #line 3 \"string/SuffixArray.cpp\"\n\ntemplate<class T>\nclass SuffixArray{\n\t\
-    #define typeS make_pair(false,false)\n\t#define LMS make_pair(false,true)\n\t\
-    #define typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\
-    \t\tvector<TYPE>type(len(S));\n\t\ttype[len(S)-1]=LMS;\n\t\tfor(ll i=len(S)-2;i>=0;i--){\n\
-    \t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\t\t\telse if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\
-    \t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\t\t\t}else type[i]=type[i+1];\n\t\
-    \t}\n\t\treturn type;\n\t}\n\tvector<ll>getBucket(vector<ll>&S,ll alph){\n\t\t\
-    vector<ll>bucket(alph);\n\t\tfor(ll i:S)bucket[i]++;\n\t\trep(i,len(bucket)-1)bucket[i+1]+=bucket[i];\n\
-    \t\treturn bucket;\n\t}\n\tvoid sortTypeL(vector<ll>&S,vector<ll>&SA,vector<TYPE>&type,ll\
-    \ alph){\n\t\tvector<ll>bucket=getBucket(S,alph);\n\t\tfor(ll i:SA){\n\t\t\tif(i>0&&type[i-1]==typeL)SA[bucket[S[i-1]-1]++]=i-1;\n\
-    \t\t}\n\t}\n\tvoid sortTypeS(vector<ll>&S,vector<ll>&SA,vector<TYPE>&type,ll alph){\n\
-    \t\tvector<ll>bucket=getBucket(S,alph);\n\t\trev(j,len(S)){\n\t\t\tll i=SA[j];\n\
-    \t\t\tif(i>0&&(type[i-1]==typeS||type[i-1]==LMS))SA[--bucket[S[i-1]]]=i-1;\n\t\
-    \t}\n\t}\n\tvector<ll>InducedSorting(vector<ll>&S,ll alph){\n\t\tvector<ll>SA(len(S),-1);\n\
-    \t\tvector<TYPE>type=assignType(S);\n\t\tvector<ll>bucket=getBucket(S,alph);\n\
-    \t\tvector<ll>nextlms(len(S),-1),ordered_lms;\n\t\tll lastlms=-1;\n\t\trep(i,len(S))if(type[i]==LMS){\n\
-    \t\t\tSA[--bucket[S[i]]]=i;\n\t\t\tif(lastlms!=-1)nextlms[lastlms]=i;\n\t\t\t\
-    lastlms=i;\n\t\t\tordered_lms.emplace_back(i);\n\t\t}\n\t\tnextlms[lastlms]=lastlms;\n\
-    \t\tsortTypeL(S,SA,type,alph);\n\t\tsortTypeS(S,SA,type,alph);\n\t\tvector<ll>lmses;\n\
-    \t\tfor(ll i:SA)if(type[i]==LMS)lmses.emplace_back(i);\n\t\tll nowrank=0;\n\t\t\
-    vector<ll>newS={0};\n\t\tREP(i,len(lmses)){\n\t\t\tll pre=lmses[i-1],now=lmses[i];\n\
-    \t\t\tif(nextlms[pre]-pre!=nextlms[now]-now)newS.emplace_back(++nowrank);\n\t\t\
-    \telse {\n\t\t\t\tbool flag=false;\n\t\t\t\trep(j,nextlms[pre]-pre+1){\n\t\t\t\
-    \t\tif(S[pre+j]!=S[now+j]){flag=true;break;}\n\t\t\t\t}\n\t\t\t\tif(flag)newS.emplace_back(++nowrank);\n\
-    \t\t\t\telse newS.emplace_back(nowrank);\n\t\t\t}\n\t\t}\n\t\tif(nowrank+1!=len(lmses)){\n\
-    \t\t\tvector<ll>V(len(S),-1);\n\t\t\trep(i,len(lmses)){\n\t\t\t\tV[lmses[i]]=newS[i];\n\
-    \t\t\t}\n\t\t\tvector<ll>newnewS;\n\t\t\trep(i,len(S))if(V[i]!=-1)newnewS.emplace_back(V[i]);\n\
-    \t\t\tvector<ll>SA_=InducedSorting(newnewS,nowrank+1);\n\t\t\trep(i,len(SA_)){\n\
-    \t\t\t\tlmses[i]=ordered_lms[SA_[i]];\n\t\t\t}\n\t\t}\n\t\tSA.assign(len(S),-1);\n\
-    \t\tbucket=getBucket(S,alph);\n\t\trev(i,len(lmses)){\n\t\t\tSA[--bucket[S[lmses[i]]]]=lmses[i];\n\
-    \t\t}\n\t\tsortTypeL(S,SA,type,alph);\n\t\tsortTypeS(S,SA,type,alph);\n\t\treturn\
-    \ SA;\n\t}\n\tvector<ll>SA;\n\tT ST;\nprivate:\n\tll ismatch(T &S,ll index){\n\
-    \t\trep(i,len(S)){\n\t\t\tif(i+index>=len(ST))return 1;\n\t\t\tif(ST[i+index]<S[i])return\
-    \ 1;\n\t\t\tif(ST[i+index]>S[i])return -1;\n\t\t}\n\t\treturn 0;\n\t}\npublic:\n\
-    \tP occ(T &S){\n\t\tll okl=len(ST)+1,ngl=0;\n\t\twhile(okl-ngl>1){\n\t\t\tll mid=(okl+ngl)/2;\n\
-    \t\t\tif(ismatch(S,SA[mid])<=0)okl=mid;\n\t\t\telse ngl=mid;\n\t\t}\n\t\tll okr=len(ST)+1,ngr=0;\n\
-    \t\twhile(okr-ngr>1){\n\t\t\tll mid=(okr+ngr)/2;\n\t\t\tif(ismatch(S,SA[mid])<0)okr=mid;\n\
-    \t\t\telse ngr=mid;\n\t\t}\n\t\treturn P(okl,okr);\n\t}\n\tvector<ll>locate(T\
-    \ &S){\n\t\tvector<bool>v(len(ST)+1);\n\t\tP range=occ(S);\n\t\tfor(ll i=range.first;i<range.second;i++)v[SA[i]]=true;\n\
-    \t\tvector<ll>res;\n\t\trep(i,len(ST)+1)if(v[i])res.emplace_back(i);\n\t\treturn\
-    \ res;\n\t}\n\tll operator[](ll k){return SA[k];}\n\npublic:\n\tvector<ll>LCP;\n\
-    private:\n\tvoid constructLCP(){\n\t\tvector<ll>rank(len(ST)+1);\n\t\tLCP.resize(len(ST)+1);\n\
-    \t\trep(i,len(ST)+1)rank[SA[i]]=i;\n\t\tll h=0;\n\t\trep(i,len(ST)){\n\t\t\tll\
-    \ j=SA[rank[i]-1];\n\t\t\tif(h>0)h--;\n\t\t\tfor(j;j+h<len(ST)&&i+h<len(ST);h++){\n\
-    \t\t\t\tif(ST[j+h]!=ST[i+h])break;\n\t\t\t}\n\t\t\tLCP[rank[i]-1]=h;\n\t\t}\n\t\
-    }\npublic:\n\tSuffixArray(T S):ST(S){\n\t\tll mn=inf,mx=-inf;\n\t\tfor(auto i:S){\n\
-    \t\t\tchmin(mn,(ll)i);chmax(mx,(ll)i);\n\t\t}\n\t\tvector<ll>newS;\n\t\tfor(auto\
-    \ i:S)newS.emplace_back(i-mn+1);\n\t\tnewS.emplace_back(0);\n\t\tSA=InducedSorting(newS,mx-mn+2);\n\
-    \t\tconstructLCP();\n\t}\n};\n\n/*\n@brief Suffix Array (SA-IS)\n@docs docs/SuffixArray.md\n\
-    */\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate<class T>\n\
-    class SuffixArray{\n\t#define typeS make_pair(false,false)\n\t#define LMS make_pair(false,true)\n\
-    \t#define typeL make_pair(true,true)\n\tusing TYPE=pair<bool,bool>;\n\tvector<TYPE>assignType(vector<ll>&S){\n\
-    \t\tvector<TYPE>type(len(S));\n\t\ttype[len(S)-1]=LMS;\n\t\tfor(ll i=len(S)-2;i>=0;i--){\n\
-    \t\t\tif(S[i]<S[i+1])type[i]=typeS;\n\t\t\telse if(S[i]>S[i+1]){\n\t\t\t\ttype[i]=typeL;\n\
-    \t\t\t\tif(type[i+1]==typeS)type[i+1]=LMS;\n\t\t\t}else type[i]=type[i+1];\n\t\
-    \t}\n\t\treturn type;\n\t}\n\tvector<ll>getBucket(vector<ll>&S,ll alph){\n\t\t\
-    vector<ll>bucket(alph);\n\t\tfor(ll i:S)bucket[i]++;\n\t\trep(i,len(bucket)-1)bucket[i+1]+=bucket[i];\n\
-    \t\treturn bucket;\n\t}\n\tvoid sortTypeL(vector<ll>&S,vector<ll>&SA,vector<TYPE>&type,ll\
-    \ alph){\n\t\tvector<ll>bucket=getBucket(S,alph);\n\t\tfor(ll i:SA){\n\t\t\tif(i>0&&type[i-1]==typeL)SA[bucket[S[i-1]-1]++]=i-1;\n\
-    \t\t}\n\t}\n\tvoid sortTypeS(vector<ll>&S,vector<ll>&SA,vector<TYPE>&type,ll alph){\n\
-    \t\tvector<ll>bucket=getBucket(S,alph);\n\t\trev(j,len(S)){\n\t\t\tll i=SA[j];\n\
-    \t\t\tif(i>0&&(type[i-1]==typeS||type[i-1]==LMS))SA[--bucket[S[i-1]]]=i-1;\n\t\
-    \t}\n\t}\n\tvector<ll>InducedSorting(vector<ll>&S,ll alph){\n\t\tvector<ll>SA(len(S),-1);\n\
-    \t\tvector<TYPE>type=assignType(S);\n\t\tvector<ll>bucket=getBucket(S,alph);\n\
-    \t\tvector<ll>nextlms(len(S),-1),ordered_lms;\n\t\tll lastlms=-1;\n\t\trep(i,len(S))if(type[i]==LMS){\n\
-    \t\t\tSA[--bucket[S[i]]]=i;\n\t\t\tif(lastlms!=-1)nextlms[lastlms]=i;\n\t\t\t\
-    lastlms=i;\n\t\t\tordered_lms.emplace_back(i);\n\t\t}\n\t\tnextlms[lastlms]=lastlms;\n\
-    \t\tsortTypeL(S,SA,type,alph);\n\t\tsortTypeS(S,SA,type,alph);\n\t\tvector<ll>lmses;\n\
-    \t\tfor(ll i:SA)if(type[i]==LMS)lmses.emplace_back(i);\n\t\tll nowrank=0;\n\t\t\
-    vector<ll>newS={0};\n\t\tREP(i,len(lmses)){\n\t\t\tll pre=lmses[i-1],now=lmses[i];\n\
-    \t\t\tif(nextlms[pre]-pre!=nextlms[now]-now)newS.emplace_back(++nowrank);\n\t\t\
-    \telse {\n\t\t\t\tbool flag=false;\n\t\t\t\trep(j,nextlms[pre]-pre+1){\n\t\t\t\
-    \t\tif(S[pre+j]!=S[now+j]){flag=true;break;}\n\t\t\t\t}\n\t\t\t\tif(flag)newS.emplace_back(++nowrank);\n\
-    \t\t\t\telse newS.emplace_back(nowrank);\n\t\t\t}\n\t\t}\n\t\tif(nowrank+1!=len(lmses)){\n\
-    \t\t\tvector<ll>V(len(S),-1);\n\t\t\trep(i,len(lmses)){\n\t\t\t\tV[lmses[i]]=newS[i];\n\
-    \t\t\t}\n\t\t\tvector<ll>newnewS;\n\t\t\trep(i,len(S))if(V[i]!=-1)newnewS.emplace_back(V[i]);\n\
-    \t\t\tvector<ll>SA_=InducedSorting(newnewS,nowrank+1);\n\t\t\trep(i,len(SA_)){\n\
-    \t\t\t\tlmses[i]=ordered_lms[SA_[i]];\n\t\t\t}\n\t\t}\n\t\tSA.assign(len(S),-1);\n\
-    \t\tbucket=getBucket(S,alph);\n\t\trev(i,len(lmses)){\n\t\t\tSA[--bucket[S[lmses[i]]]]=lmses[i];\n\
-    \t\t}\n\t\tsortTypeL(S,SA,type,alph);\n\t\tsortTypeS(S,SA,type,alph);\n\t\treturn\
-    \ SA;\n\t}\n\tvector<ll>SA;\n\tT ST;\nprivate:\n\tll ismatch(T &S,ll index){\n\
-    \t\trep(i,len(S)){\n\t\t\tif(i+index>=len(ST))return 1;\n\t\t\tif(ST[i+index]<S[i])return\
-    \ 1;\n\t\t\tif(ST[i+index]>S[i])return -1;\n\t\t}\n\t\treturn 0;\n\t}\npublic:\n\
-    \tP occ(T &S){\n\t\tll okl=len(ST)+1,ngl=0;\n\t\twhile(okl-ngl>1){\n\t\t\tll mid=(okl+ngl)/2;\n\
-    \t\t\tif(ismatch(S,SA[mid])<=0)okl=mid;\n\t\t\telse ngl=mid;\n\t\t}\n\t\tll okr=len(ST)+1,ngr=0;\n\
-    \t\twhile(okr-ngr>1){\n\t\t\tll mid=(okr+ngr)/2;\n\t\t\tif(ismatch(S,SA[mid])<0)okr=mid;\n\
-    \t\t\telse ngr=mid;\n\t\t}\n\t\treturn P(okl,okr);\n\t}\n\tvector<ll>locate(T\
-    \ &S){\n\t\tvector<bool>v(len(ST)+1);\n\t\tP range=occ(S);\n\t\tfor(ll i=range.first;i<range.second;i++)v[SA[i]]=true;\n\
-    \t\tvector<ll>res;\n\t\trep(i,len(ST)+1)if(v[i])res.emplace_back(i);\n\t\treturn\
-    \ res;\n\t}\n\tll operator[](ll k){return SA[k];}\n\npublic:\n\tvector<ll>LCP;\n\
-    private:\n\tvoid constructLCP(){\n\t\tvector<ll>rank(len(ST)+1);\n\t\tLCP.resize(len(ST)+1);\n\
-    \t\trep(i,len(ST)+1)rank[SA[i]]=i;\n\t\tll h=0;\n\t\trep(i,len(ST)){\n\t\t\tll\
-    \ j=SA[rank[i]-1];\n\t\t\tif(h>0)h--;\n\t\t\tfor(j;j+h<len(ST)&&i+h<len(ST);h++){\n\
-    \t\t\t\tif(ST[j+h]!=ST[i+h])break;\n\t\t\t}\n\t\t\tLCP[rank[i]-1]=h;\n\t\t}\n\t\
-    }\npublic:\n\tSuffixArray(T S):ST(S){\n\t\tll mn=inf,mx=-inf;\n\t\tfor(auto i:S){\n\
-    \t\t\tchmin(mn,(ll)i);chmax(mx,(ll)i);\n\t\t}\n\t\tvector<ll>newS;\n\t\tfor(auto\
-    \ i:S)newS.emplace_back(i-mn+1);\n\t\tnewS.emplace_back(0);\n\t\tSA=InducedSorting(newS,mx-mn+2);\n\
-    \t\tconstructLCP();\n\t}\n};\n\n/*\n@brief Suffix Array (SA-IS)\n@docs docs/SuffixArray.md\n\
-    */"
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n;\
+    \ i++)\n#define REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll\
+    \ i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
+    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
+    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
+    \n\ntemplate <class T>\nclass SuffixArray {\n#define typeS make_pair(false, false)\n\
+    #define LMS make_pair(false, true)\n#define typeL make_pair(true, true)\n    using\
+    \ TYPE = pair<bool, bool>;\n    vector<TYPE> assignType(vector<ll> &S) {\n   \
+    \     vector<TYPE> type(len(S));\n        type[len(S) - 1] = LMS;\n        for\
+    \ (ll i = len(S) - 2; i >= 0; i--) {\n            if (S[i] < S[i + 1])\n     \
+    \           type[i] = typeS;\n            else if (S[i] > S[i + 1]) {\n      \
+    \          type[i] = typeL;\n                if (type[i + 1] == typeS) type[i\
+    \ + 1] = LMS;\n            } else\n                type[i] = type[i + 1];\n  \
+    \      }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll> &S,\
+    \ ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
+    \        rep(i, len(bucket) - 1) bucket[i + 1] += bucket[i];\n        return bucket;\n\
+    \    }\n    void sortTypeL(vector<ll> &S, vector<ll> &SA, vector<TYPE> &type,\
+    \ ll alph) {\n        vector<ll> bucket = getBucket(S, alph);\n        for (ll\
+    \ i : SA) {\n            if (i > 0 && type[i - 1] == typeL) SA[bucket[S[i - 1]\
+    \ - 1]++] = i - 1;\n        }\n    }\n    void sortTypeS(vector<ll> &S, vector<ll>\
+    \ &SA, vector<TYPE> &type, ll alph) {\n        vector<ll> bucket = getBucket(S,\
+    \ alph);\n        rev(j, len(S)) {\n            ll i = SA[j];\n            if\
+    \ (i > 0 && (type[i - 1] == typeS || type[i - 1] == LMS)) SA[--bucket[S[i - 1]]]\
+    \ = i - 1;\n        }\n    }\n    vector<ll> InducedSorting(vector<ll> &S, ll\
+    \ alph) {\n        vector<ll> SA(len(S), -1);\n        vector<TYPE> type = assignType(S);\n\
+    \        vector<ll> bucket = getBucket(S, alph);\n        vector<ll> nextlms(len(S),\
+    \ -1), ordered_lms;\n        ll lastlms = -1;\n        rep(i, len(S)) if (type[i]\
+    \ == LMS) {\n            SA[--bucket[S[i]]] = i;\n            if (lastlms != -1)\
+    \ nextlms[lastlms] = i;\n            lastlms = i;\n            ordered_lms.emplace_back(i);\n\
+    \        }\n        nextlms[lastlms] = lastlms;\n        sortTypeL(S, SA, type,\
+    \ alph);\n        sortTypeS(S, SA, type, alph);\n        vector<ll> lmses;\n \
+    \       for (ll i : SA)\n            if (type[i] == LMS) lmses.emplace_back(i);\n\
+    \        ll nowrank = 0;\n        vector<ll> newS = {0};\n        REP(i, len(lmses))\
+    \ {\n            ll pre = lmses[i - 1], now = lmses[i];\n            if (nextlms[pre]\
+    \ - pre != nextlms[now] - now)\n                newS.emplace_back(++nowrank);\n\
+    \            else {\n                bool flag = false;\n                rep(j,\
+    \ nextlms[pre] - pre + 1) {\n                    if (S[pre + j] != S[now + j])\
+    \ {\n                        flag = true;\n                        break;\n  \
+    \                  }\n                }\n                if (flag)\n         \
+    \           newS.emplace_back(++nowrank);\n                else\n            \
+    \        newS.emplace_back(nowrank);\n            }\n        }\n        if (nowrank\
+    \ + 1 != len(lmses)) {\n            vector<ll> V(len(S), -1);\n            rep(i,\
+    \ len(lmses)) {\n                V[lmses[i]] = newS[i];\n            }\n     \
+    \       vector<ll> newnewS;\n            rep(i, len(S)) if (V[i] != -1) newnewS.emplace_back(V[i]);\n\
+    \            vector<ll> SA_ = InducedSorting(newnewS, nowrank + 1);\n        \
+    \    rep(i, len(SA_)) {\n                lmses[i] = ordered_lms[SA_[i]];\n   \
+    \         }\n        }\n        SA.assign(len(S), -1);\n        bucket = getBucket(S,\
+    \ alph);\n        rev(i, len(lmses)) {\n            SA[--bucket[S[lmses[i]]]]\
+    \ = lmses[i];\n        }\n        sortTypeL(S, SA, type, alph);\n        sortTypeS(S,\
+    \ SA, type, alph);\n        return SA;\n    }\n    vector<ll> SA;\n    T ST;\n\
+    \n   private:\n    ll ismatch(T &S, ll index) {\n        rep(i, len(S)) {\n  \
+    \          if (i + index >= len(ST)) return 1;\n            if (ST[i + index]\
+    \ < S[i]) return 1;\n            if (ST[i + index] > S[i]) return -1;\n      \
+    \  }\n        return 0;\n    }\n\n   public:\n    P occ(T &S) {\n        ll okl\
+    \ = len(ST) + 1, ngl = 0;\n        while (okl - ngl > 1) {\n            ll mid\
+    \ = (okl + ngl) / 2;\n            if (ismatch(S, SA[mid]) <= 0)\n            \
+    \    okl = mid;\n            else\n                ngl = mid;\n        }\n   \
+    \     ll okr = len(ST) + 1, ngr = 0;\n        while (okr - ngr > 1) {\n      \
+    \      ll mid = (okr + ngr) / 2;\n            if (ismatch(S, SA[mid]) < 0)\n \
+    \               okr = mid;\n            else\n                ngr = mid;\n   \
+    \     }\n        return P(okl, okr);\n    }\n    vector<ll> locate(T &S) {\n \
+    \       vector<bool> v(len(ST) + 1);\n        P range = occ(S);\n        for (ll\
+    \ i = range.first; i < range.second; i++) v[SA[i]] = true;\n        vector<ll>\
+    \ res;\n        rep(i, len(ST) + 1) if (v[i]) res.emplace_back(i);\n        return\
+    \ res;\n    }\n    ll operator[](ll k) { return SA[k]; }\n\n   public:\n    vector<ll>\
+    \ LCP;\n\n   private:\n    void constructLCP() {\n        vector<ll> rank(len(ST)\
+    \ + 1);\n        LCP.resize(len(ST) + 1);\n        rep(i, len(ST) + 1) rank[SA[i]]\
+    \ = i;\n        ll h = 0;\n        rep(i, len(ST)) {\n            ll j = SA[rank[i]\
+    \ - 1];\n            if (h > 0) h--;\n            for (j; j + h < len(ST) && i\
+    \ + h < len(ST); h++) {\n                if (ST[j + h] != ST[i + h]) break;\n\
+    \            }\n            LCP[rank[i] - 1] = h;\n        }\n    }\n\n   public:\n\
+    \    SuffixArray(T S) : ST(S) {\n        ll mn = inf, mx = -inf;\n        for\
+    \ (auto i : S) {\n            chmin(mn, (ll)i);\n            chmax(mx, (ll)i);\n\
+    \        }\n        vector<ll> newS;\n        for (auto i : S) newS.emplace_back(i\
+    \ - mn + 1);\n        newS.emplace_back(0);\n        SA = InducedSorting(newS,\
+    \ mx - mn + 2);\n        constructLCP();\n    }\n};\n\n/*\n@brief Suffix Array\
+    \ (SA-IS)\n@docs docs/SuffixArray.md\n*/\n"
+  code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate <class T>\n\
+    class SuffixArray {\n#define typeS make_pair(false, false)\n#define LMS make_pair(false,\
+    \ true)\n#define typeL make_pair(true, true)\n    using TYPE = pair<bool, bool>;\n\
+    \    vector<TYPE> assignType(vector<ll> &S) {\n        vector<TYPE> type(len(S));\n\
+    \        type[len(S) - 1] = LMS;\n        for (ll i = len(S) - 2; i >= 0; i--)\
+    \ {\n            if (S[i] < S[i + 1])\n                type[i] = typeS;\n    \
+    \        else if (S[i] > S[i + 1]) {\n                type[i] = typeL;\n     \
+    \           if (type[i + 1] == typeS) type[i + 1] = LMS;\n            } else\n\
+    \                type[i] = type[i + 1];\n        }\n        return type;\n   \
+    \ }\n    vector<ll> getBucket(vector<ll> &S, ll alph) {\n        vector<ll> bucket(alph);\n\
+    \        for (ll i : S) bucket[i]++;\n        rep(i, len(bucket) - 1) bucket[i\
+    \ + 1] += bucket[i];\n        return bucket;\n    }\n    void sortTypeL(vector<ll>\
+    \ &S, vector<ll> &SA, vector<TYPE> &type, ll alph) {\n        vector<ll> bucket\
+    \ = getBucket(S, alph);\n        for (ll i : SA) {\n            if (i > 0 && type[i\
+    \ - 1] == typeL) SA[bucket[S[i - 1] - 1]++] = i - 1;\n        }\n    }\n    void\
+    \ sortTypeS(vector<ll> &S, vector<ll> &SA, vector<TYPE> &type, ll alph) {\n  \
+    \      vector<ll> bucket = getBucket(S, alph);\n        rev(j, len(S)) {\n   \
+    \         ll i = SA[j];\n            if (i > 0 && (type[i - 1] == typeS || type[i\
+    \ - 1] == LMS)) SA[--bucket[S[i - 1]]] = i - 1;\n        }\n    }\n    vector<ll>\
+    \ InducedSorting(vector<ll> &S, ll alph) {\n        vector<ll> SA(len(S), -1);\n\
+    \        vector<TYPE> type = assignType(S);\n        vector<ll> bucket = getBucket(S,\
+    \ alph);\n        vector<ll> nextlms(len(S), -1), ordered_lms;\n        ll lastlms\
+    \ = -1;\n        rep(i, len(S)) if (type[i] == LMS) {\n            SA[--bucket[S[i]]]\
+    \ = i;\n            if (lastlms != -1) nextlms[lastlms] = i;\n            lastlms\
+    \ = i;\n            ordered_lms.emplace_back(i);\n        }\n        nextlms[lastlms]\
+    \ = lastlms;\n        sortTypeL(S, SA, type, alph);\n        sortTypeS(S, SA,\
+    \ type, alph);\n        vector<ll> lmses;\n        for (ll i : SA)\n         \
+    \   if (type[i] == LMS) lmses.emplace_back(i);\n        ll nowrank = 0;\n    \
+    \    vector<ll> newS = {0};\n        REP(i, len(lmses)) {\n            ll pre\
+    \ = lmses[i - 1], now = lmses[i];\n            if (nextlms[pre] - pre != nextlms[now]\
+    \ - now)\n                newS.emplace_back(++nowrank);\n            else {\n\
+    \                bool flag = false;\n                rep(j, nextlms[pre] - pre\
+    \ + 1) {\n                    if (S[pre + j] != S[now + j]) {\n              \
+    \          flag = true;\n                        break;\n                    }\n\
+    \                }\n                if (flag)\n                    newS.emplace_back(++nowrank);\n\
+    \                else\n                    newS.emplace_back(nowrank);\n     \
+    \       }\n        }\n        if (nowrank + 1 != len(lmses)) {\n            vector<ll>\
+    \ V(len(S), -1);\n            rep(i, len(lmses)) {\n                V[lmses[i]]\
+    \ = newS[i];\n            }\n            vector<ll> newnewS;\n            rep(i,\
+    \ len(S)) if (V[i] != -1) newnewS.emplace_back(V[i]);\n            vector<ll>\
+    \ SA_ = InducedSorting(newnewS, nowrank + 1);\n            rep(i, len(SA_)) {\n\
+    \                lmses[i] = ordered_lms[SA_[i]];\n            }\n        }\n \
+    \       SA.assign(len(S), -1);\n        bucket = getBucket(S, alph);\n       \
+    \ rev(i, len(lmses)) {\n            SA[--bucket[S[lmses[i]]]] = lmses[i];\n  \
+    \      }\n        sortTypeL(S, SA, type, alph);\n        sortTypeS(S, SA, type,\
+    \ alph);\n        return SA;\n    }\n    vector<ll> SA;\n    T ST;\n\n   private:\n\
+    \    ll ismatch(T &S, ll index) {\n        rep(i, len(S)) {\n            if (i\
+    \ + index >= len(ST)) return 1;\n            if (ST[i + index] < S[i]) return\
+    \ 1;\n            if (ST[i + index] > S[i]) return -1;\n        }\n        return\
+    \ 0;\n    }\n\n   public:\n    P occ(T &S) {\n        ll okl = len(ST) + 1, ngl\
+    \ = 0;\n        while (okl - ngl > 1) {\n            ll mid = (okl + ngl) / 2;\n\
+    \            if (ismatch(S, SA[mid]) <= 0)\n                okl = mid;\n     \
+    \       else\n                ngl = mid;\n        }\n        ll okr = len(ST)\
+    \ + 1, ngr = 0;\n        while (okr - ngr > 1) {\n            ll mid = (okr +\
+    \ ngr) / 2;\n            if (ismatch(S, SA[mid]) < 0)\n                okr = mid;\n\
+    \            else\n                ngr = mid;\n        }\n        return P(okl,\
+    \ okr);\n    }\n    vector<ll> locate(T &S) {\n        vector<bool> v(len(ST)\
+    \ + 1);\n        P range = occ(S);\n        for (ll i = range.first; i < range.second;\
+    \ i++) v[SA[i]] = true;\n        vector<ll> res;\n        rep(i, len(ST) + 1)\
+    \ if (v[i]) res.emplace_back(i);\n        return res;\n    }\n    ll operator[](ll\
+    \ k) { return SA[k]; }\n\n   public:\n    vector<ll> LCP;\n\n   private:\n   \
+    \ void constructLCP() {\n        vector<ll> rank(len(ST) + 1);\n        LCP.resize(len(ST)\
+    \ + 1);\n        rep(i, len(ST) + 1) rank[SA[i]] = i;\n        ll h = 0;\n   \
+    \     rep(i, len(ST)) {\n            ll j = SA[rank[i] - 1];\n            if (h\
+    \ > 0) h--;\n            for (j; j + h < len(ST) && i + h < len(ST); h++) {\n\
+    \                if (ST[j + h] != ST[i + h]) break;\n            }\n         \
+    \   LCP[rank[i] - 1] = h;\n        }\n    }\n\n   public:\n    SuffixArray(T S)\
+    \ : ST(S) {\n        ll mn = inf, mx = -inf;\n        for (auto i : S) {\n   \
+    \         chmin(mn, (ll)i);\n            chmax(mx, (ll)i);\n        }\n      \
+    \  vector<ll> newS;\n        for (auto i : S) newS.emplace_back(i - mn + 1);\n\
+    \        newS.emplace_back(0);\n        SA = InducedSorting(newS, mx - mn + 2);\n\
+    \        constructLCP();\n    }\n};\n\n/*\n@brief Suffix Array (SA-IS)\n@docs\
+    \ docs/SuffixArray.md\n*/"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
@@ -144,13 +191,13 @@ data:
   requiredBy:
   - string/BWT.cpp
   - string/FM_index.cpp
-  timestamp: '2020-11-18 20:02:50+09:00'
+  timestamp: '2020-12-15 15:31:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SuffixArray.LCP.test.cpp
   - test/SuffixArray.test.cpp
-  - test/FM_index.test.cpp
   - test/SuffixArray.matching.test.cpp
+  - test/FM_index.test.cpp
 documentation_of: string/SuffixArray.cpp
 layout: document
 redirect_from:
