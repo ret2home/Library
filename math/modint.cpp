@@ -1,5 +1,6 @@
 #pragma once
 #include "../template/template.cpp"
+#include "math/extgcd.cpp"
 
 template <int MOD>
 struct mint {
@@ -50,7 +51,7 @@ struct mint {
         return res;
     }
     mint inverse() const {
-        return pow(MOD - 2);
+        return mint(modinv(n,MOD));
     }
 };
 /*

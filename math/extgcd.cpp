@@ -11,3 +11,9 @@ ll extGCD(ll a, ll b, ll &x, ll &y) {
     y -= a / b * x;
     return d;
 }
+
+ll modinv(ll a, ll m) {
+    ll x, y;
+    extGCD(a, m, x, y);
+    return (x % m + m) % m;
+}

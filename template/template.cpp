@@ -2,9 +2,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define rep(i, n) for (ll i = 0; i < n; i++)
-#define REP(i, n) for (ll i = 1; i < n; i++)
-#define rev(i, n) for (ll i = n - 1; i >= 0; i--)
+#define rep(i, n) for (int i = 0; i < n; i++)
+#define REP(i, n) for (int i = 1; i < n; i++)
+#define rev(i, n) for (int i = n - 1; i >= 0; i--)
 #define all(v) v.begin(), v.end()
 #define P pair<ll, ll>
 #define len(s) (ll) s.size()
