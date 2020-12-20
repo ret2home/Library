@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/extgcd.cpp
+    title: math/extgcd.cpp
+  - icon: ':question:'
     path: math/modint.cpp
     title: mod int
   - icon: ':question:'
@@ -14,16 +17,20 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n;\
-    \ i++)\n#define REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll\
-    \ i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
+    \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
+    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
     \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
     \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
     \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
     \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/modint.cpp\"\n\
-    \ntemplate <int MOD>\nstruct mint {\n    int32_t n;\n    mint() : n(0) {}\n  \
-    \  mint(ll x) : n(x >= 0 ? x % MOD : (MOD - (-x) % MOD) % MOD) {}\n\n    mint\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/extgcd.cpp\"\n\
+    \nll extGCD(ll a, ll b, ll &x, ll &y) {\n    if (!b) {\n        x = 1;\n     \
+    \   y = 0;\n        return a;\n    }\n    ll d = extGCD(b, a % b, y, x);\n   \
+    \ y -= a / b * x;\n    return d;\n}\n\nll modinv(ll a, ll m) {\n    ll x, y;\n\
+    \    extGCD(a, m, x, y);\n    return (x % m + m) % m;\n}\n#line 4 \"math/modint.cpp\"\
+    \n\ntemplate <int MOD>\nstruct mint {\n    int32_t n;\n    mint() : n(0) {}\n\
+    \    mint(ll x) : n(x >= 0 ? x % MOD : (MOD - (-x) % MOD) % MOD) {}\n\n    mint\
     \ &operator+=(const mint &p) {\n        if ((n += p.n) >= MOD) n -= MOD;\n   \
     \     return *this;\n    }\n    mint &operator-=(const mint &p) {\n        if\
     \ ((n += MOD - p.n) >= MOD) n -= MOD;\n        return *this;\n    }\n    mint\
@@ -41,13 +48,13 @@ data:
     \ is;\n    }\n    mint pow(int64_t x) const {\n        mint res(1), mul(n);\n\
     \        while (x > 0) {\n            if (x & 1) res *= mul;\n            mul\
     \ *= mul;\n            x >>= 1;\n        }\n        return res;\n    }\n    mint\
-    \ inverse() const {\n        return pow(MOD - 2);\n    }\n};\n/*\n@brief mod int\n\
-    @docs docs/modint.md\n*/\n#line 3 \"math/combination_big.cpp\"\n\ntemplate <int\
-    \ MOD>\nstruct BigCombination {\n    using modint = mint<MOD>;\n    modint perm(ll\
-    \ x, ll y) {\n        modint res = 1;\n        for (ll i = x - y + 1; i <= x;\
-    \ i++) res *= i;\n        return res;\n    }\n    modint comb(ll x, ll y) {\n\
-    \        if (y > x) return 0;\n        return perm(x, y) * perm(y, y).pow(MOD\
-    \ - 2);\n    }\n};\n"
+    \ inverse() const {\n        return mint(modinv(n,MOD));\n    }\n};\n/*\n@brief\
+    \ mod int\n@docs docs/modint.md\n*/\n#line 3 \"math/combination_big.cpp\"\n\n\
+    template <int MOD>\nstruct BigCombination {\n    using modint = mint<MOD>;\n \
+    \   modint perm(ll x, ll y) {\n        modint res = 1;\n        for (ll i = x\
+    \ - y + 1; i <= x; i++) res *= i;\n        return res;\n    }\n    modint comb(ll\
+    \ x, ll y) {\n        if (y > x) return 0;\n        return perm(x, y) * perm(y,\
+    \ y).pow(MOD - 2);\n    }\n};\n"
   code: "#pragma once\n#include \"modint.cpp\"\n\ntemplate <int MOD>\nstruct BigCombination\
     \ {\n    using modint = mint<MOD>;\n    modint perm(ll x, ll y) {\n        modint\
     \ res = 1;\n        for (ll i = x - y + 1; i <= x; i++) res *= i;\n        return\
@@ -56,10 +63,11 @@ data:
   dependsOn:
   - math/modint.cpp
   - template/template.cpp
+  - math/extgcd.cpp
   isVerificationFile: false
   path: math/combination_big.cpp
   requiredBy: []
-  timestamp: '2020-12-15 15:31:44+09:00'
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/combination_big.cpp

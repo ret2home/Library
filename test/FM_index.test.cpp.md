@@ -30,18 +30,18 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B
   bundledCode: "#line 1 \"test/FM_index.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B\"\
     \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n; i++)\n#define\
-    \ REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll i = n - 1; i\
-    \ >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define\
-    \ len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a,\
-    \ U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U b) {\n   \
-    \ if (a < b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\n\nclass BitVector\
-    \ {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n    ll rank(bool\
-    \ val, ll idx) {\n        uint64_t mask = ((uint64_t)1 << (idx & ((1 << 6) - 1)))\
-    \ - 1;\n        ll res = sum[idx >> 6] + __builtin_popcountll(bit[idx >> 6] &\
-    \ mask);\n        return (val ? res : idx - res);\n    }\n    BitVector(vector<bool>&\
+    \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
+    #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
+    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
+    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\n\n\
+    class BitVector {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n\
+    \    ll rank(bool val, ll idx) {\n        uint64_t mask = ((uint64_t)1 << (idx\
+    \ & ((1 << 6) - 1))) - 1;\n        ll res = sum[idx >> 6] + __builtin_popcountll(bit[idx\
+    \ >> 6] & mask);\n        return (val ? res : idx - res);\n    }\n    BitVector(vector<bool>&\
     \ v) {\n        ll sz = (len(v) >> 6) + 1;\n        bit.assign(sz, 0);\n     \
     \   sum.assign(sz, 0);\n        rep(i, len(v)) {\n            bit[i >> 6] |= (uint64_t)(v[i])\
     \ << (i & ((1 << 6) - 1));\n        }\n        rep(i, sz - 1) {\n            sum[i\
@@ -184,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/FM_index.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 15:31:44+09:00'
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/FM_index.test.cpp

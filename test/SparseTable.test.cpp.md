@@ -18,18 +18,18 @@ data:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/SparseTable.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
     \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n; i++)\n#define\
-    \ REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll i = n - 1; i\
-    \ >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define\
-    \ len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a,\
-    \ U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U b) {\n   \
-    \ if (a < b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\n\ntemplate\
-    \ <class T, T (*f)(T, T)>\nstruct SparseTable {\n    vector<T> table[20];\n  \
-    \  vector<int> log;\n    SparseTable(vector<T> v)\n        : log(v.size() + 1)\
-    \ {\n        int mx = 0;\n        while (1 << (mx + 1) <= len(v)) ++mx;\n    \
-    \    rep(i, mx + 1) {\n            table[i].resize(len(v));\n            rep(j,\
+    \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
+    #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
+    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
+    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\n\
+    \ntemplate <class T, T (*f)(T, T)>\nstruct SparseTable {\n    vector<T> table[20];\n\
+    \    vector<int> log;\n    SparseTable(vector<T> v)\n        : log(v.size() +\
+    \ 1) {\n        int mx = 0;\n        while (1 << (mx + 1) <= len(v)) ++mx;\n \
+    \       rep(i, mx + 1) {\n            table[i].resize(len(v));\n            rep(j,\
     \ v.size() - (1 << i) + 1) {\n                if (i)\n                    table[i][j]\
     \ = f(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n                else\n\
     \                    table[i][j] = v[j];\n            }\n        }\n        for\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 15:31:44+09:00'
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/SparseTable.test.cpp

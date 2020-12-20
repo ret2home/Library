@@ -18,15 +18,15 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
   bundledCode: "#line 1 \"test/MaxFlow.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\
     \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n; i++)\n#define\
-    \ REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll i = n - 1; i\
-    \ >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define\
-    \ len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a,\
-    \ U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U b) {\n   \
-    \ if (a < b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MaxFlow.cpp\"\n\nstruct Dinic {\n\
-    \    struct Edge {\n        ll to, cap, rev;\n    };\n    vector<vector<Edge>>\
+    \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
+    #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
+    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
+    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MaxFlow.cpp\"\n\nstruct\
+    \ Dinic {\n    struct Edge {\n        ll to, cap, rev;\n    };\n    vector<vector<Edge>>\
     \ G;\n    vector<ll> level, iter;\n    void addEdge(ll from, ll to, ll cap) {\n\
     \        G[from].push_back({to, cap, len(G[to])});\n        G[to].push_back({from,\
     \ 0, len(G[from]) - 1});\n    }\n    void bfs(ll s) {\n        fill(all(level),\
@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: test/MaxFlow.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 15:31:44+09:00'
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/MaxFlow.test.cpp

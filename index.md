@@ -29,7 +29,7 @@ data:
     - icon: ':warning:'
       path: math/combination_big.cpp
       title: math/combination_big.cpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math/extgcd.cpp
       title: math/extgcd.cpp
     - icon: ':heavy_check_mark:'

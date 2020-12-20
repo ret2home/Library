@@ -19,23 +19,23 @@ data:
   bundledCode: "#line 1 \"test/SuffixArray.matching.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B\"\n\n#line 2 \"template/template.cpp\"\
     \n#include <bits/stdc++.h>\nusing namespace std;\n#define ll long long\n#define\
-    \ rep(i, n) for (ll i = 0; i < n; i++)\n#define REP(i, n) for (ll i = 1; i < n;\
-    \ i++)\n#define rev(i, n) for (ll i = n - 1; i >= 0; i--)\n#define all(v) v.begin(),\
-    \ v.end()\n#define P pair<ll, ll>\n#define len(s) (ll) s.size()\n\ntemplate <class\
-    \ T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n\
-    \        return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\n\
-    inline bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return\
-    \ true;\n    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
-    \n\ntemplate <class T>\nclass SuffixArray {\n#define typeS make_pair(false, false)\n\
-    #define LMS make_pair(false, true)\n#define typeL make_pair(true, true)\n    using\
-    \ TYPE = pair<bool, bool>;\n    vector<TYPE> assignType(vector<ll> &S) {\n   \
-    \     vector<TYPE> type(len(S));\n        type[len(S) - 1] = LMS;\n        for\
-    \ (ll i = len(S) - 2; i >= 0; i--) {\n            if (S[i] < S[i + 1])\n     \
-    \           type[i] = typeS;\n            else if (S[i] > S[i + 1]) {\n      \
-    \          type[i] = typeL;\n                if (type[i + 1] == typeS) type[i\
-    \ + 1] = LMS;\n            } else\n                type[i] = type[i + 1];\n  \
-    \      }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll> &S,\
-    \ ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
+    \ rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i, n) for (int i = 1; i <\
+    \ n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0; i--)\n#define all(v)\
+    \ v.begin(), v.end()\n#define P pair<ll, ll>\n#define len(s) (ll) s.size()\n\n\
+    template <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n\
+    \        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate <class\
+    \ T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n\
+    \        return true;\n    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n\
+    #line 3 \"string/SuffixArray.cpp\"\n\ntemplate <class T>\nclass SuffixArray {\n\
+    #define typeS make_pair(false, false)\n#define LMS make_pair(false, true)\n#define\
+    \ typeL make_pair(true, true)\n    using TYPE = pair<bool, bool>;\n    vector<TYPE>\
+    \ assignType(vector<ll> &S) {\n        vector<TYPE> type(len(S));\n        type[len(S)\
+    \ - 1] = LMS;\n        for (ll i = len(S) - 2; i >= 0; i--) {\n            if\
+    \ (S[i] < S[i + 1])\n                type[i] = typeS;\n            else if (S[i]\
+    \ > S[i + 1]) {\n                type[i] = typeL;\n                if (type[i\
+    \ + 1] == typeS) type[i + 1] = LMS;\n            } else\n                type[i]\
+    \ = type[i + 1];\n        }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll>\
+    \ &S, ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
     \        rep(i, len(bucket) - 1) bucket[i + 1] += bucket[i];\n        return bucket;\n\
     \    }\n    void sortTypeL(vector<ll> &S, vector<ll> &SA, vector<TYPE> &type,\
     \ ll alph) {\n        vector<ll> bucket = getBucket(S, alph);\n        for (ll\
@@ -110,7 +110,7 @@ data:
   isVerificationFile: true
   path: test/SuffixArray.matching.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 15:31:44+09:00'
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SuffixArray.matching.test.cpp

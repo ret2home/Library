@@ -26,7 +26,7 @@ data:
   - icon: ':warning:'
     path: math/combination_big.cpp
     title: math/combination_big.cpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: math/extgcd.cpp
     title: math/extgcd.cpp
   - icon: ':heavy_check_mark:'
@@ -143,17 +143,17 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n;\
-    \ i++)\n#define REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll\
-    \ i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
+    \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
+    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
     \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
     \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
     \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
     \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
     \    return false;\n}\nconstexpr ll inf = 3e18;\n"
   code: "#pragma once\n#include <bits/stdc++.h>\nusing namespace std;\n#define ll\
-    \ long long\n#define rep(i, n) for (ll i = 0; i < n; i++)\n#define REP(i, n) for\
-    \ (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll i = n - 1; i >= 0; i--)\n\
+    \ long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i, n)\
+    \ for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define len(s) (ll)\
     \ s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n  \
     \  if (a > b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
@@ -164,54 +164,54 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy:
-  - string/SuffixArray.cpp
-  - string/BWT.cpp
-  - string/Zalgo.cpp
-  - string/FM_index.cpp
+  - structure/PersistentUnionFind.cpp
+  - structure/WaveletMatrix.cpp
+  - structure/SegmentTreeBeats.cpp
+  - structure/SparseTable.cpp
+  - structure/SplayTree.cpp
+  - structure/PartialPersistentUnionFind.cpp
+  - structure/LiChaoTree.cpp
+  - structure/Mo.cpp
+  - structure/UnionFind.cpp
+  - structure/BitVector.cpp
+  - structure/BIT.cpp
+  - structure/HLD.cpp
+  - structure/SegmentTree.cpp
+  - structure/PersistentArray.cpp
   - string/RollingHash.cpp
+  - string/BWT.cpp
+  - string/FM_index.cpp
+  - string/Zalgo.cpp
+  - string/SuffixArray.cpp
+  - graph/MaxFlow.cpp
   - graph/Tree.cpp
   - graph/MinCostFlow.cpp
   - graph/SCC.cpp
-  - graph/MaxFlow.cpp
+  - math/extgcd.cpp
+  - math/modint.cpp
   - math/CRT.cpp
   - math/factor.cpp
-  - math/Combination.cpp
-  - math/modint.cpp
-  - math/combination_big.cpp
-  - math/extgcd.cpp
   - math/FFT.cpp
-  - structure/WaveletMatrix.cpp
-  - structure/BitVector.cpp
-  - structure/BIT.cpp
-  - structure/PartialPersistentUnionFind.cpp
-  - structure/HLD.cpp
-  - structure/LiChaoTree.cpp
-  - structure/PersistentArray.cpp
-  - structure/SegmentTree.cpp
-  - structure/SparseTable.cpp
-  - structure/PersistentUnionFind.cpp
-  - structure/SplayTree.cpp
-  - structure/SegmentTreeBeats.cpp
-  - structure/UnionFind.cpp
-  - structure/Mo.cpp
-  timestamp: '2020-12-15 15:31:44+09:00'
+  - math/combination_big.cpp
+  - math/Combination.cpp
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/BIT.test.cpp
-  - test/RollingHash.test.cpp
-  - test/factor.test.cpp
-  - test/LiChaoTree.test.cpp
-  - test/SuffixArray.LCP.test.cpp
-  - test/SuffixArray.test.cpp
-  - test/SegmentTree.test.cpp
+  - test/WaveletMatrix.test.cpp
   - test/MaxFlow.test.cpp
   - test/MinCostFlow.test.cpp
   - test/UnionFind.test.cpp
-  - test/SuffixArray.matching.test.cpp
+  - test/SegmentTree.test.cpp
+  - test/LiChaoTree.test.cpp
   - test/SparseTable.test.cpp
-  - test/WaveletMatrix.test.cpp
-  - test/FM_index.test.cpp
+  - test/factor.test.cpp
+  - test/SuffixArray.LCP.test.cpp
+  - test/SuffixArray.matching.test.cpp
   - test/Combination.test.cpp
+  - test/FM_index.test.cpp
+  - test/RollingHash.test.cpp
+  - test/BIT.test.cpp
+  - test/SuffixArray.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:

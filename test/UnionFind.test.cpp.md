@@ -18,26 +18,26 @@ data:
     - https://judge.yosupo.jp/problem/unionfind
   bundledCode: "#line 1 \"test/UnionFind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
     \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n#define ll long long\n#define rep(i, n) for (ll i = 0; i < n; i++)\n#define\
-    \ REP(i, n) for (ll i = 1; i < n; i++)\n#define rev(i, n) for (ll i = n - 1; i\
-    \ >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define\
-    \ len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a,\
-    \ U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U b) {\n   \
-    \ if (a < b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\nconstexpr ll inf = 3e18;\n#line 3 \"structure/UnionFind.cpp\"\n\nclass UnionFind\
-    \ {\n    int N;\n    vector<int> par, siz;\n\n   public:\n    int find(int x)\
-    \ {\n        assert(x < N);\n        return (par[x] == x ? x : par[x] = find(par[x]));\n\
-    \    }\n    void merge(int x, int y) {\n        assert(x < N && y < N);\n    \
-    \    x = find(x);\n        y = find(y);\n        if (x == y) return;\n       \
-    \ if (siz[x] > siz[y]) swap(x, y);\n        par[x] = y;\n        siz[y] += siz[x];\n\
-    \    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n  \
-    \  }\n    int size(int x) {\n        return siz[find(x)];\n    }\n    UnionFind(int\
-    \ N) : N(N), siz(N, 1), par(N) {\n        iota(all(par), 0);\n    }\n};\n\n/*\n\
-    @brief Union Find\n@docs docs/UnionFind.md\n*/\n#line 4 \"test/UnionFind.test.cpp\"\
-    \n\nint N,Q;\nint main(){\n    cin>>N>>Q;\n    UnionFind uf(N);\n    while(Q--){\n\
-    \        int t,u,v;cin>>t>>u>>v;\n        if(!t)uf.merge(u,v);\n        else cout<<uf.same(u,v)<<\"\
-    \\n\";\n    }\n}\n"
+    \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
+    #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
+    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
+    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/UnionFind.cpp\"\n\n\
+    class UnionFind {\n    int N;\n    vector<int> par, siz;\n\n   public:\n    int\
+    \ find(int x) {\n        assert(x < N);\n        return (par[x] == x ? x : par[x]\
+    \ = find(par[x]));\n    }\n    void merge(int x, int y) {\n        assert(x <\
+    \ N && y < N);\n        x = find(x);\n        y = find(y);\n        if (x == y)\
+    \ return;\n        if (siz[x] > siz[y]) swap(x, y);\n        par[x] = y;\n   \
+    \     siz[y] += siz[x];\n    }\n    bool same(int x, int y) {\n        return\
+    \ find(x) == find(y);\n    }\n    int size(int x) {\n        return siz[find(x)];\n\
+    \    }\n    UnionFind(int N) : N(N), siz(N, 1), par(N) {\n        iota(all(par),\
+    \ 0);\n    }\n};\n\n/*\n@brief Union Find\n@docs docs/UnionFind.md\n*/\n#line\
+    \ 4 \"test/UnionFind.test.cpp\"\n\nint N,Q;\nint main(){\n    cin>>N>>Q;\n   \
+    \ UnionFind uf(N);\n    while(Q--){\n        int t,u,v;cin>>t>>u>>v;\n       \
+    \ if(!t)uf.merge(u,v);\n        else cout<<uf.same(u,v)<<\"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
     \ \"../structure/UnionFind.cpp\"\n\nint N,Q;\nint main(){\n    cin>>N>>Q;\n  \
     \  UnionFind uf(N);\n    while(Q--){\n        int t,u,v;cin>>t>>u>>v;\n      \
@@ -48,7 +48,7 @@ data:
   isVerificationFile: true
   path: test/UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 15:31:44+09:00'
+  timestamp: '2020-12-20 09:59:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/UnionFind.test.cpp
