@@ -19,53 +19,37 @@ data:
     \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
     \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
     \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/HLD.cpp\"\
-    \n\nstruct HLD {\n    struct heavy_set {\n        vector<int> ele;\n        int\
-    \ depth, par, cost1 = 0, cost2 = 0;\n        heavy_set(int v, int d, int par)\n\
-    \            : ele(1, v), depth(d), par(par) {}\n    };\n    vector<vector<int>>\
-    \ G;\n    vector<heavy_set> S;\n    vector<int> subsize, stidx, eleidx;\n    int\
-    \ subtree(int v, int p) {\n        int &sz = subsize[v];\n        if (sz) return\
-    \ sz;\n        sz = 1;\n        for (int i : G[v])\n            if (i != p) sz\
-    \ += subtree(i, v);\n        return sz;\n    }\n    void make_path(int v, int\
-    \ p, int id) {\n        stidx[v] = id;\n        eleidx[v] = S[id].ele.size() -\
-    \ 1;\n        int mxidx, mx = 0;\n        for (int i : G[v])\n            if (i\
-    \ != p) {\n                if (mx < subtree(i, v)) {\n                    mx =\
-    \ subtree(i, v);\n                    mxidx = i;\n                }\n        \
-    \    }\n        for (int i : G[v])\n            if (i != p) {\n              \
-    \  if (mxidx == i) {\n                    S[id].ele.push_back(i);\n          \
-    \          make_path(i, v, id);\n                } else {\n                  \
-    \  S.emplace_back(i, S[id].depth + 1, v);\n                    make_path(i, v,\
-    \ S.size() - 1);\n                }\n            }\n    }\n    int st(int v) {\
-    \ return stidx[v]; }\n    int el(int v) { return eleidx[v]; }\n    HLD(vector<vector<int>>\
-    \ &G) : G(G) {\n        int N = G.size();\n        subsize.resize(N);\n      \
-    \  eleidx.resize(N);\n        stidx.resize(N);\n        S.emplace_back(0, 0, 0);\n\
-    \        make_path(0, 0, 0);\n    }\n};\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n\nstruct HLD {\n   \
-    \ struct heavy_set {\n        vector<int> ele;\n        int depth, par, cost1\
-    \ = 0, cost2 = 0;\n        heavy_set(int v, int d, int par)\n            : ele(1,\
-    \ v), depth(d), par(par) {}\n    };\n    vector<vector<int>> G;\n    vector<heavy_set>\
-    \ S;\n    vector<int> subsize, stidx, eleidx;\n    int subtree(int v, int p) {\n\
-    \        int &sz = subsize[v];\n        if (sz) return sz;\n        sz = 1;\n\
-    \        for (int i : G[v])\n            if (i != p) sz += subtree(i, v);\n  \
-    \      return sz;\n    }\n    void make_path(int v, int p, int id) {\n       \
-    \ stidx[v] = id;\n        eleidx[v] = S[id].ele.size() - 1;\n        int mxidx,\
-    \ mx = 0;\n        for (int i : G[v])\n            if (i != p) {\n           \
-    \     if (mx < subtree(i, v)) {\n                    mx = subtree(i, v);\n   \
-    \                 mxidx = i;\n                }\n            }\n        for (int\
-    \ i : G[v])\n            if (i != p) {\n                if (mxidx == i) {\n  \
-    \                  S[id].ele.push_back(i);\n                    make_path(i, v,\
-    \ id);\n                } else {\n                    S.emplace_back(i, S[id].depth\
-    \ + 1, v);\n                    make_path(i, v, S.size() - 1);\n             \
-    \   }\n            }\n    }\n    int st(int v) { return stidx[v]; }\n    int el(int\
-    \ v) { return eleidx[v]; }\n    HLD(vector<vector<int>> &G) : G(G) {\n       \
-    \ int N = G.size();\n        subsize.resize(N);\n        eleidx.resize(N);\n \
-    \       stidx.resize(N);\n        S.emplace_back(0, 0, 0);\n        make_path(0,\
-    \ 0, 0);\n    }\n};\n"
+    \n\nstruct HLD{\n    vector<vector<int>>G;\n    vector<int>sz,in,out,top,par,depth;\n\
+    \    void dfs_sz(int x,int p){\n        sz[x]=1;\n        int mx=0;\n        for(int\
+    \ &i:G[x])if(i!=p){\n            dfs_sz(i,x);\n            sz[x]+=sz[i];\n   \
+    \         if(chmax(mx,sz[i]))swap(G[x][0],i);\n        }\n    }\n    int t=0;\n\
+    \    void dfs_hld(int x,int p){\n        in[x]=t++;\n        for(int i:G[x])if(i!=p){\n\
+    \            if(i!=G[x][0]){\n                par[i]=x;\n                top[i]=i;\n\
+    \                depth[i]=depth[x]+1;\n            }else {\n                par[i]=par[x];\n\
+    \                top[i]=top[x];\n                depth[i]=depth[x];\n        \
+    \    }\n            dfs_hld(i,x);\n        }\n        out[x]=t;\n    }\n    HLD(vector<vector<int>>&G):G(G){\n\
+    \        int N=len(G);\n        sz.resize(N);\n        in.resize(N);out.resize(N);\n\
+    \        par.resize(N);top.resize(N);depth.resize(N);\n        dfs_sz(0,0);dfs_hld(0,0);\n\
+    \    }\n};\n"
+  code: "#pragma once\n#include \"../template/template.cpp\"\n\nstruct HLD{\n    vector<vector<int>>G;\n\
+    \    vector<int>sz,in,out,top,par,depth;\n    void dfs_sz(int x,int p){\n    \
+    \    sz[x]=1;\n        int mx=0;\n        for(int &i:G[x])if(i!=p){\n        \
+    \    dfs_sz(i,x);\n            sz[x]+=sz[i];\n            if(chmax(mx,sz[i]))swap(G[x][0],i);\n\
+    \        }\n    }\n    int t=0;\n    void dfs_hld(int x,int p){\n        in[x]=t++;\n\
+    \        for(int i:G[x])if(i!=p){\n            if(i!=G[x][0]){\n             \
+    \   par[i]=x;\n                top[i]=i;\n                depth[i]=depth[x]+1;\n\
+    \            }else {\n                par[i]=par[x];\n                top[i]=top[x];\n\
+    \                depth[i]=depth[x];\n            }\n            dfs_hld(i,x);\n\
+    \        }\n        out[x]=t;\n    }\n    HLD(vector<vector<int>>&G):G(G){\n \
+    \       int N=len(G);\n        sz.resize(N);\n        in.resize(N);out.resize(N);\n\
+    \        par.resize(N);top.resize(N);depth.resize(N);\n        dfs_sz(0,0);dfs_hld(0,0);\n\
+    \    }\n};"
   dependsOn:
   - template/template.cpp
   isVerificationFile: false
   path: structure/HLD.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
+  timestamp: '2020-12-23 21:52:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/HLD.cpp
