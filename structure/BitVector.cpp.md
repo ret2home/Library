@@ -18,6 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/WaveletMatrix.test.cpp
     title: test/WaveletMatrix.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -27,13 +28,14 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\
-    \n\nclass BitVector {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\n\n\
+    class BitVector {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n\
     \    ll rank(bool val, ll idx) {\n        uint64_t mask = ((uint64_t)1 << (idx\
     \ & ((1 << 6) - 1))) - 1;\n        ll res = sum[idx >> 6] + __builtin_popcountll(bit[idx\
     \ >> 6] & mask);\n        return (val ? res : idx - res);\n    }\n    BitVector(vector<bool>&\
@@ -59,11 +61,11 @@ data:
   requiredBy:
   - structure/WaveletMatrix.cpp
   - string/FM_index.cpp
-  timestamp: '2020-12-20 09:59:48+09:00'
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/WaveletMatrix.test.cpp
   - test/FM_index.test.cpp
+  - test/WaveletMatrix.test.cpp
 documentation_of: structure/BitVector.cpp
 layout: document
 redirect_from:

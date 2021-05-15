@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/factor.cpp
     title: Fast Prime Factorization
   - icon: ':question:'
@@ -9,8 +9,9 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -20,8 +21,9 @@ data:
     \n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
     #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
-    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
-    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define\
+    \ all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
     \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
     \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
     \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
@@ -59,8 +61,8 @@ data:
   isVerificationFile: true
   path: test/factor.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-05-15 13:43:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/factor.test.cpp
 layout: document

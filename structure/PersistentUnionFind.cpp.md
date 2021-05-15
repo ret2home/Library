@@ -9,6 +9,7 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -16,12 +17,13 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/PersistentArray.cpp\"\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/PersistentArray.cpp\"\
     \n\ntemplate <class T>\nstruct PersistentArray {\n    struct Node {\n        T\
     \ val;\n        Node *ch[20];\n    };\n    void destructive_set(ll idx, T val,\
     \ Node *&t) {\n        if (!t) t = new Node();\n        if (idx == 0)\n      \
@@ -32,13 +34,13 @@ data:
     \ val, res->ch[idx % 20]);\n        return res;\n    }\n    T get(ll idx, Node\
     \ *t) {\n        assert(t);\n        if (!idx) return t->val;\n        return\
     \ get(idx / 20, t->ch[idx % 20]);\n    }\n};\n#line 4 \"structure/PersistentUnionFind.cpp\"\
-    \n\nstruct PersistentUnionFind {\n    using node = PersistentArray<P>::Node;\n\
-    \    PersistentArray<P> data;\n    P find(ll x, node *t) {\n        P p = data.get(x,\
+    \n\nstruct PersistentUnionFind {\n    using node = PersistentArray<PL>::Node;\n\
+    \    PersistentArray<PL> data;\n    PL find(ll x, node *t) {\n        PL p = data.get(x,\
     \ t);\n        if (p.first == x) return p;\n        p = find(p.first, t);\n  \
     \      data.set(x, p, t);\n        return p;\n    }\n    bool same(ll x, ll y,\
     \ node *t) {\n        return find(x, t) == find(y, t);\n    }\n    ll size(ll\
     \ x, node *t) {\n        return data.get(find(x, t).first, t).second;\n    }\n\
-    \    node *merge(ll x, ll y, node *t) {\n        P u = find(x, t), v = find(y,\
+    \    node *merge(ll x, ll y, node *t) {\n        PL u = find(x, t), v = find(y,\
     \ t);\n        if (u.first == v.first) return new node(*t);\n        if (u.second\
     \ > v.second) swap(u, v);\n        node *res = data.set(u.first, {v.first, u.second},\
     \ t);\n        node *res2 = data.set(v.first, {v.first, u.second + v.second},\
@@ -46,13 +48,13 @@ data:
     \ x) {\n        node *root = new node();\n        rep(i, x) {\n            data.destructive_set(i,\
     \ {i, 1}, root);\n        }\n        return root;\n    }\n};\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"PersistentArray.cpp\"\
-    \n\nstruct PersistentUnionFind {\n    using node = PersistentArray<P>::Node;\n\
-    \    PersistentArray<P> data;\n    P find(ll x, node *t) {\n        P p = data.get(x,\
+    \n\nstruct PersistentUnionFind {\n    using node = PersistentArray<PL>::Node;\n\
+    \    PersistentArray<PL> data;\n    PL find(ll x, node *t) {\n        PL p = data.get(x,\
     \ t);\n        if (p.first == x) return p;\n        p = find(p.first, t);\n  \
     \      data.set(x, p, t);\n        return p;\n    }\n    bool same(ll x, ll y,\
     \ node *t) {\n        return find(x, t) == find(y, t);\n    }\n    ll size(ll\
     \ x, node *t) {\n        return data.get(find(x, t).first, t).second;\n    }\n\
-    \    node *merge(ll x, ll y, node *t) {\n        P u = find(x, t), v = find(y,\
+    \    node *merge(ll x, ll y, node *t) {\n        PL u = find(x, t), v = find(y,\
     \ t);\n        if (u.first == v.first) return new node(*t);\n        if (u.second\
     \ > v.second) swap(u, v);\n        node *res = data.set(u.first, {v.first, u.second},\
     \ t);\n        node *res2 = data.set(v.first, {v.first, u.second + v.second},\
@@ -65,7 +67,7 @@ data:
   isVerificationFile: false
   path: structure/PersistentUnionFind.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/PersistentUnionFind.cpp

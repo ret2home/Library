@@ -29,13 +29,16 @@ data:
     - icon: ':warning:'
       path: math/combination_big.cpp
       title: math/combination_big.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: math/extgcd.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/factor.cpp
       title: Fast Prime Factorization
-    - icon: ':question:'
+    - icon: ':warning:'
+      path: math/matrix.cpp
+      title: math/matrix.cpp
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: mod int
   - name: string
@@ -81,13 +84,13 @@ data:
     - icon: ':warning:'
       path: structure/PersistentUnionFind.cpp
       title: structure/PersistentUnionFind.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/SegmentTree.cpp
       title: Lazy Segment Tree
     - icon: ':warning:'
       path: structure/SegmentTreeBeats.cpp
       title: structure/SegmentTreeBeats.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/SparseTable.cpp
       title: Sparse Table
     - icon: ':warning:'
@@ -128,10 +131,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/SegmentTree.test.cpp
       title: test/SegmentTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/SparseTable.test.cpp
       title: test/SparseTable.test.cpp
     - icon: ':heavy_check_mark:'
@@ -149,7 +152,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/WaveletMatrix.test.cpp
       title: test/WaveletMatrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/factor.test.cpp
       title: test/factor.test.cpp
 layout: toppage

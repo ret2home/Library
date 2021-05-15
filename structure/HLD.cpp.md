@@ -6,6 +6,7 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -13,14 +14,15 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/HLD.cpp\"\
-    \n\nstruct HLD{\n    vector<vector<int>>G;\n    vector<int>sz,in,out,top,par,depth;\n\
-    \    void dfs_sz(int x,int p){\n        sz[x]=1;\n        int mx=0;\n        for(int\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/HLD.cpp\"\n\nstruct\
+    \ HLD{\n    vector<vector<int>>G;\n    vector<int>sz,in,out,top,par,depth;\n \
+    \   void dfs_sz(int x,int p){\n        sz[x]=1;\n        int mx=0;\n        for(int\
     \ &i:G[x])if(i!=p){\n            dfs_sz(i,x);\n            sz[x]+=sz[i];\n   \
     \         if(chmax(mx,sz[i]))swap(G[x][0],i);\n        }\n    }\n    int t=0;\n\
     \    void dfs_hld(int x,int p){\n        in[x]=t++;\n        for(int i:G[x])if(i!=p){\n\
@@ -49,7 +51,7 @@ data:
   isVerificationFile: false
   path: structure/HLD.cpp
   requiredBy: []
-  timestamp: '2020-12-23 21:52:37+09:00'
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/HLD.cpp

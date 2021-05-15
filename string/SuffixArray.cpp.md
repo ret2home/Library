@@ -24,6 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/SuffixArray.test.cpp
     title: test/SuffixArray.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -33,13 +34,14 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
-    \n\ntemplate <class T>\nclass SuffixArray {\n#define typeS make_pair(false, false)\n\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\n\n\
+    template <class T>\nclass SuffixArray {\n#define typeS make_pair(false, false)\n\
     #define LMS make_pair(false, true)\n#define typeL make_pair(true, true)\n    using\
     \ TYPE = pair<bool, bool>;\n    vector<TYPE> assignType(vector<ll> &S) {\n   \
     \     vector<TYPE> type(len(S));\n        type[len(S) - 1] = LMS;\n        for\
@@ -87,16 +89,16 @@ data:
     \n   private:\n    ll ismatch(T &S, ll index) {\n        rep(i, len(S)) {\n  \
     \          if (i + index >= len(ST)) return 1;\n            if (ST[i + index]\
     \ < S[i]) return 1;\n            if (ST[i + index] > S[i]) return -1;\n      \
-    \  }\n        return 0;\n    }\n\n   public:\n    P occ(T &S) {\n        ll okl\
+    \  }\n        return 0;\n    }\n\n   public:\n    PL occ(T &S) {\n        ll okl\
     \ = len(ST) + 1, ngl = 0;\n        while (okl - ngl > 1) {\n            ll mid\
     \ = (okl + ngl) / 2;\n            if (ismatch(S, SA[mid]) <= 0)\n            \
     \    okl = mid;\n            else\n                ngl = mid;\n        }\n   \
     \     ll okr = len(ST) + 1, ngr = 0;\n        while (okr - ngr > 1) {\n      \
     \      ll mid = (okr + ngr) / 2;\n            if (ismatch(S, SA[mid]) < 0)\n \
     \               okr = mid;\n            else\n                ngr = mid;\n   \
-    \     }\n        return P(okl, okr);\n    }\n    vector<ll> locate(T &S) {\n \
-    \       vector<bool> v(len(ST) + 1);\n        P range = occ(S);\n        for (ll\
-    \ i = range.first; i < range.second; i++) v[SA[i]] = true;\n        vector<ll>\
+    \     }\n        return PL(okl, okr);\n    }\n    vector<ll> locate(T &S) {\n\
+    \        vector<bool> v(len(ST) + 1);\n        PL range = occ(S);\n        for\
+    \ (ll i = range.first; i < range.second; i++) v[SA[i]] = true;\n        vector<ll>\
     \ res;\n        rep(i, len(ST) + 1) if (v[i]) res.emplace_back(i);\n        return\
     \ res;\n    }\n    ll operator[](ll k) { return SA[k]; }\n\n   public:\n    vector<ll>\
     \ LCP;\n\n   private:\n    void constructLCP() {\n        vector<ll> rank(len(ST)\
@@ -160,15 +162,15 @@ data:
     \    ll ismatch(T &S, ll index) {\n        rep(i, len(S)) {\n            if (i\
     \ + index >= len(ST)) return 1;\n            if (ST[i + index] < S[i]) return\
     \ 1;\n            if (ST[i + index] > S[i]) return -1;\n        }\n        return\
-    \ 0;\n    }\n\n   public:\n    P occ(T &S) {\n        ll okl = len(ST) + 1, ngl\
+    \ 0;\n    }\n\n   public:\n    PL occ(T &S) {\n        ll okl = len(ST) + 1, ngl\
     \ = 0;\n        while (okl - ngl > 1) {\n            ll mid = (okl + ngl) / 2;\n\
     \            if (ismatch(S, SA[mid]) <= 0)\n                okl = mid;\n     \
     \       else\n                ngl = mid;\n        }\n        ll okr = len(ST)\
     \ + 1, ngr = 0;\n        while (okr - ngr > 1) {\n            ll mid = (okr +\
     \ ngr) / 2;\n            if (ismatch(S, SA[mid]) < 0)\n                okr = mid;\n\
-    \            else\n                ngr = mid;\n        }\n        return P(okl,\
+    \            else\n                ngr = mid;\n        }\n        return PL(okl,\
     \ okr);\n    }\n    vector<ll> locate(T &S) {\n        vector<bool> v(len(ST)\
-    \ + 1);\n        P range = occ(S);\n        for (ll i = range.first; i < range.second;\
+    \ + 1);\n        PL range = occ(S);\n        for (ll i = range.first; i < range.second;\
     \ i++) v[SA[i]] = true;\n        vector<ll> res;\n        rep(i, len(ST) + 1)\
     \ if (v[i]) res.emplace_back(i);\n        return res;\n    }\n    ll operator[](ll\
     \ k) { return SA[k]; }\n\n   public:\n    vector<ll> LCP;\n\n   private:\n   \
@@ -191,13 +193,13 @@ data:
   requiredBy:
   - string/BWT.cpp
   - string/FM_index.cpp
-  timestamp: '2020-12-20 09:59:48+09:00'
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/SuffixArray.LCP.test.cpp
   - test/SuffixArray.matching.test.cpp
   - test/FM_index.test.cpp
   - test/SuffixArray.test.cpp
+  - test/SuffixArray.LCP.test.cpp
 documentation_of: string/SuffixArray.cpp
 layout: document
 redirect_from:

@@ -4,32 +4,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/extgcd.cpp
     title: math/extgcd.cpp
+  - icon: ':heavy_check_mark:'
+    path: math/modint.cpp
+    title: mod int
   - icon: ':question:'
     path: template/template.cpp
     title: template/template.cpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/Combination.cpp
-    title: Combination (nCk)
-  - icon: ':warning:'
-    path: math/combination_big.cpp
-    title: math/combination_big.cpp
-  - icon: ':warning:'
-    path: math/matrix.cpp
-    title: math/matrix.cpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/Combination.test.cpp
-    title: test/Combination.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/SegmentTree.test.cpp
-    title: test/SegmentTree.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/modint.md
-    document_title: mod int
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
@@ -65,61 +51,40 @@ data:
     \ (x > 0) {\n            if (x & 1) res *= mul;\n            mul *= mul;\n   \
     \         x >>= 1;\n        }\n        return res;\n    }\n    mint inverse()\
     \ const {\n        return mint(modinv(n,MOD));\n    }\n};\n/*\n@brief mod int\n\
-    @docs docs/modint.md\n*/\n"
-  code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"math/extgcd.cpp\"\
-    \n\ntemplate <int MOD>\nstruct mint {\n    int32_t n;\n    mint() : n(0) {}\n\
-    \    mint(ll x) : n(x >= 0 ? x % MOD : (MOD - (-x) % MOD) % MOD) {}\n\n    mint\
-    \ &operator+=(const mint &p) {\n        if ((n += p.n) >= MOD) n -= MOD;\n   \
-    \     return *this;\n    }\n    mint &operator-=(const mint &p) {\n        if\
-    \ ((n += MOD - p.n) >= MOD) n -= MOD;\n        return *this;\n    }\n    mint\
-    \ &operator*=(const mint &p) {\n        n = 1ll * n * p.n % MOD;\n        return\
-    \ *this;\n    }\n    mint &operator/=(const mint &p) {\n        *this *= p.inverse();\n\
-    \        return *this;\n    }\n    mint operator-() const { return mint(-n); }\n\
-    \    mint operator+(const mint &p) const { return mint(*this) += p; }\n    mint\
-    \ operator-(const mint &p) const { return mint(*this) -= p; }\n    mint operator*(const\
-    \ mint &p) const { return mint(*this) *= p; }\n    mint operator/(const mint &p)\
-    \ const { return mint(*this) /= p; }\n    bool operator==(const mint &p) const\
-    \ { return n == p.n; }\n    bool operator!=(const mint &p) const { return n !=\
-    \ p.n; }\n\n    friend ostream &operator<<(ostream &os, const mint &p) {\n   \
-    \     return os << p.n;\n    }\n    friend istream &operator>>(istream &is, mint\
-    \ &p) {\n        int x;\n        is >> x;\n        p = mint(x);\n        return\
-    \ is;\n    }\n    mint pow(int64_t x) const {\n        mint res(1), mul(n);\n\
-    \        while (x > 0) {\n            if (x & 1) res *= mul;\n            mul\
-    \ *= mul;\n            x >>= 1;\n        }\n        return res;\n    }\n    mint\
-    \ inverse() const {\n        return mint(modinv(n,MOD));\n    }\n};\n/*\n@brief\
-    \ mod int\n@docs docs/modint.md\n*/"
+    @docs docs/modint.md\n*/\n#line 4 \"math/matrix.cpp\"\n\ntemplate<int MOD>\nstruct\
+    \ matrix{\n    using modint=mint<MOD>;\n\tvector<vector<modint>>mat;\n\tmatrix(int\
+    \ x,int y){\n\t\tmat.resize(x);\n\t\trep(i,x)mat[i].resize(y);\n\t\trep(i,x)rep(j,y)mat[i][j]=0;\n\
+    \t}\n\tmatrix operator*(matrix a){\n\t\tassert(mat[0].size()==a.mat.size());\n\
+    \t\tmatrix<MOD> res(mat.size(),a.mat[0].size());\n\t\trep(i,mat.size()){\n\t\t\
+    \trep(j,a.mat[0].size()){\n\t\t\t\trep(k,a.mat.size()){\n\t\t\t\t\tres.mat[i][j]+=mat[i][k]*a.mat[k][j];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tmatrix pow(ll x){\n\t\tassert(mat.size()==mat[0].size());\n\
+    \t\tmatrix<MOD> res(mat.size(),mat.size()),me(mat.size(),mat.size());\n\t\trep(i,mat.size())res.mat[i][i]=1;\n\
+    \t\tme.mat=mat;\n\t\twhile(x>0){\n\t\t\tif(x&1)res=res*me;\n\t\t\tme=me*me;\n\t\
+    \t\tx>>=1;\n\t\t}\n\t\treturn res;\n\t}\n};\n"
+  code: "#pragma once\n#include \"../template/template.cpp\"\n#include \"modint.cpp\"\
+    \n\ntemplate<int MOD>\nstruct matrix{\n    using modint=mint<MOD>;\n\tvector<vector<modint>>mat;\n\
+    \tmatrix(int x,int y){\n\t\tmat.resize(x);\n\t\trep(i,x)mat[i].resize(y);\n\t\t\
+    rep(i,x)rep(j,y)mat[i][j]=0;\n\t}\n\tmatrix operator*(matrix a){\n\t\tassert(mat[0].size()==a.mat.size());\n\
+    \t\tmatrix<MOD> res(mat.size(),a.mat[0].size());\n\t\trep(i,mat.size()){\n\t\t\
+    \trep(j,a.mat[0].size()){\n\t\t\t\trep(k,a.mat.size()){\n\t\t\t\t\tres.mat[i][j]+=mat[i][k]*a.mat[k][j];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tmatrix pow(ll x){\n\t\tassert(mat.size()==mat[0].size());\n\
+    \t\tmatrix<MOD> res(mat.size(),mat.size()),me(mat.size(),mat.size());\n\t\trep(i,mat.size())res.mat[i][i]=1;\n\
+    \t\tme.mat=mat;\n\t\twhile(x>0){\n\t\t\tif(x&1)res=res*me;\n\t\t\tme=me*me;\n\t\
+    \t\tx>>=1;\n\t\t}\n\t\treturn res;\n\t}\n};"
   dependsOn:
   - template/template.cpp
+  - math/modint.cpp
   - math/extgcd.cpp
   isVerificationFile: false
-  path: math/modint.cpp
-  requiredBy:
-  - math/combination_big.cpp
-  - math/Combination.cpp
-  - math/matrix.cpp
+  path: math/matrix.cpp
+  requiredBy: []
   timestamp: '2021-05-15 13:43:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/SegmentTree.test.cpp
-  - test/Combination.test.cpp
-documentation_of: math/modint.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: math/matrix.cpp
 layout: document
 redirect_from:
-- /library/math/modint.cpp
-- /library/math/modint.cpp.html
-title: mod int
+- /library/math/matrix.cpp
+- /library/math/matrix.cpp.html
+title: math/matrix.cpp
 ---
-## 概要
-
-演算で全て mod を取る整数型。mod の除算などで何も考えないで済む。
-
-- 四則演算 , 代入 ( +, -, \*, /, +=, -=, \*=, /=)
-- ```pow(x)``` : ```x``` 乗
-- ```inverse()``` : mod上の逆元
-
-## 計算量
-
-- 除算 : $O(log\ mod)$
-- ```pow(x)``` : $O(log\ n)$
-- ```inverse()``` : $O(log\ mod)$
-- その他 : $O(1)$

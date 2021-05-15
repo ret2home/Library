@@ -26,13 +26,16 @@ data:
   - icon: ':warning:'
     path: math/combination_big.cpp
     title: math/combination_big.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/extgcd.cpp
     title: math/extgcd.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/factor.cpp
     title: Fast Prime Factorization
-  - icon: ':question:'
+  - icon: ':warning:'
+    path: math/matrix.cpp
+    title: math/matrix.cpp
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: mod int
   - icon: ':heavy_check_mark:'
@@ -74,13 +77,13 @@ data:
   - icon: ':warning:'
     path: structure/PersistentUnionFind.cpp
     title: structure/PersistentUnionFind.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: structure/SegmentTree.cpp
     title: Lazy Segment Tree
   - icon: ':warning:'
     path: structure/SegmentTreeBeats.cpp
     title: structure/SegmentTreeBeats.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: structure/SparseTable.cpp
     title: Sparse Table
   - icon: ':warning:'
@@ -114,10 +117,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RollingHash.test.cpp
     title: test/RollingHash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/SegmentTree.test.cpp
     title: test/SegmentTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/SparseTable.test.cpp
     title: test/SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,9 +138,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/WaveletMatrix.test.cpp
     title: test/WaveletMatrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factor.test.cpp
     title: test/factor.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':question:'
   attributes:
@@ -145,73 +149,76 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n"
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n"
   code: "#pragma once\n#include <bits/stdc++.h>\nusing namespace std;\n#define ll\
     \ long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i, n)\
     \ for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0; i--)\n\
-    #define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n#define len(s) (ll)\
-    \ s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n  \
-    \  if (a > b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\ntemplate <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b)\
-    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr\
-    \ ll inf = 3e18;"
+    #define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(), v.end()\n\
+    #define PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\
+    \ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b)\
+    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate\
+    \ <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n     \
+    \   a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr ll inf\
+    \ = 3e18;"
   dependsOn: []
   isVerificationFile: false
   path: template/template.cpp
   requiredBy:
-  - structure/PersistentUnionFind.cpp
-  - structure/WaveletMatrix.cpp
-  - structure/SegmentTreeBeats.cpp
-  - structure/SparseTable.cpp
-  - structure/SplayTree.cpp
-  - structure/PartialPersistentUnionFind.cpp
-  - structure/LiChaoTree.cpp
-  - structure/Mo.cpp
-  - structure/UnionFind.cpp
-  - structure/BitVector.cpp
-  - structure/BIT.cpp
-  - structure/HLD.cpp
-  - structure/SegmentTree.cpp
-  - structure/PersistentArray.cpp
-  - string/RollingHash.cpp
-  - string/BWT.cpp
-  - string/FM_index.cpp
-  - string/Zalgo.cpp
-  - string/SuffixArray.cpp
-  - graph/MaxFlow.cpp
-  - graph/Tree.cpp
-  - graph/MinCostFlow.cpp
-  - graph/SCC.cpp
-  - math/extgcd.cpp
   - math/modint.cpp
+  - math/extgcd.cpp
+  - math/combination_big.cpp
+  - math/FFT.cpp
   - math/CRT.cpp
   - math/factor.cpp
-  - math/FFT.cpp
-  - math/combination_big.cpp
   - math/Combination.cpp
-  timestamp: '2020-12-20 09:59:48+09:00'
+  - math/matrix.cpp
+  - structure/BitVector.cpp
+  - structure/WaveletMatrix.cpp
+  - structure/PersistentUnionFind.cpp
+  - structure/SparseTable.cpp
+  - structure/LiChaoTree.cpp
+  - structure/SegmentTreeBeats.cpp
+  - structure/SegmentTree.cpp
+  - structure/PartialPersistentUnionFind.cpp
+  - structure/HLD.cpp
+  - structure/BIT.cpp
+  - structure/SplayTree.cpp
+  - structure/Mo.cpp
+  - structure/UnionFind.cpp
+  - structure/PersistentArray.cpp
+  - string/BWT.cpp
+  - string/SuffixArray.cpp
+  - string/RollingHash.cpp
+  - string/Zalgo.cpp
+  - string/FM_index.cpp
+  - graph/Tree.cpp
+  - graph/SCC.cpp
+  - graph/MinCostFlow.cpp
+  - graph/MaxFlow.cpp
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/WaveletMatrix.test.cpp
-  - test/MaxFlow.test.cpp
+  - test/SuffixArray.matching.test.cpp
+  - test/FM_index.test.cpp
   - test/MinCostFlow.test.cpp
-  - test/UnionFind.test.cpp
-  - test/SegmentTree.test.cpp
-  - test/LiChaoTree.test.cpp
   - test/SparseTable.test.cpp
+  - test/BIT.test.cpp
+  - test/RollingHash.test.cpp
+  - test/SegmentTree.test.cpp
+  - test/Combination.test.cpp
+  - test/MaxFlow.test.cpp
+  - test/LiChaoTree.test.cpp
+  - test/WaveletMatrix.test.cpp
+  - test/SuffixArray.test.cpp
   - test/factor.test.cpp
   - test/SuffixArray.LCP.test.cpp
-  - test/SuffixArray.matching.test.cpp
-  - test/Combination.test.cpp
-  - test/FM_index.test.cpp
-  - test/RollingHash.test.cpp
-  - test/BIT.test.cpp
-  - test/SuffixArray.test.cpp
+  - test/UnionFind.test.cpp
 documentation_of: template/template.cpp
 layout: document
 redirect_from:

@@ -6,6 +6,7 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -13,15 +14,16 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SplayTree.cpp\"\
-    \n\ntemplate <class T>\nclass SplayTree {\n    struct node {\n        T val;\n\
-    \        node *lch, *rch;\n    };\n    node *root = NULL;\n    ll sz = 0;\n  \
-    \  node *rightRotate(node *x) {\n        node *y = x->lch;\n        x->lch = y->rch;\n\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SplayTree.cpp\"\n\n\
+    template <class T>\nclass SplayTree {\n    struct node {\n        T val;\n   \
+    \     node *lch, *rch;\n    };\n    node *root = NULL;\n    ll sz = 0;\n    node\
+    \ *rightRotate(node *x) {\n        node *y = x->lch;\n        x->lch = y->rch;\n\
     \        y->rch = x;\n        return y;\n    }\n    node *leftRotate(node *x)\
     \ {\n        node *y = x->rch;\n        x->rch = y->lch;\n        y->lch = x;\n\
     \        return y;\n    }\n    node *splay(node *x, T v) {\n        if (x == NULL\
@@ -117,7 +119,7 @@ data:
   isVerificationFile: false
   path: structure/SplayTree.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/SplayTree.cpp

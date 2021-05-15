@@ -6,11 +6,12 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/SparseTable.test.cpp
     title: test/SparseTable.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: Sparse Table
@@ -18,13 +19,14 @@ data:
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
-    \ (int i = n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll,\
-    \ ll>\n#define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\
-    \n\ntemplate <class T, T (*f)(T, T)>\nstruct SparseTable {\n    vector<T> table[20];\n\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
+    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SparseTable.cpp\"\n\
+    \ntemplate <class T, T (*f)(T, T)>\nstruct SparseTable {\n    vector<T> table[20];\n\
     \    vector<int> log;\n    SparseTable(vector<T> v)\n        : log(v.size() +\
     \ 1) {\n        int mx = 0;\n        while (1 << (mx + 1) <= len(v)) ++mx;\n \
     \       rep(i, mx + 1) {\n            table[i].resize(len(v));\n            rep(j,\
@@ -52,8 +54,8 @@ data:
   isVerificationFile: false
   path: structure/SparseTable.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-05-15 13:43:26+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SparseTable.test.cpp
 documentation_of: structure/SparseTable.cpp

@@ -21,6 +21,7 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -32,8 +33,9 @@ data:
     \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
     #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
-    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
-    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define\
+    \ all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
     \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
     \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
     \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
@@ -115,16 +117,16 @@ data:
     \n   private:\n    ll ismatch(T &S, ll index) {\n        rep(i, len(S)) {\n  \
     \          if (i + index >= len(ST)) return 1;\n            if (ST[i + index]\
     \ < S[i]) return 1;\n            if (ST[i + index] > S[i]) return -1;\n      \
-    \  }\n        return 0;\n    }\n\n   public:\n    P occ(T &S) {\n        ll okl\
+    \  }\n        return 0;\n    }\n\n   public:\n    PL occ(T &S) {\n        ll okl\
     \ = len(ST) + 1, ngl = 0;\n        while (okl - ngl > 1) {\n            ll mid\
     \ = (okl + ngl) / 2;\n            if (ismatch(S, SA[mid]) <= 0)\n            \
     \    okl = mid;\n            else\n                ngl = mid;\n        }\n   \
     \     ll okr = len(ST) + 1, ngr = 0;\n        while (okr - ngr > 1) {\n      \
     \      ll mid = (okr + ngr) / 2;\n            if (ismatch(S, SA[mid]) < 0)\n \
     \               okr = mid;\n            else\n                ngr = mid;\n   \
-    \     }\n        return P(okl, okr);\n    }\n    vector<ll> locate(T &S) {\n \
-    \       vector<bool> v(len(ST) + 1);\n        P range = occ(S);\n        for (ll\
-    \ i = range.first; i < range.second; i++) v[SA[i]] = true;\n        vector<ll>\
+    \     }\n        return PL(okl, okr);\n    }\n    vector<ll> locate(T &S) {\n\
+    \        vector<bool> v(len(ST) + 1);\n        PL range = occ(S);\n        for\
+    \ (ll i = range.first; i < range.second; i++) v[SA[i]] = true;\n        vector<ll>\
     \ res;\n        rep(i, len(ST) + 1) if (v[i]) res.emplace_back(i);\n        return\
     \ res;\n    }\n    ll operator[](ll k) { return SA[k]; }\n\n   public:\n    vector<ll>\
     \ LCP;\n\n   private:\n    void constructLCP() {\n        vector<ll> rank(len(ST)\
@@ -144,7 +146,7 @@ data:
     \    }\n    return bwt;\n}\n\ntemplate <class T>\nT BWTInverse(T S) {\n    vector<ll>\
     \ B(len(S));\n    ll mx = -inf;\n    rep(i, len(S)) {\n        B[i] = (S[i] ==\
     \ '$' ? 0 : (ll)S[i]);\n        chmax(mx, B[i]);\n    }\n    vector<vector<ll>>\
-    \ BB(mx + 1), F(mx + 1);\n    vector<P> V;\n    rep(i, len(S)) {\n        BB[B[i]].push_back(i);\n\
+    \ BB(mx + 1), F(mx + 1);\n    vector<PL> V;\n    rep(i, len(S)) {\n        BB[B[i]].push_back(i);\n\
     \        F[B[i]].push_back(i);\n    }\n    ll cnt = 0;\n    rep(i, mx + 1) {\n\
     \        rep(j, len(F[i])) {\n            F[i][j] = cnt++;\n            V.push_back({i,\
     \ j});\n        }\n    }\n    ll now = BB[0][0];\n    T res;\n    rep(i, len(S)\
@@ -152,13 +154,13 @@ data:
     \    }\n    return res;\n}\n/*\n@brief Burrows Wheeler Transform\n@docs docs/BWT.md\n\
     */\n#line 5 \"string/FM_index.cpp\"\n\ntemplate <class T, class C>\nclass FMIndex\
     \ {\n    ll N, base;\n    T bwt;\n    vector<ll> c;\n    WaveletMatrix<T, C> WM;\n\
-    \    SuffixArray<T> SA;\n\n   public:\n    T ST;\n    P occ(T &S) {\n        for\
-    \ (auto i : S)\n            if ((ll)i < base || (ll)i - base >= len(c)) return\
-    \ P(0, 0);\n        ll sp = 0, ep = N;\n        rev(i, len(S)) {\n           \
-    \ sp = c[(ll)S[i] - base] + WM.rank(S[i], sp);\n            ep = c[(ll)S[i] -\
-    \ base] + WM.rank(S[i], ep);\n            if (sp >= ep) return P(0, 0);\n    \
-    \    }\n        return P(sp, ep);\n    }\n    vector<ll> locate(T &S) {\n    \
-    \    vector<bool> v(len(ST) + 1);\n        P range = occ(S);\n        for (ll\
+    \    SuffixArray<T> SA;\n\n   public:\n    T ST;\n    PL occ(T &S) {\n       \
+    \ for (auto i : S)\n            if ((ll)i < base || (ll)i - base >= len(c)) return\
+    \ PL(0, 0);\n        ll sp = 0, ep = N;\n        rev(i, len(S)) {\n          \
+    \  sp = c[(ll)S[i] - base] + WM.rank(S[i], sp);\n            ep = c[(ll)S[i] -\
+    \ base] + WM.rank(S[i], ep);\n            if (sp >= ep) return PL(0, 0);\n   \
+    \     }\n        return PL(sp, ep);\n    }\n    vector<ll> locate(T &S) {\n  \
+    \      vector<bool> v(len(ST) + 1);\n        PL range = occ(S);\n        for (ll\
     \ i = range.first; i < range.second; i++) v[SA[i]] = true;\n        vector<ll>\
     \ res;\n        rep(i, len(ST) + 1) if (v[i]) res.emplace_back(i);\n        return\
     \ res;\n    }\n    FMIndex(T S) : N(len(S) + 1), ST(S + '$'), WM(\"\", 0), SA(S)\
@@ -184,7 +186,7 @@ data:
   isVerificationFile: true
   path: test/FM_index.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
+  timestamp: '2021-05-15 13:43:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/FM_index.test.cpp

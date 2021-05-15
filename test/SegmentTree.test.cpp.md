@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/extgcd.cpp
     title: math/extgcd.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: structure/SegmentTree.cpp
     title: Lazy Segment Tree
   - icon: ':question:'
@@ -15,8 +15,9 @@ data:
     title: template/template.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -26,8 +27,9 @@ data:
     \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
     #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
-    \ n - 1; i >= 0; i--)\n#define all(v) v.begin(), v.end()\n#define P pair<ll, ll>\n\
-    #define len(s) (ll) s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
+    \ n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define\
+    \ all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
+    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
     \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
     \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
     \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
@@ -64,36 +66,41 @@ data:
     \ (r <= a || b <= l || !check(dat[k], x)) return -1;\n        if (r - l == 1)\
     \ return l;\n        int rv = maxRight(a, b, check, x, (k << 1) + 2, (l + r) >>\
     \ 1, r);\n        if (rv != -1) return rv;\n        return maxRight(a, b, check,\
-    \ x, (k << 1) + 1, l, (l + r) >> 1);\n    }\n    Segtree(int x, Monoid M, OperatorMonoid\
-    \ OM)\n        : M(M), OM(OM) {\n        while (size < x) size <<= 1;\n      \
-    \  dat.resize((size << 1) - 1, M);\n        lazy.resize((size << 1) - 1, OM);\n\
-    \    }\n};\n\n/*\n@brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/\n#line\
-    \ 3 \"math/extgcd.cpp\"\n\nll extGCD(ll a, ll b, ll &x, ll &y) {\n    if (!b)\
-    \ {\n        x = 1;\n        y = 0;\n        return a;\n    }\n    ll d = extGCD(b,\
-    \ a % b, y, x);\n    y -= a / b * x;\n    return d;\n}\n\nll modinv(ll a, ll m)\
-    \ {\n    ll x, y;\n    extGCD(a, m, x, y);\n    return (x % m + m) % m;\n}\n#line\
-    \ 4 \"math/modint.cpp\"\n\ntemplate <int MOD>\nstruct mint {\n    int32_t n;\n\
-    \    mint() : n(0) {}\n    mint(ll x) : n(x >= 0 ? x % MOD : (MOD - (-x) % MOD)\
-    \ % MOD) {}\n\n    mint &operator+=(const mint &p) {\n        if ((n += p.n) >=\
-    \ MOD) n -= MOD;\n        return *this;\n    }\n    mint &operator-=(const mint\
-    \ &p) {\n        if ((n += MOD - p.n) >= MOD) n -= MOD;\n        return *this;\n\
-    \    }\n    mint &operator*=(const mint &p) {\n        n = 1ll * n * p.n % MOD;\n\
-    \        return *this;\n    }\n    mint &operator/=(const mint &p) {\n       \
-    \ *this *= p.inverse();\n        return *this;\n    }\n    mint operator-() const\
-    \ { return mint(-n); }\n    mint operator+(const mint &p) const { return mint(*this)\
-    \ += p; }\n    mint operator-(const mint &p) const { return mint(*this) -= p;\
-    \ }\n    mint operator*(const mint &p) const { return mint(*this) *= p; }\n  \
-    \  mint operator/(const mint &p) const { return mint(*this) /= p; }\n    bool\
-    \ operator==(const mint &p) const { return n == p.n; }\n    bool operator!=(const\
-    \ mint &p) const { return n != p.n; }\n\n    friend ostream &operator<<(ostream\
-    \ &os, const mint &p) {\n        return os << p.n;\n    }\n    friend istream\
-    \ &operator>>(istream &is, mint &p) {\n        int x;\n        is >> x;\n    \
-    \    p = mint(x);\n        return is;\n    }\n    mint pow(int64_t x) const {\n\
-    \        mint res(1), mul(n);\n        while (x > 0) {\n            if (x & 1)\
-    \ res *= mul;\n            mul *= mul;\n            x >>= 1;\n        }\n    \
-    \    return res;\n    }\n    mint inverse() const {\n        return mint(modinv(n,MOD));\n\
-    \    }\n};\n/*\n@brief mod int\n@docs docs/modint.md\n*/\n#line 5 \"test/SegmentTree.test.cpp\"\
-    \n\nconstexpr int mod=998244353;\n\nusing modint=mint<mod>;\n \nusing PM=pair<modint,modint>;\n\
+    \ x, (k << 1) + 1, l, (l + r) >> 1);\n    }\n    void set(int a, Monoid x) {\n\
+    \        dat[a + size - 1] = x;\n    }\n    void init(int k = 0, int l = 0, int\
+    \ r = -1) {\n        if (r == -1) r = size;\n        if (r - l == 1) return;\n\
+    \        init((k << 1) + 1, l, (l + r) >> 1);\n        init((k << 1) + 2, (l +\
+    \ r) >> 1, r);\n        dat[k] = f(dat[k * 2 + 1], dat[k * 2 + 2], r - l);\n \
+    \   }\n    Segtree(int x, Monoid M, OperatorMonoid OM)\n        : M(M), OM(OM)\
+    \ {\n        while (size < x) size <<= 1;\n        dat.resize((size << 1) - 1,\
+    \ M);\n        lazy.resize((size << 1) - 1, OM);\n    }\n};\n\n/*\n@brief Lazy\
+    \ Segment Tree\n@docs docs/SegmentTree.md\n*/\n#line 3 \"math/extgcd.cpp\"\n\n\
+    ll extGCD(ll a, ll b, ll &x, ll &y) {\n    if (!b) {\n        x = 1;\n       \
+    \ y = 0;\n        return a;\n    }\n    ll d = extGCD(b, a % b, y, x);\n    y\
+    \ -= a / b * x;\n    return d;\n}\n\nll modinv(ll a, ll m) {\n    ll x, y;\n \
+    \   extGCD(a, m, x, y);\n    return (x % m + m) % m;\n}\n#line 4 \"math/modint.cpp\"\
+    \n\ntemplate <int MOD>\nstruct mint {\n    int32_t n;\n    mint() : n(0) {}\n\
+    \    mint(ll x) : n(x >= 0 ? x % MOD : (MOD - (-x) % MOD) % MOD) {}\n\n    mint\
+    \ &operator+=(const mint &p) {\n        if ((n += p.n) >= MOD) n -= MOD;\n   \
+    \     return *this;\n    }\n    mint &operator-=(const mint &p) {\n        if\
+    \ ((n += MOD - p.n) >= MOD) n -= MOD;\n        return *this;\n    }\n    mint\
+    \ &operator*=(const mint &p) {\n        n = 1ll * n * p.n % MOD;\n        return\
+    \ *this;\n    }\n    mint &operator/=(const mint &p) {\n        *this *= p.inverse();\n\
+    \        return *this;\n    }\n    mint operator-() const { return mint(-n); }\n\
+    \    mint operator+(const mint &p) const { return mint(*this) += p; }\n    mint\
+    \ operator-(const mint &p) const { return mint(*this) -= p; }\n    mint operator*(const\
+    \ mint &p) const { return mint(*this) *= p; }\n    mint operator/(const mint &p)\
+    \ const { return mint(*this) /= p; }\n    bool operator==(const mint &p) const\
+    \ { return n == p.n; }\n    bool operator!=(const mint &p) const { return n !=\
+    \ p.n; }\n\n    friend ostream &operator<<(ostream &os, const mint &p) {\n   \
+    \     return os << p.n;\n    }\n    friend istream &operator>>(istream &is, mint\
+    \ &p) {\n        int x;\n        is >> x;\n        p = mint(x);\n        return\
+    \ is;\n    }\n    mint pow(int64_t x) const {\n        mint res(1), mul(n);\n\
+    \        while (x > 0) {\n            if (x & 1) res *= mul;\n            mul\
+    \ *= mul;\n            x >>= 1;\n        }\n        return res;\n    }\n    mint\
+    \ inverse() const {\n        return mint(modinv(n,MOD));\n    }\n};\n/*\n@brief\
+    \ mod int\n@docs docs/modint.md\n*/\n#line 5 \"test/SegmentTree.test.cpp\"\n\n\
+    constexpr int mod=998244353;\n\nusing modint=mint<mod>;\n \nusing PM=pair<modint,modint>;\n\
     auto f=[](modint a,modint b,int sz)->modint{return a+b;};\nauto g=[](modint a,PM\
     \ b,int sz)->modint{return a*b.first+b.second*modint(sz);};\nauto h=[](PM a,PM\
     \ b,int sz)->PM{return PM(a.first*b.first,a.second*b.first+b.second);};\n \nint\
@@ -123,8 +130,8 @@ data:
   isVerificationFile: true
   path: test/SegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:59:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-05-15 13:43:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SegmentTree.test.cpp
 layout: document
