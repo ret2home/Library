@@ -1,13 +1,14 @@
 #pragma once
 #include "../template/template.cpp"
 
+template<typename T,T INF>
 struct SegtreeBeats {
     int size = 1;
 
    private:
-    vector<ll> mx, smx, mxc;
-    vector<ll> mn, smn, mnc;
-    vector<ll> sum, lazy;
+    vector<T> mx, smx, mxc;
+    vector<T> mn, smn, mnc;
+    vector<T> sum, lazy;
     vector<bool> flag;
 
     void update(int k) {
@@ -37,7 +38,7 @@ struct SegtreeBeats {
             smn[k] = min(smn[2 * k + 1], smn[2 * k + 2]);
         }
     }
-    void updateNodeMax(int k, ll x) {
+    void updateNodeMax(int k, T x) {
         sum[k] += (x - mx[k]) * mxc[k];
         if (mx[k] == mn[k]) {
             mx[k] = mn[k] = x;
@@ -47,7 +48,7 @@ struct SegtreeBeats {
             mx[k] = x;
         }
     }
-    void updateNodeMin(int k, ll x) {
+    void updateNodeMin(int k, T x) {
         sum[k] += (x - mn[k]) * mnc[k];
         if (mx[k] == mn[k]) {
             mx[k] = mn[k] = x;
@@ -57,20 +58,20 @@ struct SegtreeBeats {
             mn[k] = x;
         }
     }
-    void updateNodeAdd(int k, int len, ll x) {
+    void updateNodeAdd(int k, int len, T x) {
         mx[k] += x;
-        if (smx[k] != -inf) smx[k] += x;
+        if (smx[k] != -INF) smx[k] += x;
         mn[k] += x;
-        if (smn[k] != inf) smn[k] += x;
+        if (smn[k] != INF) smn[k] += x;
         sum[k] += x * len;
         lazy[k] += x;
     }
-    void updateNodeAssign(int k, int len, ll x) {
+    void updateNodeAssign(int k, int len, T x) {
         mx[k] = x;
-        smx[k] = -inf;
+        smx[k] = -INF;
         mxc[k] = len;
         mn[k] = x;
-        smn[k] = inf;
+        smn[k] = INF;
         mnc[k] = len;
         sum[k] = x * len;
         lazy[k] = x;
@@ -96,7 +97,7 @@ struct SegtreeBeats {
     }
 
    public:
-    void updateMin(int a, int b, ll x, int k = 0, int l = 0, int r = -1) {
+    void updateMin(int a, int b, T x, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
         if (r <= a || b <= l || mx[k] <= x) return;
         if (a <= l && r <= b && smx[k] < x) {
@@ -108,7 +109,7 @@ struct SegtreeBeats {
         updateMin(a, b, x, k * 2 + 2, (l + r) / 2, r);
         update(k);
     }
-    void updateMax(int a, int b, ll x, int k = 0, int l = 0, int r = -1) {
+    void updateMax(int a, int b, T x, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
         if (r <= a || b <= l || mn[k] >= x) return;
         if (a <= l && r <= b && smn[k] > x) {
@@ -120,7 +121,7 @@ struct SegtreeBeats {
         updateMax(a, b, x, k * 2 + 2, (l + r) / 2, r);
         update(k);
     }
-    void updateAdd(int a, int b, ll x, int k = 0, int l = 0, int r = -1) {
+    void updateAdd(int a, int b, T x, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
         if (r <= a || b <= l) return;
         if (a <= l && r <= b) {
@@ -132,7 +133,7 @@ struct SegtreeBeats {
         updateAdd(a, b, x, k * 2 + 2, (l + r) / 2, r);
         update(k);
     }
-    void updateAssign(int a, int b, ll x, int k = 0, int l = 0, int r = -1) {
+    void updateAssign(int a, int b, T x, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
         if (r <= a || b <= l) return;
         if (a <= l && r <= b) {
@@ -145,49 +146,49 @@ struct SegtreeBeats {
         update(k);
     }
 
-    void set(int k, ll x) {
+    void set(int k, T x) {
         k += size - 1;
         mx[k] = x;
         mn[k] = x;
         sum[k] = x;
     }
     void init() {
-        for (ll i = size - 2; i >= 0; i--) update(i);
+        for (T i = size - 2; i >= 0; i--) update(i);
     }
-    ll queryMin(int a, int b, int k = 0, int l = 0, int r = -1) {
+    T queryMin(int a, int b, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
-        if (r <= a || b <= l) return inf;
+        if (r <= a || b <= l) return INF;
         if (a <= l && r <= b) return mn[k];
         push(k, r - l);
-        ll lv = queryMin(a, b, k * 2 + 1, l, (l + r) / 2);
-        ll rv = queryMin(a, b, k * 2 + 2, (l + r) / 2, r);
+        T lv = queryMin(a, b, k * 2 + 1, l, (l + r) / 2);
+        T rv = queryMin(a, b, k * 2 + 2, (l + r) / 2, r);
         return min(lv, rv);
     }
-    ll queryMax(int a, int b, int k = 0, int l = 0, int r = -1) {
+    T queryMax(int a, int b, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
-        if (r <= a || b <= l) return -inf;
+        if (r <= a || b <= l) return -INF;
         if (a <= l && r <= b) return mx[k];
         push(k, r - l);
-        ll lv = queryMax(a, b, k * 2 + 1, l, (l + r) / 2);
-        ll rv = queryMax(a, b, k * 2 + 2, (l + r) / 2, r);
+        T lv = queryMax(a, b, k * 2 + 1, l, (l + r) / 2);
+        T rv = queryMax(a, b, k * 2 + 2, (l + r) / 2, r);
         return max(lv, rv);
     }
-    ll querySum(int a, int b, int k = 0, int l = 0, int r = -1) {
+    T querySum(int a, int b, int k = 0, int l = 0, int r = -1) {
         if (r == -1) r = size;
         if (r <= a || b <= l) return 0;
         if (a <= l && r <= b) return sum[k];
         push(k, r - l);
-        ll lv = querySum(a, b, k * 2 + 1, l, (l + r) / 2);
-        ll rv = querySum(a, b, k * 2 + 2, (l + r) / 2, r);
+        T lv = querySum(a, b, k * 2 + 1, l, (l + r) / 2);
+        T rv = querySum(a, b, k * 2 + 2, (l + r) / 2, r);
         return lv + rv;
     }
     SegtreeBeats(int x) {
         while (size < x) size *= 2;
-        mx.resize(size * 2 - 1, -inf + 1);
-        smx.resize(size * 2 - 1, -inf);
+        mx.resize(size * 2 - 1, -INF + 1);
+        smx.resize(size * 2 - 1, -INF);
         mxc.resize(size * 2 - 1, 1);
-        mn.resize(size * 2 - 1, inf - 1);
-        smn.resize(size * 2 - 1, inf);
+        mn.resize(size * 2 - 1, INF - 1);
+        smn.resize(size * 2 - 1, INF);
         mnc.resize(size * 2 - 1, 1);
         sum.resize(size * 2 - 1);
         lazy.resize(size * 2 - 1);

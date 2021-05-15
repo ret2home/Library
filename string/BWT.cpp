@@ -21,7 +21,7 @@ T BWTInverse(T S) {
         chmax(mx, B[i]);
     }
     vector<vector<ll>> BB(mx + 1), F(mx + 1);
-    vector<P> V;
+    vector<PL> V;
     rep(i, len(S)) {
         BB[B[i]].push_back(i);
         F[B[i]].push_back(i);

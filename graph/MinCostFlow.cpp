@@ -43,10 +43,10 @@ struct PrimalDual {
         while (f > 0) {
             minCost.assign(V, inf);
             minCost[s] = 0;
-            priority_queue<P, vector<P>, greater<>> que;
+            priority_queue<PL, vector<PL>, greater<>> que;
             que.push({0, s});
             while (!que.empty()) {
-                P p = que.top();
+                PL p = que.top();
                 que.pop();
                 if (minCost[p.second] < p.first) continue;
                 rep(i, len(graph[p.second])) {

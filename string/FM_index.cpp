@@ -13,20 +13,20 @@ class FMIndex {
 
    public:
     T ST;
-    P occ(T &S) {
+    PL occ(T &S) {
         for (auto i : S)
-            if ((ll)i < base || (ll)i - base >= len(c)) return P(0, 0);
+            if ((ll)i < base || (ll)i - base >= len(c)) return PL(0, 0);
         ll sp = 0, ep = N;
         rev(i, len(S)) {
             sp = c[(ll)S[i] - base] + WM.rank(S[i], sp);
             ep = c[(ll)S[i] - base] + WM.rank(S[i], ep);
-            if (sp >= ep) return P(0, 0);
+            if (sp >= ep) return PL(0, 0);
         }
-        return P(sp, ep);
+        return PL(sp, ep);
     }
     vector<ll> locate(T &S) {
         vector<bool> v(len(ST) + 1);
-        P range = occ(S);
+        PL range = occ(S);
         for (ll i = range.first; i < range.second; i++) v[SA[i]] = true;
         vector<ll> res;
         rep(i, len(ST) + 1) if (v[i]) res.emplace_back(i);

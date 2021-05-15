@@ -68,6 +68,16 @@ struct Segtree {
         if (rv != -1) return rv;
         return maxRight(a, b, check, x, (k << 1) + 1, l, (l + r) >> 1);
     }
+    void set(int a, Monoid x) {
+        dat[a + size - 1] = x;
+    }
+    void init(int k = 0, int l = 0, int r = -1) {
+        if (r == -1) r = size;
+        if (r - l == 1) return;
+        init((k << 1) + 1, l, (l + r) >> 1);
+        init((k << 1) + 2, (l + r) >> 1, r);
+        dat[k] = f(dat[k * 2 + 1], dat[k * 2 + 2], r - l);
+    }
     Segtree(int x, Monoid M, OperatorMonoid OM)
         : M(M), OM(OM) {
         while (size < x) size <<= 1;

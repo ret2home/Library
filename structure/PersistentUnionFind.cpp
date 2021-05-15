@@ -3,10 +3,10 @@
 #include "PersistentArray.cpp"
 
 struct PersistentUnionFind {
-    using node = PersistentArray<P>::Node;
-    PersistentArray<P> data;
-    P find(ll x, node *t) {
-        P p = data.get(x, t);
+    using node = PersistentArray<PL>::Node;
+    PersistentArray<PL> data;
+    PL find(ll x, node *t) {
+        PL p = data.get(x, t);
         if (p.first == x) return p;
         p = find(p.first, t);
         data.set(x, p, t);
@@ -19,7 +19,7 @@ struct PersistentUnionFind {
         return data.get(find(x, t).first, t).second;
     }
     node *merge(ll x, ll y, node *t) {
-        P u = find(x, t), v = find(y, t);
+        PL u = find(x, t), v = find(y, t);
         if (u.first == v.first) return new node(*t);
         if (u.second > v.second) swap(u, v);
         node *res = data.set(u.first, {v.first, u.second}, t);

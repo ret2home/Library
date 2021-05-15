@@ -113,7 +113,7 @@ class SuffixArray {
     }
 
    public:
-    P occ(T &S) {
+    PL occ(T &S) {
         ll okl = len(ST) + 1, ngl = 0;
         while (okl - ngl > 1) {
             ll mid = (okl + ngl) / 2;
@@ -130,11 +130,11 @@ class SuffixArray {
             else
                 ngr = mid;
         }
-        return P(okl, okr);
+        return PL(okl, okr);
     }
     vector<ll> locate(T &S) {
         vector<bool> v(len(ST) + 1);
-        P range = occ(S);
+        PL range = occ(S);
         for (ll i = range.first; i < range.second; i++) v[SA[i]] = true;
         vector<ll> res;
         rep(i, len(ST) + 1) if (v[i]) res.emplace_back(i);

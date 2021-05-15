@@ -4,7 +4,7 @@
 struct PartialPersistentUnionFind {
     ll version = 0;
     vector<ll> tim, par;
-    vector<vector<P>> siz;
+    vector<vector<PL>> siz;
     ll find(ll x, ll t) {
         if (tim[x] > t) return x;
         return find(par[x], t);
@@ -14,7 +14,7 @@ struct PartialPersistentUnionFind {
     }
     ll size(ll x, ll t) {
         x = find(x, t);
-        return (--upper_bound(all(siz[x]), P(t, inf)))->second;
+        return (--upper_bound(all(siz[x]), PL(t, inf)))->second;
     }
     void merge(ll x, ll y) {
         version++;
@@ -31,7 +31,7 @@ struct PartialPersistentUnionFind {
         siz.resize(x);
         rep(i, x) {
             par.push_back(i);
-            siz[i].push_back(P(0, 1));
+            siz[i].push_back(PL(0, 1));
         }
     }
 };
