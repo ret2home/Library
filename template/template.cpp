@@ -10,6 +10,8 @@ using namespace std;
 #define PL pair<ll, ll>
 #define PI pair<int,int>
 #define len(s) (int)s.size()
+#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());
+#define comid(v,x) lower_bound(all(v),x)-v.begin()
 
 template <class T, class U>
 inline bool chmin(T &a, U b) {

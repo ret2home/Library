@@ -3,17 +3,17 @@
 #include "modint.cpp"
 
 template<int MOD>
-struct matrix{
+struct Matrix{
     using modint=mint<MOD>;
 	vector<vector<modint>>mat;
-	matrix(int x,int y){
+	Matrix(int x,int y){
 		mat.resize(x);
 		rep(i,x)mat[i].resize(y);
 		rep(i,x)rep(j,y)mat[i][j]=0;
 	}
-	matrix operator*(matrix a){
+	Matrix operator*(Matrix a){
 		assert(mat[0].size()==a.mat.size());
-		matrix<MOD> res(mat.size(),a.mat[0].size());
+		Matrix<MOD> res(mat.size(),a.mat[0].size());
 		rep(i,mat.size()){
 			rep(j,a.mat[0].size()){
 				rep(k,a.mat.size()){
@@ -23,9 +23,9 @@ struct matrix{
 		}
 		return res;
 	}
-	matrix pow(ll x){
+	Matrix pow(ll x){
 		assert(mat.size()==mat[0].size());
-		matrix<MOD> res(mat.size(),mat.size()),me(mat.size(),mat.size());
+		Matrix<MOD> res(mat.size(),mat.size()),me(mat.size(),mat.size());
 		rep(i,mat.size())res.mat[i][i]=1;
 		me.mat=mat;
 		while(x>0){
@@ -35,4 +35,7 @@ struct matrix{
 		}
 		return res;
 	}
+    vector<modint>& operator[](int x){
+        return mat[x];
+    }
 };
