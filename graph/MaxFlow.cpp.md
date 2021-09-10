@@ -21,12 +21,13 @@ data:
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
     \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MaxFlow.cpp\"\n\nstruct\
-    \ Dinic {\n    struct Edge {\n        ll to, cap, rev;\n    };\n    vector<vector<Edge>>\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MaxFlow.cpp\"\
+    \n\nstruct Dinic {\n    struct Edge {\n        ll to, cap, rev;\n    };\n    vector<vector<Edge>>\
     \ G;\n    vector<ll> level, iter;\n    void addEdge(ll from, ll to, ll cap) {\n\
     \        G[from].push_back({to, cap, len(G[to])});\n        G[to].push_back({from,\
     \ 0, len(G[from]) - 1});\n    }\n    void bfs(ll s) {\n        fill(all(level),\
@@ -74,7 +75,7 @@ data:
   isVerificationFile: false
   path: graph/MaxFlow.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/MaxFlow.test.cpp

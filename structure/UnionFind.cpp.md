@@ -21,17 +21,18 @@ data:
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
     \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/UnionFind.cpp\"\n\n\
-    class UnionFind {\n    int N;\n    vector<int> par, siz;\n\n   public:\n    int\
-    \ find(int x) {\n        assert(x < N);\n        return (par[x] == x ? x : par[x]\
-    \ = find(par[x]));\n    }\n    void merge(int x, int y) {\n        assert(x <\
-    \ N && y < N);\n        x = find(x);\n        y = find(y);\n        if (x == y)\
-    \ return;\n        if (siz[x] > siz[y]) swap(x, y);\n        par[x] = y;\n   \
-    \     siz[y] += siz[x];\n    }\n    bool same(int x, int y) {\n        return\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/UnionFind.cpp\"\
+    \n\nclass UnionFind {\n    int N;\n    vector<int> par, siz;\n\n   public:\n \
+    \   int find(int x) {\n        assert(x < N);\n        return (par[x] == x ? x\
+    \ : par[x] = find(par[x]));\n    }\n    void merge(int x, int y) {\n        assert(x\
+    \ < N && y < N);\n        x = find(x);\n        y = find(y);\n        if (x ==\
+    \ y) return;\n        if (siz[x] > siz[y]) swap(x, y);\n        par[x] = y;\n\
+    \        siz[y] += siz[x];\n    }\n    bool same(int x, int y) {\n        return\
     \ find(x) == find(y);\n    }\n    int size(int x) {\n        return siz[find(x)];\n\
     \    }\n    UnionFind(int N) : N(N), siz(N, 1), par(N) {\n        iota(all(par),\
     \ 0);\n    }\n};\n\n/*\n@brief Union Find\n@docs docs/UnionFind.md\n*/\n"
@@ -50,7 +51,7 @@ data:
   isVerificationFile: false
   path: structure/UnionFind.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/UnionFind.test.cpp

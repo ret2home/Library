@@ -16,11 +16,12 @@ data:
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
     \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SegmentTreeBeats.cpp\"\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SegmentTreeBeats.cpp\"\
     \n\ntemplate<typename T,T INF>\nstruct SegtreeBeats {\n    int size = 1;\n\n \
     \  private:\n    vector<T> mx, smx, mxc;\n    vector<T> mn, smn, mnc;\n    vector<T>\
     \ sum, lazy;\n    vector<bool> flag;\n\n    void update(int k) {\n        sum[k]\
@@ -195,7 +196,7 @@ data:
   isVerificationFile: false
   path: structure/SegmentTreeBeats.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/SegmentTreeBeats.cpp

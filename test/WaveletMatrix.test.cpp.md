@@ -26,12 +26,13 @@ data:
     #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
     \ n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define\
     \ all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\n\n\
-    class BitVector {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\
+    \n\nclass BitVector {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n\
     \    ll rank(bool val, ll idx) {\n        uint64_t mask = ((uint64_t)1 << (idx\
     \ & ((1 << 6) - 1))) - 1;\n        ll res = sum[idx >> 6] + __builtin_popcountll(bit[idx\
     \ >> 6] & mask);\n        return (val ? res : idx - res);\n    }\n    BitVector(vector<bool>&\
@@ -76,7 +77,7 @@ data:
   isVerificationFile: true
   path: test/WaveletMatrix.test.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/WaveletMatrix.test.cpp

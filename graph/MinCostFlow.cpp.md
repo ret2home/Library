@@ -21,27 +21,28 @@ data:
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
     \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MinCostFlow.cpp\"\n\nstruct\
-    \ PrimalDual {\n    struct edge {\n        ll to, cap, cost, rev;\n    };\n  \
-    \  vector<vector<edge>> graph;\n    bool negative = false;\n    void add_edge(ll\
-    \ from, ll to, ll cap, ll cost) {\n        graph[from].push_back({to, cap, cost,\
-    \ len(graph[to])});\n        graph[to].push_back({from, 0ll, -cost, len(graph[from])\
-    \ - 1});\n        if (cost < 0) negative = true;\n    }\n    ll minCostFlow(ll\
-    \ s, ll t, ll f) {\n        ll V = len(graph);\n        vector<ll> potential(V),\
-    \ minCost, prevv(V, -1), preve(V, -1);\n        ll res = 0;\n        if (negative)\
-    \ {\n            minCost.assign(V, inf);\n            minCost[s] = 0;\n      \
-    \      rep(_, V - 1) {\n                rep(i, V) {\n                    rep(j,\
-    \ len(graph[i])) {\n                        edge &e = graph[i][j];\n         \
-    \               if (e.cap > 0 && chmin(minCost[e.to], minCost[i] + e.cost + potential[i]\
-    \ - potential[e.to])) {\n                            prevv[e.to] = i;\n      \
-    \                      preve[e.to] = j;\n                        }\n         \
-    \           }\n                }\n            }\n            if (minCost[t] ==\
-    \ inf) return -1;\n            rep(i, V) potential[i] += minCost[i];\n       \
-    \     for (ll i = t; i != s; i = prevv[i]) {\n                graph[prevv[i]][preve[i]].cap--;\n\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/MinCostFlow.cpp\"\
+    \n\nstruct PrimalDual {\n    struct edge {\n        ll to, cap, cost, rev;\n \
+    \   };\n    vector<vector<edge>> graph;\n    bool negative = false;\n    void\
+    \ add_edge(ll from, ll to, ll cap, ll cost) {\n        graph[from].push_back({to,\
+    \ cap, cost, len(graph[to])});\n        graph[to].push_back({from, 0ll, -cost,\
+    \ len(graph[from]) - 1});\n        if (cost < 0) negative = true;\n    }\n   \
+    \ ll minCostFlow(ll s, ll t, ll f) {\n        ll V = len(graph);\n        vector<ll>\
+    \ potential(V), minCost, prevv(V, -1), preve(V, -1);\n        ll res = 0;\n  \
+    \      if (negative) {\n            minCost.assign(V, inf);\n            minCost[s]\
+    \ = 0;\n            rep(_, V - 1) {\n                rep(i, V) {\n           \
+    \         rep(j, len(graph[i])) {\n                        edge &e = graph[i][j];\n\
+    \                        if (e.cap > 0 && chmin(minCost[e.to], minCost[i] + e.cost\
+    \ + potential[i] - potential[e.to])) {\n                            prevv[e.to]\
+    \ = i;\n                            preve[e.to] = j;\n                       \
+    \ }\n                    }\n                }\n            }\n            if (minCost[t]\
+    \ == inf) return -1;\n            rep(i, V) potential[i] += minCost[i];\n    \
+    \        for (ll i = t; i != s; i = prevv[i]) {\n                graph[prevv[i]][preve[i]].cap--;\n\
     \                graph[i][graph[prevv[i]][preve[i]].rev].cap++;\n            }\n\
     \            res += potential[t];\n            f--;\n        }\n\n        while\
     \ (f > 0) {\n            minCost.assign(V, inf);\n            minCost[s] = 0;\n\
@@ -104,7 +105,7 @@ data:
   isVerificationFile: false
   path: graph/MinCostFlow.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/MinCostFlow.test.cpp

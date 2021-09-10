@@ -23,21 +23,23 @@ data:
     \ rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i, n) for (int i = 1; i <\
     \ n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0; i--)\n#define REV(i,\
     \ n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(), v.end()\n#define\
-    \ PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\n\
-    template <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n\
-    \        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate <class\
-    \ T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n\
-    \        return true;\n    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n\
-    #line 3 \"string/SuffixArray.cpp\"\n\ntemplate <class T>\nclass SuffixArray {\n\
-    #define typeS make_pair(false, false)\n#define LMS make_pair(false, true)\n#define\
-    \ typeL make_pair(true, true)\n    using TYPE = pair<bool, bool>;\n    vector<TYPE>\
-    \ assignType(vector<ll> &S) {\n        vector<TYPE> type(len(S));\n        type[len(S)\
-    \ - 1] = LMS;\n        for (ll i = len(S) - 2; i >= 0; i--) {\n            if\
-    \ (S[i] < S[i + 1])\n                type[i] = typeS;\n            else if (S[i]\
-    \ > S[i + 1]) {\n                type[i] = typeL;\n                if (type[i\
-    \ + 1] == typeS) type[i + 1] = LMS;\n            } else\n                type[i]\
-    \ = type[i + 1];\n        }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll>\
-    \ &S, ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
+    \ PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n#define\
+    \ compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n#define comid(v,x)\
+    \ lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class U>\ninline bool\
+    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
+    \n\ntemplate <class T>\nclass SuffixArray {\n#define typeS make_pair(false, false)\n\
+    #define LMS make_pair(false, true)\n#define typeL make_pair(true, true)\n    using\
+    \ TYPE = pair<bool, bool>;\n    vector<TYPE> assignType(vector<ll> &S) {\n   \
+    \     vector<TYPE> type(len(S));\n        type[len(S) - 1] = LMS;\n        for\
+    \ (ll i = len(S) - 2; i >= 0; i--) {\n            if (S[i] < S[i + 1])\n     \
+    \           type[i] = typeS;\n            else if (S[i] > S[i + 1]) {\n      \
+    \          type[i] = typeL;\n                if (type[i + 1] == typeS) type[i\
+    \ + 1] = LMS;\n            } else\n                type[i] = type[i + 1];\n  \
+    \      }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll> &S,\
+    \ ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
     \        rep(i, len(bucket) - 1) bucket[i + 1] += bucket[i];\n        return bucket;\n\
     \    }\n    void sortTypeL(vector<ll> &S, vector<ll> &SA, vector<TYPE> &type,\
     \ ll alph) {\n        vector<ll> bucket = getBucket(S, alph);\n        for (ll\
@@ -112,7 +114,7 @@ data:
   isVerificationFile: true
   path: test/SuffixArray.matching.test.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/SuffixArray.matching.test.cpp

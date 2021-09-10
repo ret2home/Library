@@ -21,21 +21,22 @@ data:
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
     \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/factor.cpp\"\n\nll pow128(ll\
-    \ x, ll y, ll m) {\n    ll res = 1;\n    while (y > 0) {\n        if (y & 1) res\
-    \ = (__int128_t(res) * x) % m;\n        y >>= 1;\n        x = (__int128_t(x) *\
-    \ x) % m;\n    }\n    return res;\n}\n\nbool prime(ll n) {\n    if (n < 2 || n\
-    \ % 2 == 0) return n == 2;\n    ll d = n - 1;\n    while (d % 2 == 0) d >>= 1;\n\
-    \    for (ll x : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n     \
-    \   if (n <= x) break;\n        ll t = d, y = pow128(x, t, n);\n        while\
-    \ (t != n - 1 && y != 1 && y != n - 1) {\n            y = (__int128_t(y) * y)\
-    \ % n;\n            t <<= 1;\n        }\n        if (y != n - 1 && t % 2 == 0)\
-    \ return false;\n    }\n    return true;\n}\nll rho(ll n) {\n    if (n % 2 ==\
-    \ 0) return 2;\n    ll MOD = n;\n    auto f = [&](ll x) -> ll { return ((__int128_t)x\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/factor.cpp\"\
+    \n\nll pow128(ll x, ll y, ll m) {\n    ll res = 1;\n    while (y > 0) {\n    \
+    \    if (y & 1) res = (__int128_t(res) * x) % m;\n        y >>= 1;\n        x\
+    \ = (__int128_t(x) * x) % m;\n    }\n    return res;\n}\n\nbool prime(ll n) {\n\
+    \    if (n < 2 || n % 2 == 0) return n == 2;\n    ll d = n - 1;\n    while (d\
+    \ % 2 == 0) d >>= 1;\n    for (ll x : {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
+    \ {\n        if (n <= x) break;\n        ll t = d, y = pow128(x, t, n);\n    \
+    \    while (t != n - 1 && y != 1 && y != n - 1) {\n            y = (__int128_t(y)\
+    \ * y) % n;\n            t <<= 1;\n        }\n        if (y != n - 1 && t % 2\
+    \ == 0) return false;\n    }\n    return true;\n}\nll rho(ll n) {\n    if (n %\
+    \ 2 == 0) return 2;\n    ll MOD = n;\n    auto f = [&](ll x) -> ll { return ((__int128_t)x\
     \ * x + 1) % MOD; };\n    auto g = [](ll x, ll y) -> ll {\n        if (x < y)\
     \ return y - x;\n        return x - y;\n    };\n    for (ll x1 = 0;; x1++) {\n\
     \        for (ll x = x1, y = f(x);; x = f(x), y = f(f(y))) {\n            ll d\
@@ -68,7 +69,7 @@ data:
   isVerificationFile: false
   path: math/factor.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/factor.test.cpp

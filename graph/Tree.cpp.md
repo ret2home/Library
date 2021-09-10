@@ -16,17 +16,18 @@ data:
     \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
     \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
     #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n\ntemplate <class T, class U>\ninline bool chmin(T\
-    \ &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T &a, U\
-    \ b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n    return\
-    \ false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/Tree.cpp\"\n\nstruct Tree\
-    \ {\n    vector<int> depth, sub;\n    vector<vector<int>> G;\n    vector<int>\
-    \ par[20];\n    void dfs(int x, int p) {\n        sub[x] = 1;\n        for (int\
-    \ i : G[x])\n            if (i != p) {\n                depth[i] = depth[x] +\
-    \ 1;\n                par[0][i] = x;\n                dfs(i, x);\n           \
-    \     sub[x] += sub[i];\n            }\n    }\n    int lca(int x, int y) {\n \
-    \       if (depth[x] > depth[y]) swap(x, y);\n        rep(i, 20) if ((depth[y]\
+    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
+    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
+    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"graph/Tree.cpp\"\
+    \n\nstruct Tree {\n    vector<int> depth, sub;\n    vector<vector<int>> G;\n \
+    \   vector<int> par[20];\n    void dfs(int x, int p) {\n        sub[x] = 1;\n\
+    \        for (int i : G[x])\n            if (i != p) {\n                depth[i]\
+    \ = depth[x] + 1;\n                par[0][i] = x;\n                dfs(i, x);\n\
+    \                sub[x] += sub[i];\n            }\n    }\n    int lca(int x, int\
+    \ y) {\n        if (depth[x] > depth[y]) swap(x, y);\n        rep(i, 20) if ((depth[y]\
     \ - depth[x]) >> i & 1) y = par[i][y];\n        if (x == y) return x;\n      \
     \  for (int i = 19; i >= 0; i--)\n            if (par[i][x] != par[i][y]) {\n\
     \                x = par[i][x];\n                y = par[i][y];\n            }\n\
@@ -57,7 +58,7 @@ data:
   isVerificationFile: false
   path: graph/Tree.cpp
   requiredBy: []
-  timestamp: '2021-05-15 13:43:26+09:00'
+  timestamp: '2021-09-10 20:00:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/Tree.cpp
