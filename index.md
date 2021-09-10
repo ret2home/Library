@@ -96,7 +96,7 @@ data:
     - icon: ':warning:'
       path: structure/SplayTree.cpp
       title: structure/SplayTree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: structure/UnionFind.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -146,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/SuffixArray.test.cpp
       title: test/SuffixArray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
     - icon: ':heavy_check_mark:'

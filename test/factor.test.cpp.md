@@ -18,20 +18,33 @@ data:
     links:
     - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"test/factor.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
-    \n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
-    #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
-    \ n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define\
-    \ all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n\
-    #define len(s) (int)s.size()\n#define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n\
-    #define comid(v,x) lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class\
-    \ U>\ninline bool chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n     \
-    \   return true;\n    }\n    return false;\n}\ntemplate <class T, class U>\ninline\
-    \ bool chmax(T &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/factor.cpp\"\
-    \n\nll pow128(ll x, ll y, ll m) {\n    ll res = 1;\n    while (y > 0) {\n    \
-    \    if (y & 1) res = (__int128_t(res) * x) % m;\n        y >>= 1;\n        x\
-    \ = (__int128_t(x) * x) % m;\n    }\n    return res;\n}\n\nbool prime(ll n) {\n\
+    \n#line 2 \"template/template.cpp\"\n#include <algorithm>\n#include <bitset>\n\
+    #include <complex>\n#include <deque>\n#include <exception>\n#include <fstream>\n\
+    #include <functional>\n#include <iomanip>\n#include <ios>\n#include <iosfwd>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <locale>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <set>\n\
+    #include <sstream>\n#include <stack>\n#include <stdexcept>\n#include <streambuf>\n\
+    #include <string>\n#include <typeinfo>\n#include <utility>\n#include <valarray>\n\
+    #include <vector>\n#include <array>\n#include <atomic>\n#include <chrono>\n#include\
+    \ <codecvt>\n#include <condition_variable>\n#include <forward_list>\n#include\
+    \ <future>\n#include <initializer_list>\n#include <mutex>\n#include <random>\n\
+    #include <ratio>\n#include <regex>\n#include <scoped_allocator>\n#include <system_error>\n\
+    #include <thread>\n#include <tuple>\n#include <typeindex>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n#define\
+    \ ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i,\
+    \ n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0;\
+    \ i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(),\
+    \ v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\
+    #define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n#define comid(v,x)\
+    \ lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class U>\ninline bool\
+    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
+    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
+    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"math/factor.cpp\"\n\
+    \nll pow128(ll x, ll y, ll m) {\n    ll res = 1;\n    while (y > 0) {\n      \
+    \  if (y & 1) res = (__int128_t(res) * x) % m;\n        y >>= 1;\n        x =\
+    \ (__int128_t(x) * x) % m;\n    }\n    return res;\n}\n\nbool prime(ll n) {\n\
     \    if (n < 2 || n % 2 == 0) return n == 2;\n    ll d = n - 1;\n    while (d\
     \ % 2 == 0) d >>= 1;\n    for (ll x : {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
     \ {\n        if (n <= x) break;\n        ll t = d, y = pow128(x, t, n);\n    \
@@ -62,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/factor.test.cpp
   requiredBy: []
-  timestamp: '2021-09-10 20:00:43+09:00'
+  timestamp: '2021-09-10 20:11:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/factor.test.cpp
