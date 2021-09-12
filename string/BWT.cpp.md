@@ -22,40 +22,28 @@ data:
     _deprecated_at_docs: docs/BWT.md
     document_title: Burrows Wheeler Transform
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include <algorithm>\n#include\
-    \ <bitset>\n#include <complex>\n#include <deque>\n#include <exception>\n#include\
-    \ <fstream>\n#include <functional>\n#include <iomanip>\n#include <ios>\n#include\
-    \ <iosfwd>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <locale>\n#include <map>\n#include <memory>\n\
-    #include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include\
-    \ <set>\n#include <sstream>\n#include <stack>\n#include <stdexcept>\n#include\
-    \ <streambuf>\n#include <string>\n#include <typeinfo>\n#include <utility>\n#include\
-    \ <valarray>\n#include <vector>\n#include <array>\n#include <atomic>\n#include\
-    \ <chrono>\n#include <codecvt>\n#include <condition_variable>\n#include <forward_list>\n\
-    #include <future>\n#include <initializer_list>\n#include <mutex>\n#include <random>\n\
-    #include <ratio>\n#include <regex>\n#include <scoped_allocator>\n#include <system_error>\n\
-    #include <thread>\n#include <tuple>\n#include <typeindex>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n#define\
-    \ ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i,\
-    \ n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0;\
-    \ i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(),\
-    \ v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\
-    #define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n#define comid(v,x)\
-    \ lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\
-    \n\ntemplate <class T>\nclass SuffixArray {\n#define typeS make_pair(false, false)\n\
-    #define LMS make_pair(false, true)\n#define typeL make_pair(true, true)\n    using\
-    \ TYPE = pair<bool, bool>;\n    vector<TYPE> assignType(vector<ll> &S) {\n   \
-    \     vector<TYPE> type(len(S));\n        type[len(S) - 1] = LMS;\n        for\
-    \ (ll i = len(S) - 2; i >= 0; i--) {\n            if (S[i] < S[i + 1])\n     \
-    \           type[i] = typeS;\n            else if (S[i] > S[i + 1]) {\n      \
-    \          type[i] = typeL;\n                if (type[i + 1] == typeS) type[i\
-    \ + 1] = LMS;\n            } else\n                type[i] = type[i + 1];\n  \
-    \      }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll> &S,\
-    \ ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
+    \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,\
+    \ int>\n#define pi acos(-1)\n#define len(s) (int)s.size()\n#define compress(v)\
+    \ \\\n    sort(all(v));   \\\n    v.erase(unique(all(v)), v.end());\n#define comid(v,\
+    \ x) lower_bound(all(v), x) - v.begin()\n\ntemplate<class T>\nusing prique=priority_queue<T,vector<T>,greater<>>;\n\
+    \ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b)\
+    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate\
+    \ <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n     \
+    \   a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr ll inf\
+    \ = 3e18;\n#line 3 \"string/SuffixArray.cpp\"\n\ntemplate <class T>\nclass SuffixArray\
+    \ {\n#define typeS make_pair(false, false)\n#define LMS make_pair(false, true)\n\
+    #define typeL make_pair(true, true)\n    using TYPE = pair<bool, bool>;\n    vector<TYPE>\
+    \ assignType(vector<ll> &S) {\n        vector<TYPE> type(len(S));\n        type[len(S)\
+    \ - 1] = LMS;\n        for (ll i = len(S) - 2; i >= 0; i--) {\n            if\
+    \ (S[i] < S[i + 1])\n                type[i] = typeS;\n            else if (S[i]\
+    \ > S[i + 1]) {\n                type[i] = typeL;\n                if (type[i\
+    \ + 1] == typeS) type[i + 1] = LMS;\n            } else\n                type[i]\
+    \ = type[i + 1];\n        }\n        return type;\n    }\n    vector<ll> getBucket(vector<ll>\
+    \ &S, ll alph) {\n        vector<ll> bucket(alph);\n        for (ll i : S) bucket[i]++;\n\
     \        rep(i, len(bucket) - 1) bucket[i + 1] += bucket[i];\n        return bucket;\n\
     \    }\n    void sortTypeL(vector<ll> &S, vector<ll> &SA, vector<TYPE> &type,\
     \ ll alph) {\n        vector<ll> bucket = getBucket(S, alph);\n        for (ll\
@@ -150,7 +138,7 @@ data:
   path: string/BWT.cpp
   requiredBy:
   - string/FM_index.cpp
-  timestamp: '2021-09-10 20:11:52+09:00'
+  timestamp: '2021-09-12 23:44:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/FM_index.test.cpp

@@ -16,42 +16,30 @@ data:
     _deprecated_at_docs: docs/BIT.md
     document_title: Binary Indexed Tree
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include <algorithm>\n#include\
-    \ <bitset>\n#include <complex>\n#include <deque>\n#include <exception>\n#include\
-    \ <fstream>\n#include <functional>\n#include <iomanip>\n#include <ios>\n#include\
-    \ <iosfwd>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <locale>\n#include <map>\n#include <memory>\n\
-    #include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include\
-    \ <set>\n#include <sstream>\n#include <stack>\n#include <stdexcept>\n#include\
-    \ <streambuf>\n#include <string>\n#include <typeinfo>\n#include <utility>\n#include\
-    \ <valarray>\n#include <vector>\n#include <array>\n#include <atomic>\n#include\
-    \ <chrono>\n#include <codecvt>\n#include <condition_variable>\n#include <forward_list>\n\
-    #include <future>\n#include <initializer_list>\n#include <mutex>\n#include <random>\n\
-    #include <ratio>\n#include <regex>\n#include <scoped_allocator>\n#include <system_error>\n\
-    #include <thread>\n#include <tuple>\n#include <typeindex>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n#define\
-    \ ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i,\
-    \ n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0;\
-    \ i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(),\
-    \ v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\
-    #define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n#define comid(v,x)\
-    \ lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BIT.cpp\"\
-    \n\ntemplate <class T>\nclass BIT {\n    ll N;\n    vector<T> bit;\n    void add_(ll\
-    \ x, T y) {\n        while (x <= N) {\n            bit[x] += y;\n            x\
-    \ += x & -x;\n        }\n    }\n    T sum_(ll x) {\n        T res = 0;\n     \
-    \   while (x > 0) {\n            res += bit[x];\n            x -= x & -x;\n  \
-    \      }\n        return res;\n    }\n\n   public:\n    ll lower_bound(T w) {\n\
-    \        if (w <= 0) return -1;\n        ll x = 0;\n        ll k = 1;\n      \
-    \  while (k * 2 <= N) k *= 2;\n        for (; k > 0; k /= 2) {\n            if\
-    \ (x + k <= N && bit[x + k] < w) {\n                w -= bit[x + k];\n       \
-    \         x += k;\n            }\n        }\n        return x;\n    }\n    void\
-    \ add(ll x, T y) { add_(x + 1, y); }\n    T sum(ll l, ll r) { return sum_(r) -\
-    \ sum_(l); }\n    BIT(ll x) : N(x), bit(x + 1) {}\n};\n/*\n@brief Binary Indexed\
-    \ Tree\n@docs docs/BIT.md\n*/\n"
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
+    \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,\
+    \ int>\n#define pi acos(-1)\n#define len(s) (int)s.size()\n#define compress(v)\
+    \ \\\n    sort(all(v));   \\\n    v.erase(unique(all(v)), v.end());\n#define comid(v,\
+    \ x) lower_bound(all(v), x) - v.begin()\n\ntemplate<class T>\nusing prique=priority_queue<T,vector<T>,greater<>>;\n\
+    \ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b)\
+    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate\
+    \ <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n     \
+    \   a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr ll inf\
+    \ = 3e18;\n#line 3 \"structure/BIT.cpp\"\n\ntemplate <class T>\nclass BIT {\n\
+    \    ll N;\n    vector<T> bit;\n    void add_(ll x, T y) {\n        while (x <=\
+    \ N) {\n            bit[x] += y;\n            x += x & -x;\n        }\n    }\n\
+    \    T sum_(ll x) {\n        T res = 0;\n        while (x > 0) {\n           \
+    \ res += bit[x];\n            x -= x & -x;\n        }\n        return res;\n \
+    \   }\n\n   public:\n    ll lower_bound(T w) {\n        if (w <= 0) return -1;\n\
+    \        ll x = 0;\n        ll k = 1;\n        while (k * 2 <= N) k *= 2;\n  \
+    \      for (; k > 0; k /= 2) {\n            if (x + k <= N && bit[x + k] < w)\
+    \ {\n                w -= bit[x + k];\n                x += k;\n            }\n\
+    \        }\n        return x;\n    }\n    void add(ll x, T y) { add_(x + 1, y);\
+    \ }\n    T sum(ll l, ll r) { return sum_(r) - sum_(l); }\n    BIT(ll x) : N(x),\
+    \ bit(x + 1) {}\n};\n/*\n@brief Binary Indexed Tree\n@docs docs/BIT.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate <class T>\n\
     class BIT {\n    ll N;\n    vector<T> bit;\n    void add_(ll x, T y) {\n     \
     \   while (x <= N) {\n            bit[x] += y;\n            x += x & -x;\n   \
@@ -70,7 +58,7 @@ data:
   isVerificationFile: false
   path: structure/BIT.cpp
   requiredBy: []
-  timestamp: '2021-09-10 20:11:52+09:00'
+  timestamp: '2021-09-12 23:44:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BIT.test.cpp

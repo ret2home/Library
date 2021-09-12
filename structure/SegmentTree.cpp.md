@@ -16,71 +16,60 @@ data:
     _deprecated_at_docs: docs/SegmentTree.md
     document_title: Lazy Segment Tree
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include <algorithm>\n#include\
-    \ <bitset>\n#include <complex>\n#include <deque>\n#include <exception>\n#include\
-    \ <fstream>\n#include <functional>\n#include <iomanip>\n#include <ios>\n#include\
-    \ <iosfwd>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <locale>\n#include <map>\n#include <memory>\n\
-    #include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include\
-    \ <set>\n#include <sstream>\n#include <stack>\n#include <stdexcept>\n#include\
-    \ <streambuf>\n#include <string>\n#include <typeinfo>\n#include <utility>\n#include\
-    \ <valarray>\n#include <vector>\n#include <array>\n#include <atomic>\n#include\
-    \ <chrono>\n#include <codecvt>\n#include <condition_variable>\n#include <forward_list>\n\
-    #include <future>\n#include <initializer_list>\n#include <mutex>\n#include <random>\n\
-    #include <ratio>\n#include <regex>\n#include <scoped_allocator>\n#include <system_error>\n\
-    #include <thread>\n#include <tuple>\n#include <typeindex>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n#define\
-    \ ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i,\
-    \ n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0;\
-    \ i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(),\
-    \ v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\
-    #define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n#define comid(v,x)\
-    \ lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/SegmentTree.cpp\"\
-    \n\ntemplate <typename Monoid,\n          typename OperatorMonoid,\n         \
-    \ Monoid (*f)(Monoid, Monoid, int),\n          Monoid (*g)(Monoid, OperatorMonoid,\
-    \ int),\n          OperatorMonoid (*h)(OperatorMonoid, OperatorMonoid, int)>\n\
-    struct Segtree {\n    int size = 1;\n\n   private:\n    vector<Monoid> dat;\n\
-    \    vector<OperatorMonoid> lazy;\n    Monoid M;\n    OperatorMonoid OM;\n\n \
-    \  public:\n    void eval(int k, int l, int r) {\n        if (lazy[k] != OM) {\n\
-    \            dat[k] = g(dat[k], lazy[k], r - l);\n            if (r - l > 1) {\n\
-    \                lazy[(k << 1) + 1] = h(lazy[(k << 1) + 1], lazy[k], r - l);\n\
-    \                lazy[(k << 1) + 2] = h(lazy[(k << 1) + 2], lazy[k], r - l);\n\
-    \            }\n            lazy[k] = OM;\n        }\n    }\n    void update(int\
-    \ a, int b, OperatorMonoid M, int k = 0, int l = 0, int r = -1) {\n        if\
-    \ (r == -1) r = size;\n        eval(k, l, r);\n        if (r <= a || b <= l) return;\n\
-    \        if (a <= l && r <= b) {\n            lazy[k] = h(lazy[k], M, r - l);\n\
-    \            eval(k, l, r);\n            return;\n        }\n        update(a,\
-    \ b, M, (k << 1) + 1, l, (l + r) >> 1);\n        update(a, b, M, (k << 1) + 2,\
-    \ (l + r) >> 1, r);\n        dat[k] = f(dat[(k << 1) + 1], dat[(k << 1) + 2],\
-    \ r - l);\n    }\n    Monoid query(int a, int b, int k = 0, int l = 0, int r =\
-    \ -1) {\n        if (r == -1) r = size;\n        eval(k, l, r);\n        if (r\
-    \ <= a || b <= l) return M;\n        if (a <= l && r <= b) return dat[k];\n  \
-    \      Monoid lv = query(a, b, (k << 1) + 1, l, (l + r) >> 1);\n        Monoid\
-    \ rv = query(a, b, (k << 1) + 2, (l + r) >> 1, r);\n        return f(lv, rv, r\
-    \ - l);\n    }\n    template <class C>\n    int minLeft(int a, int b, C &check,\
-    \ Monoid x, int k = 0, int l = 0, int r = -1) {\n        if (r == -1) r = size;\n\
-    \        eval(k, l, r);\n        if (r <= a || b <= l || !check(dat[k], x)) return\
-    \ -1;\n        if (r - l == 1) return l;\n        int lv = minLeft(a, b, check,\
-    \ x, (k << 1) + 1, l, (l + r) >> 1);\n        if (lv != -1) return lv;\n     \
-    \   return minLeft(a, b, check, x, (k << 1) + 2, (l + r) >> 1, r);\n    }\n  \
-    \  template <class C>\n    int maxRight(int a, int b, C &check, Monoid x, int\
-    \ k = 0, int l = 0, int r = -1) {\n        if (r == -1) r = size;\n        eval(k,\
-    \ l, r);\n        if (r <= a || b <= l || !check(dat[k], x)) return -1;\n    \
-    \    if (r - l == 1) return l;\n        int rv = maxRight(a, b, check, x, (k <<\
-    \ 1) + 2, (l + r) >> 1, r);\n        if (rv != -1) return rv;\n        return\
-    \ maxRight(a, b, check, x, (k << 1) + 1, l, (l + r) >> 1);\n    }\n    void set(int\
-    \ a, Monoid x) {\n        dat[a + size - 1] = x;\n    }\n    void init(int k =\
-    \ 0, int l = 0, int r = -1) {\n        if (r == -1) r = size;\n        if (r -\
-    \ l == 1) return;\n        init((k << 1) + 1, l, (l + r) >> 1);\n        init((k\
-    \ << 1) + 2, (l + r) >> 1, r);\n        dat[k] = f(dat[k * 2 + 1], dat[k * 2 +\
-    \ 2], r - l);\n    }\n    Segtree(int x, Monoid M, OperatorMonoid OM)\n      \
-    \  : M(M), OM(OM) {\n        while (size < x) size <<= 1;\n        dat.resize((size\
-    \ << 1) - 1, M);\n        lazy.resize((size << 1) - 1, OM);\n    }\n};\n\n/*\n\
-    @brief Lazy Segment Tree\n@docs docs/SegmentTree.md\n*/\n"
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i <\
+    \ n; i++)\n#define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for\
+    \ (int i = n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n\
+    #define all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,\
+    \ int>\n#define pi acos(-1)\n#define len(s) (int)s.size()\n#define compress(v)\
+    \ \\\n    sort(all(v));   \\\n    v.erase(unique(all(v)), v.end());\n#define comid(v,\
+    \ x) lower_bound(all(v), x) - v.begin()\n\ntemplate<class T>\nusing prique=priority_queue<T,vector<T>,greater<>>;\n\
+    \ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b)\
+    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate\
+    \ <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n     \
+    \   a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr ll inf\
+    \ = 3e18;\n#line 3 \"structure/SegmentTree.cpp\"\n\ntemplate <typename Monoid,\n\
+    \          typename OperatorMonoid,\n          Monoid (*f)(Monoid, Monoid, int),\n\
+    \          Monoid (*g)(Monoid, OperatorMonoid, int),\n          OperatorMonoid\
+    \ (*h)(OperatorMonoid, OperatorMonoid, int)>\nstruct Segtree {\n    int size =\
+    \ 1;\n\n   private:\n    vector<Monoid> dat;\n    vector<OperatorMonoid> lazy;\n\
+    \    Monoid M;\n    OperatorMonoid OM;\n\n   public:\n    void eval(int k, int\
+    \ l, int r) {\n        if (lazy[k] != OM) {\n            dat[k] = g(dat[k], lazy[k],\
+    \ r - l);\n            if (r - l > 1) {\n                lazy[(k << 1) + 1] =\
+    \ h(lazy[(k << 1) + 1], lazy[k], r - l);\n                lazy[(k << 1) + 2] =\
+    \ h(lazy[(k << 1) + 2], lazy[k], r - l);\n            }\n            lazy[k] =\
+    \ OM;\n        }\n    }\n    void update(int a, int b, OperatorMonoid M, int k\
+    \ = 0, int l = 0, int r = -1) {\n        if (r == -1) r = size;\n        eval(k,\
+    \ l, r);\n        if (r <= a || b <= l) return;\n        if (a <= l && r <= b)\
+    \ {\n            lazy[k] = h(lazy[k], M, r - l);\n            eval(k, l, r);\n\
+    \            return;\n        }\n        update(a, b, M, (k << 1) + 1, l, (l +\
+    \ r) >> 1);\n        update(a, b, M, (k << 1) + 2, (l + r) >> 1, r);\n       \
+    \ dat[k] = f(dat[(k << 1) + 1], dat[(k << 1) + 2], r - l);\n    }\n    Monoid\
+    \ query(int a, int b, int k = 0, int l = 0, int r = -1) {\n        if (r == -1)\
+    \ r = size;\n        eval(k, l, r);\n        if (r <= a || b <= l) return M;\n\
+    \        if (a <= l && r <= b) return dat[k];\n        Monoid lv = query(a, b,\
+    \ (k << 1) + 1, l, (l + r) >> 1);\n        Monoid rv = query(a, b, (k << 1) +\
+    \ 2, (l + r) >> 1, r);\n        return f(lv, rv, r - l);\n    }\n    template\
+    \ <class C>\n    int minLeft(int a, int b, C &check, Monoid x, int k = 0, int\
+    \ l = 0, int r = -1) {\n        if (r == -1) r = size;\n        eval(k, l, r);\n\
+    \        if (r <= a || b <= l || !check(dat[k], x)) return -1;\n        if (r\
+    \ - l == 1) return l;\n        int lv = minLeft(a, b, check, x, (k << 1) + 1,\
+    \ l, (l + r) >> 1);\n        if (lv != -1) return lv;\n        return minLeft(a,\
+    \ b, check, x, (k << 1) + 2, (l + r) >> 1, r);\n    }\n    template <class C>\n\
+    \    int maxRight(int a, int b, C &check, Monoid x, int k = 0, int l = 0, int\
+    \ r = -1) {\n        if (r == -1) r = size;\n        eval(k, l, r);\n        if\
+    \ (r <= a || b <= l || !check(dat[k], x)) return -1;\n        if (r - l == 1)\
+    \ return l;\n        int rv = maxRight(a, b, check, x, (k << 1) + 2, (l + r) >>\
+    \ 1, r);\n        if (rv != -1) return rv;\n        return maxRight(a, b, check,\
+    \ x, (k << 1) + 1, l, (l + r) >> 1);\n    }\n    void set(int a, Monoid x) {\n\
+    \        dat[a + size - 1] = x;\n    }\n    void init(int k = 0, int l = 0, int\
+    \ r = -1) {\n        if (r == -1) r = size;\n        if (r - l == 1) return;\n\
+    \        init((k << 1) + 1, l, (l + r) >> 1);\n        init((k << 1) + 2, (l +\
+    \ r) >> 1, r);\n        dat[k] = f(dat[k * 2 + 1], dat[k * 2 + 2], r - l);\n \
+    \   }\n    Segtree(int x, Monoid M, OperatorMonoid OM)\n        : M(M), OM(OM)\
+    \ {\n        while (size < x) size <<= 1;\n        dat.resize((size << 1) - 1,\
+    \ M);\n        lazy.resize((size << 1) - 1, OM);\n    }\n};\n\n/*\n@brief Lazy\
+    \ Segment Tree\n@docs docs/SegmentTree.md\n*/\n"
   code: "#pragma once\n#include \"../template/template.cpp\"\n\ntemplate <typename\
     \ Monoid,\n          typename OperatorMonoid,\n          Monoid (*f)(Monoid, Monoid,\
     \ int),\n          Monoid (*g)(Monoid, OperatorMonoid, int),\n          OperatorMonoid\
@@ -128,7 +117,7 @@ data:
   isVerificationFile: false
   path: structure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2021-09-10 20:11:52+09:00'
+  timestamp: '2021-09-12 23:44:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/SegmentTree.test.cpp

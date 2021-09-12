@@ -30,37 +30,26 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B
   bundledCode: "#line 1 \"test/FM_index.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B\"\
-    \n\n#line 2 \"template/template.cpp\"\n#include <algorithm>\n#include <bitset>\n\
-    #include <complex>\n#include <deque>\n#include <exception>\n#include <fstream>\n\
-    #include <functional>\n#include <iomanip>\n#include <ios>\n#include <iosfwd>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <locale>\n#include <map>\n#include <memory>\n#include\
-    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <set>\n\
-    #include <sstream>\n#include <stack>\n#include <stdexcept>\n#include <streambuf>\n\
-    #include <string>\n#include <typeinfo>\n#include <utility>\n#include <valarray>\n\
-    #include <vector>\n#include <array>\n#include <atomic>\n#include <chrono>\n#include\
-    \ <codecvt>\n#include <condition_variable>\n#include <forward_list>\n#include\
-    \ <future>\n#include <initializer_list>\n#include <mutex>\n#include <random>\n\
-    #include <ratio>\n#include <regex>\n#include <scoped_allocator>\n#include <system_error>\n\
-    #include <thread>\n#include <tuple>\n#include <typeindex>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n#define\
-    \ ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n#define REP(i,\
-    \ n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i = n - 1; i >= 0;\
-    \ i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define all(v) v.begin(),\
-    \ v.end()\n#define PL pair<ll, ll>\n#define PI pair<int,int>\n#define len(s) (int)s.size()\n\
-    #define compress(v) sort(all(v)); v.erase(unique(all(v)),v.end());\n#define comid(v,x)\
-    \ lower_bound(all(v),x)-v.begin()\n\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, U b) {\n    if (a > b) {\n        a = b;\n        return true;\n\
-    \    }\n    return false;\n}\ntemplate <class T, class U>\ninline bool chmax(T\
-    \ &a, U b) {\n    if (a < b) {\n        a = b;\n        return true;\n    }\n\
-    \    return false;\n}\nconstexpr ll inf = 3e18;\n#line 3 \"structure/BitVector.cpp\"\
-    \n\nclass BitVector {\n    vector<ll> sum;\n    vector<uint64_t> bit;\n\n   public:\n\
-    \    ll rank(bool val, ll idx) {\n        uint64_t mask = ((uint64_t)1 << (idx\
-    \ & ((1 << 6) - 1))) - 1;\n        ll res = sum[idx >> 6] + __builtin_popcountll(bit[idx\
-    \ >> 6] & mask);\n        return (val ? res : idx - res);\n    }\n    BitVector(vector<bool>&\
-    \ v) {\n        ll sz = (len(v) >> 6) + 1;\n        bit.assign(sz, 0);\n     \
-    \   sum.assign(sz, 0);\n        rep(i, len(v)) {\n            bit[i >> 6] |= (uint64_t)(v[i])\
-    \ << (i & ((1 << 6) - 1));\n        }\n        rep(i, sz - 1) {\n            sum[i\
+    \n\n#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n#define ll long long\n#define rep(i, n) for (int i = 0; i < n; i++)\n\
+    #define REP(i, n) for (int i = 1; i < n; i++)\n#define rev(i, n) for (int i =\
+    \ n - 1; i >= 0; i--)\n#define REV(i, n) for (int i = n - 1; i > 0; i--)\n#define\
+    \ all(v) v.begin(), v.end()\n#define PL pair<ll, ll>\n#define PI pair<int, int>\n\
+    #define pi acos(-1)\n#define len(s) (int)s.size()\n#define compress(v) \\\n  \
+    \  sort(all(v));   \\\n    v.erase(unique(all(v)), v.end());\n#define comid(v,\
+    \ x) lower_bound(all(v), x) - v.begin()\n\ntemplate<class T>\nusing prique=priority_queue<T,vector<T>,greater<>>;\n\
+    \ntemplate <class T, class U>\ninline bool chmin(T &a, U b) {\n    if (a > b)\
+    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate\
+    \ <class T, class U>\ninline bool chmax(T &a, U b) {\n    if (a < b) {\n     \
+    \   a = b;\n        return true;\n    }\n    return false;\n}\nconstexpr ll inf\
+    \ = 3e18;\n#line 3 \"structure/BitVector.cpp\"\n\nclass BitVector {\n    vector<ll>\
+    \ sum;\n    vector<uint64_t> bit;\n\n   public:\n    ll rank(bool val, ll idx)\
+    \ {\n        uint64_t mask = ((uint64_t)1 << (idx & ((1 << 6) - 1))) - 1;\n  \
+    \      ll res = sum[idx >> 6] + __builtin_popcountll(bit[idx >> 6] & mask);\n\
+    \        return (val ? res : idx - res);\n    }\n    BitVector(vector<bool>& v)\
+    \ {\n        ll sz = (len(v) >> 6) + 1;\n        bit.assign(sz, 0);\n        sum.assign(sz,\
+    \ 0);\n        rep(i, len(v)) {\n            bit[i >> 6] |= (uint64_t)(v[i]) <<\
+    \ (i & ((1 << 6) - 1));\n        }\n        rep(i, sz - 1) {\n            sum[i\
     \ + 1] = sum[i] + __builtin_popcountll(bit[i]);\n        }\n    }\n};\n/*\n@brief\
     \ Bit Vector\n@docs docs/BitVector.md\n*/\n#line 4 \"structure/WaveletMatrix.cpp\"\
     \n\ntemplate <class T, class C>\nclass WaveletMatrix {\n    int N, bitlen;\n \
@@ -200,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/FM_index.test.cpp
   requiredBy: []
-  timestamp: '2021-09-10 20:11:52+09:00'
+  timestamp: '2021-09-12 23:44:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/FM_index.test.cpp
